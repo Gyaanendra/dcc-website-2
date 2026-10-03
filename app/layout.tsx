@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif, Space_Grotesk } from "next/font/google";
+import { Footer } from "@/componants/Shared/Footer";
+import { Header } from "@/componants/Shared/Header";
+import { SiteLoader } from "@/componants/Shared/SiteLoader";
+import { site } from "@/content/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,6 +16,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-display",
+  subsets: ["latin"],
+});
+
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
   weight: "400",
@@ -20,18 +29,32 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "DCC Club — Dean Career Cloud",
-  description:
-    "DCC Club (Dean Career Cloud), Bennett University — built by minds, united by code.",
+  title: {
+    default: `${site.name} — ${site.institution}`,
+    template: `%s — ${site.name}`,
+  },
+  description: site.description,
+  robots: { index: false, follow: false },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full antialiased`}
+      data-scroll-behavior="smooth"
+      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${instrumentSerif.variable}`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body>
+        <a className="skip-link" href="#main">
+          Skip to content
+        </a>
+        <SiteLoader />
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

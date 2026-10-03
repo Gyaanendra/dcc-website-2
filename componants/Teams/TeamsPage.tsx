@@ -48,7 +48,7 @@ function SectionHeader({
  */
 export default function TeamsPage() {
   return (
-    <div className="min-h-screen bg-[#F4F2ED] font-sans text-[#111111]">
+    <div className="teams-page min-h-screen bg-[#F4F2ED] font-sans text-[#111111]">
       <header className="flex items-center justify-between gap-4 border-b border-black/10 px-6 py-3.5 font-mono text-[11px] tracking-[0.18em] uppercase text-[#777777] sm:px-8">
         <p className="font-semibold text-[#111111]">
           DCC CLUB <span className="text-[#C04F2E]">{"//"}</span> DEAN CAREER

@@ -1,35 +1,104 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-  /* Editorial ease used by every team-page animation (type 1–5). */
-  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
-}
+/* Tailwind is loaded without preflight so the landing's hand-rolled base
+   styles stay authoritative; the team page scopes what it needs below. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Base reset scoped to the teams page (stand-in for the omitted preflight) */
+@layer base {
+  .teams-page h1,
+  .teams-page h2,
+  .teams-page h3,
+  .teams-page p,
+  .teams-page ul,
+  .teams-page li,
+  .teams-page button {
+    margin: 0;
+  }
+  .teams-page button {
+    background-color: transparent;
+    font: inherit;
   }
 }
 
+:root {
+  --ink: #111613;
+  --ink-soft: #29322c;
+  --paper: #edece5;
+  --paper-light: #f5f4ee;
+  --muted: #686f68;
+  --line: rgba(17, 22, 19, 0.19);
+  --line-light: rgba(237, 236, 229, 0.25);
+  --accent: #c2523a; /* Provisional accent: replace with approved DCC brand color. */
+  --page-pad: clamp(20px, 4vw, 72px);
+  --font-body: var(--font-geist-sans), Arial, sans-serif;
+  --font-title: var(--font-display), Arial, sans-serif;
+  --font-data: var(--font-geist-mono), monospace;
+  /* Editorial ease used by the teams-page animations. */
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  font: inherit;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+::selection {
+  background: var(--accent);
+  color: white;
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
+}
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: -5rem;
+  z-index: 1000;
+  background: var(--paper-light);
+  color: var(--ink);
+  padding: 1rem 1.25rem;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* ==========================================================================
-   Team page — editorial primitives
+   Teams page — editorial primitives
    ========================================================================== */
 
 /* Type 4 — split-text hero reveal */
@@ -126,9 +195,6 @@ body {
 .group:focus-within .portrait-veil::before {
   opacity: 1;
 }
-
-/* Type 3 — hover feedback lives on utilities in the components
-   (border-white/10 → border-white/40, light-orange card tint). */
 
 @media (prefers-reduced-motion: reduce) {
   .split-word > span {
