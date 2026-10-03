@@ -1,0 +1,294 @@
+.hero {
+  min-height: max(760px, 100svh);
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--paper-light);
+  padding: 140px var(--page-pad) 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.hero > :first-child {
+  opacity: 0.35;
+  right: -10%;
+  top: 10%;
+}
+.heroIndex,
+.heroBottom,
+.index {
+  position: relative;
+  z-index: 2;
+  font: 500 11px var(--font-data);
+  letter-spacing: 0.1em;
+}
+.heroContent {
+  position: relative;
+  z-index: 2;
+}
+.heroContent h1 {
+  margin: 0;
+  font: 500 clamp(65px, 10vw, 170px) / 0.88 var(--font-title);
+  letter-spacing: -0.085em;
+}
+.heroContent h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.heroContent p {
+  max-width: 490px;
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.3;
+  margin: 45px 0 0 auto;
+}
+.heroBottom {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--line-light);
+  padding-top: 20px;
+  color: #adb5ad;
+}
+.mission {
+  padding: clamp(100px, 11vw, 180px) var(--page-pad);
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 5vw;
+}
+.mission h2 {
+  margin: 0;
+  font: 500 clamp(60px, 8vw, 140px) / 0.93 var(--font-title);
+  letter-spacing: -0.08em;
+}
+.mission h2 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.mission p {
+  margin: 65px 0 0 auto;
+  max-width: 560px;
+  font-size: clamp(19px, 2vw, 28px);
+  line-height: 1.3;
+}
+.routeSection {
+  padding: clamp(100px, 11vw, 170px) var(--page-pad);
+  background: var(--paper-light);
+}
+.routeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 50px;
+  margin: 70px 0 110px;
+}
+.routeHeader h2 {
+  margin: 0;
+  font: 500 clamp(65px, 9vw, 150px) / 0.88 var(--font-title);
+  letter-spacing: -0.08em;
+}
+.routeHeader p {
+  max-width: 330px;
+  font-size: 21px;
+  line-height: 1.3;
+}
+.routeSteps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line);
+}
+.routeSteps > div {
+  position: relative;
+  min-height: 320px;
+  padding: 22px;
+  border-right: 1px solid var(--line);
+}
+.routeSteps > div:first-child {
+  padding-left: 0;
+}
+.routeSteps > div:last-child {
+  border: 0;
+}
+.routeSteps span {
+  color: var(--accent);
+  font: 11px var(--font-data);
+}
+.routeSteps h3 {
+  font: 500 clamp(28px, 3.2vw, 54px) / 1 var(--font-title);
+  letter-spacing: -0.05em;
+  margin: 90px 0 15px;
+}
+.routeSteps p {
+  color: var(--muted);
+  font-size: 15px;
+}
+.routeSteps i {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font: 30px var(--font-title);
+  color: var(--accent);
+}
+.verticalSection {
+  background: var(--ink);
+  color: var(--paper-light);
+  padding: clamp(100px, 11vw, 170px) var(--page-pad);
+}
+.verticalSection h2 {
+  margin: 65px 0 100px;
+  font: 500 clamp(58px, 8.5vw, 145px) / 0.9 var(--font-title);
+  letter-spacing: -0.08em;
+}
+.verticalSection h2 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.verticalList > div {
+  border-top: 1px solid var(--line-light);
+  padding: 24px 0;
+  display: grid;
+  grid-template-columns: 80px 1.5fr 1fr 40px;
+  gap: 20px;
+  align-items: center;
+}
+.verticalList > div:last-child {
+  border-bottom: 1px solid var(--line-light);
+}
+.verticalList span {
+  font: 11px var(--font-data);
+  color: var(--accent);
+}
+.verticalList span:last-child {
+  font: 28px var(--font-title);
+  text-align: right;
+}
+.verticalList h3 {
+  font: 500 clamp(24px, 3vw, 45px) / 1.05 var(--font-title);
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+.verticalList p {
+  font-size: 15px;
+  line-height: 1.4;
+  color: #b9c0b9;
+  max-width: 340px;
+  margin: 0;
+}
+.endSection {
+  padding: clamp(100px, 11vw, 170px) var(--page-pad);
+  background: var(--accent);
+  color: var(--paper-light);
+}
+.endSection > span {
+  font: 11px var(--font-data);
+  letter-spacing: 0.1em;
+}
+.endSection h2 {
+  font: 500 clamp(60px, 9vw, 150px) / 0.9 var(--font-title);
+  letter-spacing: -0.08em;
+  margin: 65px 0 90px;
+}
+.endSection h2 em {
+  font-style: normal;
+  color: var(--ink);
+}
+.endSection a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 250px;
+  border-bottom: 1px solid currentColor;
+  padding: 15px 0;
+  font: 500 12px var(--font-data);
+}
+.endSection a span {
+  font: 25px var(--font-title);
+}
+@media (max-width: 800px) {
+  .mission {
+    display: block;
+  }
+  .mission > div:last-child {
+    margin-top: 55px;
+  }
+  .routeHeader {
+    display: block;
+  }
+  .routeHeader p {
+    margin-top: 30px;
+  }
+  .routeSteps {
+    grid-template-columns: 1fr 1fr;
+  }
+  .routeSteps > div:nth-child(2) {
+    border: 0;
+  }
+  .routeSteps > div:nth-child(3),
+  .routeSteps > div:nth-child(4) {
+    border-top: 1px solid var(--line);
+  }
+  .routeSteps > div:nth-child(3) {
+    padding-left: 0;
+  }
+}
+@media (max-width: 680px) {
+  .hero {
+    min-height: 680px;
+    padding-top: 110px;
+  }
+  .heroContent h1 {
+    font-size: clamp(58px, 12vw, 90px);
+  }
+  .heroContent p {
+    font-size: 17px;
+    margin-left: 0;
+  }
+  .heroBottom {
+    font-size: 9px;
+  }
+  .heroBottom span:last-child {
+    display: none;
+  }
+  .mission h2,
+  .routeHeader h2,
+  .verticalSection h2,
+  .endSection h2 {
+    font-size: clamp(55px, 11vw, 85px);
+  }
+  .mission p {
+    font-size: 19px;
+    margin-top: 45px;
+  }
+  .routeHeader {
+    margin: 55px 0 70px;
+  }
+  .routeHeader p {
+    font-size: 17px;
+  }
+  .routeSteps > div {
+    min-height: 240px;
+  }
+  .routeSteps h3 {
+    margin-top: 75px;
+    font-size: 30px;
+  }
+  .routeSteps p {
+    font-size: 13px;
+  }
+  .verticalList > div {
+    grid-template-columns: 35px 1fr 30px;
+  }
+  .verticalList h3 {
+    font-size: 27px;
+  }
+  .verticalList p {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 13px;
+  }
+  .verticalList span:last-child {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .endSection h2 {
+    margin-bottom: 55px;
+  }
+}
