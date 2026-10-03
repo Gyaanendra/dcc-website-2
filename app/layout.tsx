@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif, Space_Grotesk } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Instrument_Serif,
+  Space_Grotesk,
+} from "next/font/google";
 import { Footer } from "@/componants/Shared/Footer";
 import { Header } from "@/componants/Shared/Header";
 import { SiteLoader } from "@/componants/Shared/SiteLoader";
