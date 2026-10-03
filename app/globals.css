@@ -79,28 +79,6 @@ body {
   transition-duration: 1.25s;
 }
 
-/* Type 2 — chat-style sequential FAQ rows */
-@keyframes chat-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.chat-row {
-  margin-bottom: 20px;
-  opacity: 0;
-  transform: translateY(16px);
-}
-
-.chat-row.is-in {
-  animation: chat-reveal 0.6s var(--ease-editorial) forwards;
-}
-
 /* Type 1 — soft veil over portraits (light theme: lifts away on hover) */
 .portrait-veil::after {
   content: "";
@@ -162,15 +140,6 @@ body {
     opacity: 1;
     transform: none;
     transition: none;
-  }
-
-  .chat-row {
-    opacity: 1;
-    transform: none;
-  }
-
-  .chat-row.is-in {
-    animation: none;
   }
 
   .portrait-veil,

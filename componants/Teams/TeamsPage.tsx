@@ -1,9 +1,8 @@
 import CoreTeamGrid from "./CoreTeamGrid";
 import RevealOnView from "./RevealOnView";
-import SequentialFAQ from "./SequentialFAQ";
 import SubMembersDirectory from "./SubMembersDirectory";
 import TeamsHero from "./TeamsHero";
-import { coreMembers, faqItems, subMembers } from "./team-data";
+import { coreMembers, subMembers } from "./team-data";
 
 interface SectionHeaderProps {
   index: string;
@@ -80,16 +79,6 @@ export default function TeamsPage() {
             metaBottom={`COUNT: ${String(subMembers.length).padStart(2, "0")}`}
           />
           <SubMembersDirectory members={subMembers} />
-        </section>
-
-        <section aria-label="Inquiries and recruitment">
-          <SectionHeader
-            index="03"
-            title="Inquiries & Recruitment"
-            metaTop="// TRANSMISSION"
-            metaBottom="SEQ: AUTO"
-          />
-          <SequentialFAQ items={faqItems} />
         </section>
       </main>
 

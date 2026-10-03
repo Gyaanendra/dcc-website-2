@@ -29,10 +29,3 @@ export interface SubMember extends BaseMember {
   /** e.g. "Frontend Core", "UI/UX", "Backend" */
   teamSubgroup?: string;
 }
-
-export interface FAQItem {
-  id: string;
-  question: string;
-  answer: string;
-  category: string;
-}

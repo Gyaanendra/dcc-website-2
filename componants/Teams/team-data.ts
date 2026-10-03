@@ -1,4 +1,4 @@
-import type { CoreMember, Department, FAQItem, SubMember } from "./types";
+import type { CoreMember, Department, SubMember } from "./types";
 
 /**
  * Labeled dummy dataset. Swap `imageUrl` in once real member photos exist —
@@ -268,36 +268,5 @@ export const subMembers: SubMember[] = [
     department: "Research & Content",
     initials: initialsOf("Harsh Vardhan"),
     order: 16,
-  },
-];
-
-export const faqItems: FAQItem[] = [
-  {
-    id: "faq-01",
-    question: "When does DCC recruit new members?",
-    answer:
-      "Recruitment opens at the beginning of every academic semester. Watch the notice boards and the club portal for the application window — a short task, then a conversation with the core team.",
-    category: "RECRUITMENT",
-  },
-  {
-    id: "faq-02",
-    question: "Who is eligible to join the club?",
-    answer:
-      "Every enrolled student of Bennett University, from first year onward. We look for curiosity and consistency — branch and CGPA are never the deciding factors.",
-    category: "ELIGIBILITY",
-  },
-  {
-    id: "faq-03",
-    question: "What does the technical team actually build?",
-    answer:
-      "Full-stack products, internal tooling, and cloud infrastructure for campus events. Members ship real software in small squads, reviewed by the technical secretary.",
-    category: "TECHNICAL",
-  },
-  {
-    id: "faq-04",
-    question: "I have an idea — can DCC incubate it?",
-    answer:
-      "Yes. Pitch it during the ideation round; if it clears review, the club assigns a mentor, a small team, and cloud credits to take it from concept to demo day.",
-    category: "INCUBATION",
   },
 ];
