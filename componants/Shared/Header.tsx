@@ -10,7 +10,9 @@ import styles from "./Shared.module.css";
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const light = (pathname === "/" || pathname === "/teams") && !open;
+  const light =
+    (pathname === "/" || pathname === "/teams" || pathname === "/gallery") &&
+    !open;
   const menuRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
 

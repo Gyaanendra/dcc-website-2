@@ -2,7 +2,6 @@
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Link from "next/link";
 import { useLayoutEffect, useRef } from "react";
 import { site } from "@/content/site";
 import styles from "./LandingHero.module.css";
@@ -23,6 +22,13 @@ export function LandingHero() {
     const supportingCopy = gsap.utils.toArray<HTMLElement>(
       section.querySelectorAll("[data-hero-copy]"),
     );
+    const topStatement = section.querySelector<HTMLElement>(
+      `.${styles.topStatement}`,
+    );
+    const descriptor = section.querySelector<HTMLElement>(
+      `.${styles.descriptor}`,
+    );
+    const bottomBar = section.querySelector<HTMLElement>(`.${styles.bottom}`);
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
@@ -36,6 +42,7 @@ export function LandingHero() {
     gsap.registerPlugin(ScrollTrigger);
     let visible = false;
     let revealStarted = false;
+    let disposed = false;
     let scrollMotion: gsap.core.Timeline | undefined;
     let resizeFrame = 0;
     const syncPlayback = () => {
@@ -60,14 +67,24 @@ export function LandingHero() {
       const letterStage = section.querySelector<HTMLElement>(
         "[data-letter-stage]",
       );
-      if (!stage || !letterStage) return;
+      if (!stage || !letterStage || !topStatement || !descriptor || !bottomBar)
+        return;
       scrollMotion?.scrollTrigger?.kill();
       scrollMotion?.kill();
       gsap.set(wordmark, { clearProps: "transform" });
       const stageBounds = stage.getBoundingClientRect();
       const bounds = letterStage.getBoundingClientRect();
+      const pagePad = Number.parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue(
+          "--page-pad",
+        ),
+      );
       const compactWidth = window.innerWidth <= 680 ? 106 : 150;
-      const compactLeft = window.innerWidth <= 680 ? 20 : 28;
+      const compactLeft = Number.isNaN(pagePad)
+        ? window.innerWidth <= 680
+          ? 20
+          : 28
+        : pagePad;
       const compactTop = window.innerWidth <= 680 ? 22 : 24;
       scrollMotion = gsap
         .timeline({
@@ -75,7 +92,7 @@ export function LandingHero() {
             trigger: section,
             start: "top top",
             end: "bottom bottom",
-            scrub: 0.55,
+            scrub: 0.65,
           },
         })
         .to(
@@ -85,12 +102,26 @@ export function LandingHero() {
             y: compactTop - (bounds.top - stageBounds.top),
             scale: compactWidth / bounds.width,
             transformOrigin: "top left",
-            ease: "none",
+            ease: "power1.inOut",
           },
           0,
         )
-        .to(supportingCopy, { autoAlpha: 0, duration: 0.16, ease: "none" }, 0)
-        .to(videoLayer, { yPercent: 7, ease: "none" }, 0);
+        .to(
+          topStatement,
+          { y: -28, autoAlpha: 0, duration: 0.28, ease: "power1.in" },
+          0,
+        )
+        .to(
+          descriptor,
+          { scale: 0.95, autoAlpha: 0, duration: 0.22, ease: "power1.in" },
+          0,
+        )
+        .to(
+          bottomBar,
+          { y: 22, autoAlpha: 0, duration: 0.32, ease: "power1.in" },
+          0,
+        )
+        .to(videoLayer, { yPercent: 6, ease: "none" }, 0);
     };
     const onResize = () => {
       cancelAnimationFrame(resizeFrame);
@@ -101,6 +132,14 @@ export function LandingHero() {
       });
     };
     window.addEventListener("resize", onResize);
+    // Re-measure once webfonts settle so the scrub bounds stay exact.
+    document.fonts?.ready
+      .then(() => {
+        if (disposed || !scrollMotion) return;
+        createScrollMotion();
+        ScrollTrigger.refresh();
+      })
+      .catch(() => {});
 
     const initialPositions = characters.map((character) =>
       character.getBoundingClientRect(),
@@ -113,30 +152,43 @@ export function LandingHero() {
         groupStart + index * groupStep - initialPositions[index].left,
     });
     gsap.set(videoLayer, { opacity: 0 });
+    gsap.set(supportingCopy, { y: 12, autoAlpha: 0 });
     const entrance = gsap
-      .timeline({ delay: 0.3 })
+      .timeline({ delay: 0.15 })
       .to(characters, {
         x: 0,
-        duration: 1.95,
-        stagger: 0.1,
-        ease: "power2.inOut",
+        duration: 1.35,
+        stagger: 0.08,
+        ease: "power3.out",
       })
-      .call(createScrollMotion)
       .to(
         videoLayer,
         {
           opacity: 1,
-          duration: 1.25,
+          duration: 1,
           ease: "power2.out",
           onStart: () => {
             revealStarted = true;
             syncPlayback();
           },
         },
-        ">+0.25",
-      );
+        ">+0.2",
+      )
+      .to(
+        supportingCopy,
+        {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.7,
+          stagger: 0.08,
+          ease: "power3.out",
+        },
+        "<+0.1",
+      )
+      .call(createScrollMotion);
 
     return () => {
+      disposed = true;
       observer.disconnect();
       document.removeEventListener("visibilitychange", syncPlayback);
       window.removeEventListener("resize", onResize);
@@ -171,6 +223,7 @@ export function LandingHero() {
             muted
             loop
             playsInline
+            disablePictureInPicture
             preload="metadata"
             tabIndex={-1}
           />
@@ -198,9 +251,11 @@ export function LandingHero() {
             DCC helps you navigate what comes next.
           </p>
           <span>THE CAREER ECOSYSTEM / {site.year}</span>
-          <Link href="#thinking" aria-label="Scroll to DCC philosophy">
+          {/* Plain anchor: Next.js Link suppresses same-page fragment
+              scrolling, which left this scroll cue dead. */}
+          <a href="#thinking" aria-label="Scroll to DCC philosophy">
             ↓
-          </Link>
+          </a>
         </div>
       </div>
     </section>
