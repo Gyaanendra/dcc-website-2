@@ -1,9 +1,28 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { navigation, site } from "@/content/site";
 import styles from "./Shared.module.css";
 
 export function Footer() {
+  const pathname = usePathname();
+
+  // The gallery is one tall immersive stage — swap the tall editorial
+  // footer for a slim baseline so the runway keeps the room.
+  if (pathname === "/gallery") {
+    return (
+      <footer className={styles.footerCompact}>
+        <span>© {new Date().getFullYear()} DEAN CAREER CLOUD</span>
+        <span className={styles.footerCompactContext}>
+          {site.institution} <i>/</i> {site.school}
+        </span>
+        <a href="#main">BACK TO TOP ↑</a>
+      </footer>
+    );
+  }
+
   return (
     <footer className={styles.footer}>
       <div className={styles.footerTop}>
