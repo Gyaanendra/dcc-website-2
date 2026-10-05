@@ -30,17 +30,56 @@ export function LandingHero() {
 
     if (reducedMotion) {
       videoLayer.style.opacity = "1";
+      section.dataset.heroIntro = "complete";
+      gsap.set(supportingCopy, { autoAlpha: 1 });
       return;
     }
 
     gsap.registerPlugin(ScrollTrigger);
     let visible = false;
     let revealStarted = false;
+    let mediaFailed = false;
+    let introComplete = false;
     let scrollMotion: gsap.core.Timeline | undefined;
+    let copyReveal: gsap.core.Timeline | undefined;
+    let copyScroll: gsap.core.Tween | undefined;
     let resizeFrame = 0;
+    let playbackFallback = 0;
+    const completeIntro = () => {
+      if (introComplete) return;
+      introComplete = true;
+      window.clearTimeout(playbackFallback);
+      section.dataset.heroIntro = "complete";
+      copyReveal = gsap.timeline({
+        onComplete: () => {
+          copyScroll = gsap.to(supportingCopy, {
+            autoAlpha: 0,
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top top",
+              end: "+=220",
+              scrub: 0.4,
+            },
+          });
+          ScrollTrigger.refresh();
+        },
+      });
+      copyReveal.to(supportingCopy, {
+        autoAlpha: 1,
+        duration: 0.65,
+        stagger: 0.1,
+        ease: "power2.out",
+      });
+    };
     const syncPlayback = () => {
-      if (visible && revealStarted && !document.hidden) {
-        media.play().catch(() => {});
+      if (visible && revealStarted && !mediaFailed && !document.hidden) {
+        media.play().catch((error: unknown) => {
+          if (error instanceof DOMException && error.name === "AbortError")
+            return;
+          mediaFailed = true;
+          completeIntro();
+        });
       } else {
         media.pause();
       }
@@ -48,12 +87,27 @@ export function LandingHero() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         visible = entry.isIntersecting;
+        if (!visible && revealStarted && window.scrollY > section.offsetTop) {
+          completeIntro();
+        }
         syncPlayback();
       },
       { threshold: 0.15 },
     );
     observer.observe(section);
     document.addEventListener("visibilitychange", syncPlayback);
+    // Restart manually because the native loop attribute suppresses "ended".
+    const onVideoEnd = () => {
+      completeIntro();
+      media.currentTime = 0;
+      syncPlayback();
+    };
+    const onVideoError = () => {
+      mediaFailed = true;
+      if (revealStarted) completeIntro();
+    };
+    media.addEventListener("ended", onVideoEnd);
+    media.addEventListener("error", onVideoError);
 
     const createScrollMotion = () => {
       const stage = section.querySelector<HTMLElement>("[data-hero-stage]");
@@ -66,7 +120,7 @@ export function LandingHero() {
       gsap.set(wordmark, { clearProps: "transform" });
       const stageBounds = stage.getBoundingClientRect();
       const bounds = letterStage.getBoundingClientRect();
-      const compactWidth = window.innerWidth <= 680 ? 106 : 150;
+      const compactWidth = window.innerWidth <= 680 ? 85 : 120;
       const compactLeft = window.innerWidth <= 680 ? 20 : 28;
       const compactTop = window.innerWidth <= 680 ? 22 : 24;
       scrollMotion = gsap
@@ -89,7 +143,6 @@ export function LandingHero() {
           },
           0,
         )
-        .to(supportingCopy, { autoAlpha: 0, duration: 0.16, ease: "none" }, 0)
         .to(videoLayer, { yPercent: 7, ease: "none" }, 0);
     };
     const onResize = () => {
@@ -130,7 +183,17 @@ export function LandingHero() {
           ease: "power2.out",
           onStart: () => {
             revealStarted = true;
-            syncPlayback();
+            if (mediaFailed) {
+              completeIntro();
+            } else {
+              syncPlayback();
+              playbackFallback = window.setTimeout(() => {
+                if (visible && !document.hidden && media.currentTime < 0.1) {
+                  mediaFailed = true;
+                  completeIntro();
+                }
+              }, 8000);
+            }
           },
         },
         ">+0.25",
@@ -139,12 +202,18 @@ export function LandingHero() {
     return () => {
       observer.disconnect();
       document.removeEventListener("visibilitychange", syncPlayback);
+      media.removeEventListener("ended", onVideoEnd);
+      media.removeEventListener("error", onVideoError);
       window.removeEventListener("resize", onResize);
       cancelAnimationFrame(resizeFrame);
+      window.clearTimeout(playbackFallback);
       media.pause();
       entrance.kill();
       scrollMotion?.scrollTrigger?.kill();
       scrollMotion?.kill();
+      copyReveal?.kill();
+      copyScroll?.scrollTrigger?.kill();
+      copyScroll?.kill();
       gsap.set([...characters, wordmark, videoLayer, ...supportingCopy], {
         clearProps: "all",
       });
@@ -156,6 +225,7 @@ export function LandingHero() {
       className={styles.hero}
       ref={root}
       aria-label="Dean Career Cloud introduction"
+      data-hero-intro="pending"
     >
       <div className={styles.stage} data-hero-stage>
         <div className={styles.topStatement} data-hero-copy>
@@ -169,7 +239,6 @@ export function LandingHero() {
             src="/media/dcc-event-reel.mp4"
             poster="/media/dcc-event-reel-poster.png"
             muted
-            loop
             playsInline
             preload="metadata"
             tabIndex={-1}

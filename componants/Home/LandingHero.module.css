@@ -59,6 +59,17 @@
   letter-spacing: -0.03em;
   white-space: nowrap;
 }
+.topStatement,
+.descriptor,
+.bottom {
+  opacity: 0;
+  visibility: hidden;
+}
+.hero[data-hero-intro="complete"] .topStatement,
+.hero[data-hero-intro="complete"] .descriptor,
+.hero[data-hero-intro="complete"] .bottom {
+  visibility: visible;
+}
 .letterStage {
   position: absolute;
   z-index: 3;
@@ -72,7 +83,7 @@
   justify-content: space-between;
   align-items: center;
   margin: 0;
-  font: 400 clamp(190px, 25vw, 390px) / 0.8 var(--font-body);
+  font: 320 clamp(152px, 20vw, 312px) / 0.8 var(--font-body);
   letter-spacing: -0.14em;
   will-change: transform;
 }
@@ -135,7 +146,7 @@
     height: 155svh;
   }
   .letters {
-    font-size: 28vw;
+    font-size: 22.4vw;
   }
   .videoBackdrop video {
     object-position: 55% center;
@@ -161,7 +172,7 @@
     right: 24px;
   }
   .letters {
-    font-size: 31vw;
+    font-size: 24.8vw;
   }
   .descriptor {
     top: 60%;
@@ -195,5 +206,13 @@
   }
   .bottom a {
     transition: none;
+  }
+}
+@media (scripting: none) {
+  .topStatement,
+  .descriptor,
+  .bottom {
+    opacity: 1;
+    visibility: visible;
   }
 }
