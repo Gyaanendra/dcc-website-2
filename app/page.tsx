@@ -98,6 +98,9 @@ export default function Home() {
             <em>ON PAPER.</em>
           </h2>
           <p>A glimpse at the people and moments behind DCC.</p>
+          <Link className={styles.textLink} href="/gallery">
+            EXPLORE THE GALLERY <span aria-hidden="true">↗</span>
+          </Link>
         </div>
         <div className={styles.mediaGrid}>
           {gallery.map((item) => (
