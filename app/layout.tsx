@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Instrument_Serif,
+  Space_Grotesk,
+} from "next/font/google";
 import { Footer } from "@/componants/Shared/Footer";
 import { Header } from "@/componants/Shared/Header";
 import { SiteLoader } from "@/componants/Shared/SiteLoader";
@@ -21,6 +26,13 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
 });
 
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  weight: "400",
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: {
     default: `${site.name} — ${site.institution}`,
@@ -37,7 +49,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${instrumentSerif.variable}`}
     >
       <body>
         <a className="skip-link" href="#main">

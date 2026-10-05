@@ -1,3 +1,32 @@
+/* Tailwind is loaded without preflight so the landing's hand-rolled base
+   styles stay authoritative; the team page scopes what it needs below. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+}
+
+/* Base reset scoped to the teams page (stand-in for the omitted preflight) */
+@layer base {
+  .teams-page h1,
+  .teams-page h2,
+  .teams-page h3,
+  .teams-page p,
+  .teams-page ul,
+  .teams-page li,
+  .teams-page button {
+    margin: 0;
+  }
+  .teams-page button {
+    background-color: transparent;
+    font: inherit;
+  }
+}
+
 :root {
   --ink: #111613;
   --ink-soft: #29322c;
@@ -11,6 +40,8 @@
   --font-body: var(--font-geist-sans), Arial, sans-serif;
   --font-title: var(--font-display), Arial, sans-serif;
   --font-data: var(--font-geist-mono), monospace;
+  /* Editorial ease used by the teams-page animations. */
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
@@ -75,5 +106,123 @@ img {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+  }
+}
+
+/* ==========================================================================
+   Teams page — editorial primitives
+   ========================================================================== */
+
+/* Type 4 — split-text hero reveal */
+@keyframes text-reveal {
+  from {
+    transform: translateY(110%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.split-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.split-word > span {
+  display: inline-block;
+  transform: translateY(110%);
+  animation: text-reveal 1.25s var(--ease-editorial) forwards;
+  animation-delay: calc(var(--word-index, 0) * 90ms + 150ms);
+}
+
+/* Type 5 — staggered fade-up for grid panels & directory rows */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.8s var(--ease-editorial),
+    transform 0.8s var(--ease-editorial);
+  transition-delay: calc(var(--stagger-index, 0) * 70ms);
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Headings open slower (1.25s); grids & rows keep the default 0.8s */
+[data-reveal].reveal-slow {
+  transition-duration: 1.25s;
+}
+
+/* Type 1 — soft veil over portraits (light theme: lifts away on hover) */
+.portrait-veil::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0.05;
+  transition: opacity 0.4s var(--ease-editorial);
+  pointer-events: none;
+}
+
+.group:hover .portrait-veil::after,
+.group:focus-within .portrait-veil::after {
+  opacity: 0;
+}
+
+/* Rust backlight on hover — glows at the image frame border only,
+   never filling the frame: outer spill behind the frame + inset rim */
+.portrait-veil {
+  box-shadow: 0 0 0 0 rgba(192, 79, 46, 0);
+  transition: box-shadow 0.4s var(--ease-editorial);
+}
+
+.portrait-veil::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  box-shadow:
+    inset 0 0 18px rgba(192, 79, 46, 0.22),
+    inset 0 0 3px rgba(192, 79, 46, 0.35);
+  transition: opacity 0.4s var(--ease-editorial);
+}
+
+.group:hover .portrait-veil,
+.group:focus-within .portrait-veil {
+  box-shadow:
+    0 0 32px 4px rgba(192, 79, 46, 0.25),
+    0 0 8px 1px rgba(192, 79, 46, 0.18);
+}
+
+.group:hover .portrait-veil::before,
+.group:focus-within .portrait-veil::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .split-word > span {
+    transform: none;
+    animation: none;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .portrait-veil,
+  .portrait-veil::after,
+  .portrait-veil::before {
+    transition: none;
   }
 }
