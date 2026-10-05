@@ -1,0 +1,7 @@
+# Normalize line endings: LF in the repository and the working tree,
+# matching Biome's formatter so `npm run lint` stays clean on Windows.
+* text=auto eol=lf
+
+# Windows scripts keep CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
