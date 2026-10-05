@@ -3,6 +3,12 @@
   inset: 0 0 auto;
   z-index: 50;
   color: var(--paper-light);
+  transition: opacity 0.7s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .header {
+    transition: none;
+  }
 }
 .headerLight {
   color: var(--ink);

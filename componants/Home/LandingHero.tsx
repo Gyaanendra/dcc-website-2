@@ -36,18 +36,74 @@ export function LandingHero() {
 
     if (reducedMotion) {
       videoLayer.style.opacity = "1";
+      section.dataset.heroIntro = "complete";
+      gsap.set(supportingCopy, { autoAlpha: 1 });
       return;
     }
 
     gsap.registerPlugin(ScrollTrigger);
     let visible = false;
     let revealStarted = false;
+    let mediaFailed = false;
+    let introComplete = false;
     let disposed = false;
     let scrollMotion: gsap.core.Timeline | undefined;
+    let copyReveal: gsap.core.Timeline | undefined;
+    let copyScroll: gsap.core.Timeline | undefined;
     let resizeFrame = 0;
+    let playbackFallback = 0;
+    const completeIntro = () => {
+      if (introComplete) return;
+      introComplete = true;
+      window.clearTimeout(playbackFallback);
+      section.dataset.heroIntro = "complete";
+      copyReveal = gsap.timeline({
+        onComplete: () => {
+          if (!topStatement || !descriptor || !bottomBar) return;
+          copyScroll = gsap
+            .timeline({
+              scrollTrigger: {
+                trigger: section,
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0.65,
+              },
+            })
+            .to(
+              topStatement,
+              { y: -28, autoAlpha: 0, duration: 0.28, ease: "power1.in" },
+              0,
+            )
+            .to(
+              descriptor,
+              { scale: 0.95, autoAlpha: 0, duration: 0.22, ease: "power1.in" },
+              0,
+            )
+            .to(
+              bottomBar,
+              { y: 22, autoAlpha: 0, duration: 0.32, ease: "power1.in" },
+              0,
+            );
+          ScrollTrigger.refresh();
+        },
+      });
+      copyReveal.to(supportingCopy, {
+        y: 0,
+        autoAlpha: 1,
+        duration: 0.7,
+        stagger: 0.08,
+        ease: "power3.out",
+      });
+    };
     const syncPlayback = () => {
-      if (visible && revealStarted && !document.hidden) {
-        media.play().catch(() => {});
+      if (visible && revealStarted && !mediaFailed && !document.hidden) {
+        media.play().catch((error: unknown) => {
+          if (disposed) return;
+          if (error instanceof DOMException && error.name === "AbortError")
+            return;
+          mediaFailed = true;
+          completeIntro();
+        });
       } else {
         media.pause();
       }
@@ -55,12 +111,27 @@ export function LandingHero() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         visible = entry.isIntersecting;
+        if (!visible && revealStarted && window.scrollY > section.offsetTop) {
+          completeIntro();
+        }
         syncPlayback();
       },
       { threshold: 0.15 },
     );
     observer.observe(section);
     document.addEventListener("visibilitychange", syncPlayback);
+    // Restart manually because the native loop attribute suppresses "ended".
+    const onVideoEnd = () => {
+      completeIntro();
+      media.currentTime = 0;
+      syncPlayback();
+    };
+    const onVideoError = () => {
+      mediaFailed = true;
+      if (revealStarted) completeIntro();
+    };
+    media.addEventListener("ended", onVideoEnd);
+    media.addEventListener("error", onVideoError);
 
     const createScrollMotion = () => {
       const stage = section.querySelector<HTMLElement>("[data-hero-stage]");
@@ -79,7 +150,7 @@ export function LandingHero() {
           "--page-pad",
         ),
       );
-      const compactWidth = window.innerWidth <= 680 ? 106 : 150;
+      const compactWidth = window.innerWidth <= 680 ? 85 : 120;
       const compactLeft = Number.isNaN(pagePad)
         ? window.innerWidth <= 680
           ? 20
@@ -104,21 +175,6 @@ export function LandingHero() {
             transformOrigin: "top left",
             ease: "power1.inOut",
           },
-          0,
-        )
-        .to(
-          topStatement,
-          { y: -28, autoAlpha: 0, duration: 0.28, ease: "power1.in" },
-          0,
-        )
-        .to(
-          descriptor,
-          { scale: 0.95, autoAlpha: 0, duration: 0.22, ease: "power1.in" },
-          0,
-        )
-        .to(
-          bottomBar,
-          { y: 22, autoAlpha: 0, duration: 0.32, ease: "power1.in" },
           0,
         )
         .to(videoLayer, { yPercent: 6, ease: "none" }, 0);
@@ -169,21 +225,20 @@ export function LandingHero() {
           ease: "power2.out",
           onStart: () => {
             revealStarted = true;
-            syncPlayback();
+            if (mediaFailed) {
+              completeIntro();
+            } else {
+              syncPlayback();
+              playbackFallback = window.setTimeout(() => {
+                if (visible && !document.hidden && media.currentTime < 0.1) {
+                  mediaFailed = true;
+                  completeIntro();
+                }
+              }, 8000);
+            }
           },
         },
         ">+0.2",
-      )
-      .to(
-        supportingCopy,
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.7,
-          stagger: 0.08,
-          ease: "power3.out",
-        },
-        "<+0.1",
       )
       .call(createScrollMotion);
 
@@ -191,12 +246,18 @@ export function LandingHero() {
       disposed = true;
       observer.disconnect();
       document.removeEventListener("visibilitychange", syncPlayback);
+      media.removeEventListener("ended", onVideoEnd);
+      media.removeEventListener("error", onVideoError);
       window.removeEventListener("resize", onResize);
       cancelAnimationFrame(resizeFrame);
+      window.clearTimeout(playbackFallback);
       media.pause();
       entrance.kill();
       scrollMotion?.scrollTrigger?.kill();
       scrollMotion?.kill();
+      copyReveal?.kill();
+      copyScroll?.scrollTrigger?.kill();
+      copyScroll?.kill();
       gsap.set([...characters, wordmark, videoLayer, ...supportingCopy], {
         clearProps: "all",
       });
@@ -208,6 +269,7 @@ export function LandingHero() {
       className={styles.hero}
       ref={root}
       aria-label="Dean Career Cloud introduction"
+      data-hero-intro="pending"
     >
       <div className={styles.stage} data-hero-stage>
         <div className={styles.topStatement} data-hero-copy>
@@ -221,7 +283,6 @@ export function LandingHero() {
             src="/media/dcc-event-reel.mp4"
             poster="/media/dcc-event-reel-poster.png"
             muted
-            loop
             playsInline
             disablePictureInPicture
             preload="metadata"
