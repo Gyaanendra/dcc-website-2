@@ -1,0 +1,604 @@
+.galleryPage {
+  position: relative;
+  min-height: 100svh;
+  background: var(--paper);
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.galleryHero {
+  position: relative;
+  z-index: 10;
+  padding: clamp(100px, 11vh, 140px) var(--page-pad) clamp(16px, 2.4vh, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.heroTopline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: 500 11px / 1.2 var(--font-data);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 14px;
+  animation: fadeUp 0.6s var(--ease-editorial) backwards;
+}
+
+/* Text entrance — each heading line rises out of a clip mask. */
+.revealLine {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.04em;
+}
+
+.revealLine > span,
+.revealLine > em {
+  display: inline-block;
+  animation: lineRise 0.85s var(--ease-editorial) backwards;
+}
+
+.revealLine:nth-child(2) > span,
+.revealLine:nth-child(2) > em {
+  animation-delay: 0.14s;
+}
+
+.heroCopy {
+  margin: 0;
+  max-width: 440px;
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.45;
+  color: var(--ink-soft);
+  animation: fadeUp 0.7s 0.3s var(--ease-editorial) backwards;
+}
+
+@keyframes lineRise {
+  from {
+    transform: translateY(105%);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+.heroHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.heroHeading h1 {
+  margin: 0;
+  font: 500 clamp(42px, 6.5vw, 92px) / 0.92 var(--font-title);
+  letter-spacing: -0.06em;
+}
+
+.heroHeading h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.heroHeading p {
+  margin: 0;
+  max-width: 440px;
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+/* ==========================================================================
+   Controls Bar
+   ========================================================================== */
+.controlsBar {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 12px var(--page-pad);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(237, 236, 229, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.hintText {
+  font: 400 11px / 1.2 var(--font-data);
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.counter {
+  font: 500 11px / 1.2 var(--font-data);
+  letter-spacing: 0.1em;
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   Runway Stage (Jesper Landberg Horizontal Motion)
+   ========================================================================== */
+.runwayStage {
+  position: relative;
+  width: 100vw;
+  height: clamp(560px, 76svh, 900px);
+  overflow: hidden;
+  user-select: none;
+  cursor: grab;
+  touch-action: pan-y;
+  background: transparent;
+  perspective: 1400px;
+  /* Breathing room above the slim gallery footer. */
+  margin-bottom: clamp(32px, 5vh, 64px);
+}
+
+.runwayStage.isGrabbing {
+  cursor: grabbing;
+}
+
+/* Perspective grid floor under the runway (reference flourish). */
+.floor {
+  position: absolute;
+  left: -25%;
+  right: -25%;
+  bottom: -12%;
+  height: 42%;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      to right,
+      rgba(17, 22, 19, 0.05) 0 1px,
+      transparent 1px 90px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(17, 22, 19, 0.05) 0 1px,
+      transparent 1px 90px
+    );
+  transform: perspective(700px) rotateX(62deg);
+  transform-origin: top center;
+  mask-image: linear-gradient(to bottom, transparent, black 45%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 45%);
+}
+
+/* Bottom chrome — minimal corners, matching the reference layout. */
+.chrome {
+  position: absolute;
+  left: var(--page-pad);
+  right: var(--page-pad);
+  bottom: 20px;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  font: 500 10px / 1.2 var(--font-data);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  pointer-events: none;
+}
+.chrome i {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.runwayTrack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  /* Panels sit flush edge-to-edge so the runway reads as one continuous,
+     interconnected curved wall (like the reference). */
+  gap: 0;
+  padding: 0 var(--page-pad);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.card {
+  position: relative;
+  flex: 0 0 auto;
+  height: clamp(300px, 46svh, 500px);
+  /* Square, flush edges so the panels join into one continuous wall. */
+  border-radius: 0;
+  overflow: hidden;
+  background: #111;
+  box-shadow: 0 16px 38px -12px rgba(17, 22, 19, 0.18);
+  cursor: pointer;
+  transform-origin: center center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, filter;
+  transition: box-shadow 0.35s var(--ease-editorial);
+}
+
+.card:hover {
+  box-shadow: 0 24px 50px -10px rgba(17, 22, 19, 0.28);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.cardMedia {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.cardMedia img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease-editorial);
+  pointer-events: none;
+}
+
+.card:hover .cardMedia img {
+  transform: scale(1.04);
+}
+
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(17, 22, 19, 0) 40%,
+    rgba(17, 22, 19, 0.72) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(16px, 2vw, 24px);
+  color: #fff;
+  transition: background 0.3s var(--ease-editorial);
+}
+
+.card:hover .cardOverlay {
+  background: linear-gradient(
+    180deg,
+    rgba(17, 22, 19, 0.05) 20%,
+    rgba(17, 22, 19, 0.82) 100%
+  );
+}
+
+.cardCategory {
+  font: 500 10px / 1.2 var(--font-data);
+  letter-spacing: 0.12em;
+  opacity: 0.82;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.cardMetaRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.cardTitle {
+  margin: 0;
+  font: 500 clamp(18px, 1.8vw, 24px) / 1.1 var(--font-title);
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.cardIndex {
+  font: 500 11px / 1 var(--font-data);
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+}
+
+/* Staggered caption entrance (delay set inline per card index). */
+.captionAnim {
+  animation: fadeUp 0.55s var(--ease-editorial) backwards;
+}
+
+/* ==========================================================================
+   Detail Modal (Shared-Element Focus View)
+   ========================================================================== */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  /* Nearly opaque: the detail view shows this single image only. */
+  background: rgba(17, 22, 19, 0.96);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(20px, 4vw, 50px);
+  animation: backdropIn 0.4s var(--ease-editorial);
+}
+
+.modalBackdrop.isClosing {
+  animation: backdropOut 0.42s ease-in forwards;
+}
+
+/* The sheet grows out of the clicked card's position (--from-x/--from-y
+   are set inline from the card's centre by the component). */
+.modalDialog {
+  position: relative;
+  width: min(94vw, 1140px);
+  max-height: 90vh;
+  background: var(--paper-light);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  animation: sheetIn 0.7s var(--ease-editorial);
+}
+
+.isClosing .modalDialog {
+  animation: sheetOut 0.42s ease-in forwards;
+}
+
+.modalInfoArea {
+  animation: infoIn 0.5s 0.35s var(--ease-editorial) backwards;
+}
+
+.isClosing .modalInfoArea {
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes backdropIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes backdropOut {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes sheetIn {
+  from {
+    opacity: 0.35;
+    transform: translate(var(--from-x, 0px), var(--from-y, 0px)) scale(0.55);
+  }
+  60% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sheetOut {
+  to {
+    opacity: 0;
+    transform: translate(var(--from-x, 0px), var(--from-y, 0px)) scale(0.55);
+  }
+}
+
+@keyframes infoIn {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.modalImageArea {
+  position: relative;
+  min-height: 480px;
+  background: #111;
+}
+
+.modalImageArea img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modalInfoArea {
+  padding: clamp(28px, 4vw, 48px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  color: var(--ink);
+}
+
+.modalTopline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: 500 11px / 1.2 var(--font-data);
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.modalBody {
+  margin: auto 0;
+}
+
+.modalBody h2 {
+  margin: 0 0 14px;
+  font: 500 clamp(28px, 3vw, 42px) / 1.05 var(--font-title);
+  letter-spacing: -0.04em;
+}
+
+.modalBody p {
+  margin: 0 0 20px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.modalSpecs {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  font: 400 11px / 1.3 var(--font-data);
+}
+
+.modalSpecs span:nth-child(odd) {
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.modalSpecs span:nth-child(even) {
+  color: var(--ink);
+}
+
+.modalNavRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.modalNavBtn {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  padding: 8px 16px;
+  font: 500 11px var(--font-data);
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.modalNavBtn:hover {
+  background: var(--ink);
+  color: var(--paper-light);
+}
+
+.closeButton {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: rgba(237, 236, 229, 0.85);
+  backdrop-filter: blur(8px);
+  color: var(--ink);
+  font: 20px / 1 var(--font-body);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.closeButton:hover {
+  background: var(--ink);
+  color: var(--paper-light);
+}
+
+/* ==========================================================================
+   View switching & keyframes
+   ========================================================================== */
+.viewPanel {
+  animation: viewIn 0.5s var(--ease-editorial);
+}
+
+@keyframes viewIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .modalDialog {
+    grid-template-columns: 1fr;
+    max-height: 88vh;
+    overflow-y: auto;
+  }
+  .modalImageArea {
+    min-height: 280px;
+    height: 35vh;
+  }
+}
+
+@media (max-width: 680px) {
+  .hintText {
+    display: none;
+  }
+  .card {
+    height: clamp(260px, 38svh, 380px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Fallback: the pinned runway becomes a native horizontal scroller. */
+  .runwayStage {
+    overflow-x: auto;
+    height: auto;
+    padding: 24px 0;
+    perspective: none;
+  }
+  .runwayTrack {
+    position: static;
+    width: max-content;
+  }
+  .card {
+    scroll-snap-align: center;
+  }
+  .cardMedia img {
+    transition: none;
+  }
+  .viewPanel {
+    animation: none;
+  }
+  .card {
+    transition: none;
+  }
+  .modalBackdrop,
+  .modalDialog,
+  .modalInfoArea {
+    animation: none;
+  }
+  .revealLine > span,
+  .revealLine > em,
+  .heroTopline,
+  .heroCopy,
+  .captionAnim {
+    animation: none;
+  }
+}
