@@ -10,29 +10,48 @@ export function VerticalStack() {
   const root = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (
-      !root.current ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-      window.matchMedia("(max-width: 800px)").matches
-    )
-      return;
+    if (!root.current) return;
     gsap.registerPlugin(ScrollTrigger);
-    const context = gsap.context(() => {
-      const cards = gsap.utils.toArray<HTMLElement>("[data-vertical-card]");
-      cards.slice(0, -1).forEach((card, index) => {
-        gsap.to(card, {
-          scale: 0.965,
-          ease: "none",
-          scrollTrigger: {
-            trigger: cards[index + 1],
-            start: "top 75%",
-            end: "top 25%",
-            scrub: true,
-          },
+    const motion = gsap.matchMedia();
+    motion.add(
+      "(min-width: 801px) and (prefers-reduced-motion: no-preference)",
+      () => {
+        const cards = gsap.utils.toArray<HTMLElement>(
+          root.current?.querySelectorAll("[data-vertical-card]") ?? [],
+        );
+        cards.forEach((card, index) => {
+          gsap.fromTo(
+            card,
+            { yPercent: 8 },
+            {
+              yPercent: 0,
+              ease: "none",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 95%",
+                end: "top 72%",
+                scrub: 0.85,
+                invalidateOnRefresh: true,
+              },
+            },
+          );
+          if (index === cards.length - 1) return;
+          gsap.to(card, {
+            y: -14,
+            scale: 0.965,
+            ease: "none",
+            scrollTrigger: {
+              trigger: cards[index + 1],
+              start: "top 80%",
+              end: "top 34%",
+              scrub: 1.1,
+              invalidateOnRefresh: true,
+            },
+          });
         });
-      });
-    }, root);
-    return () => context.revert();
+      },
+    );
+    return () => motion.revert();
   }, []);
 
   return (
@@ -40,7 +59,7 @@ export function VerticalStack() {
       <div className={styles.verticalIntro}>
         <div className={styles.sectionIndex}>04 / THE SYSTEM</div>
         <h2>
-          SEVEN WAYS
+          EIGHT WAYS
           <br />
           TO MOVE <em>FORWARD.</em>
         </h2>
@@ -56,7 +75,8 @@ export function VerticalStack() {
             key={item.id}
           >
             <div className={styles.cardIndex}>
-              DCC / 0{index + 1} <span>—</span> 07
+              DCC / {String(index + 1).padStart(2, "0")} <span>—</span>{" "}
+              {String(verticals.length).padStart(2, "0")}
             </div>
             <div className={styles.cardBody}>
               <h3>{item.title}</h3>
@@ -64,14 +84,9 @@ export function VerticalStack() {
             </div>
             <div className={styles.cardBottom}>
               <span>{item.focus.join(" / ")}</span>
-              <span className={styles.cardArrow} aria-hidden="true">
-                ↗
-              </span>
             </div>
-            <div className={styles.cardOrbit} aria-hidden="true">
-              <i />
-              <i />
-              <i />
+            <div className={styles.cardNumber} aria-hidden="true">
+              {String(index + 1).padStart(2, "0")}
             </div>
           </article>
         ))}

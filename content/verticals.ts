@@ -51,4 +51,12 @@ export const verticals: Vertical[] = [
     description: "Better signals for more informed career decisions.",
     focus: ["SIGNALS", "INSIGHT", "DIRECTION"],
   },
+  {
+    id: "tech-department",
+    title: "Tech Department",
+    shortTitle: "Tech",
+    description:
+      "Technology, tools, and systems that support the DCC experience.",
+    focus: ["SYSTEMS", "TOOLS", "SUPPORT"],
+  },
 ];
