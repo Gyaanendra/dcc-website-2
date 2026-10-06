@@ -108,6 +108,7 @@
   font: 300 30px / 1 var(--font-title);
 }
 .menuOverlay {
+  --accent: #d0d0d0;
   position: fixed;
   inset: 0;
   z-index: 40;
@@ -126,7 +127,7 @@
   justify-content: space-between;
 }
 .menuTopline {
-  color: #a9afa9;
+  color: #bdbdbd;
 }
 .menuNav {
   margin: auto 0;
@@ -154,7 +155,7 @@
 .menuIndex {
   font: 400 11px / 1 var(--font-data);
   letter-spacing: 0;
-  color: #a9afa9;
+  color: #bdbdbd;
 }
 .menuArrow {
   font: 400 34px / 1 var(--font-title);
@@ -167,141 +168,6 @@
 }
 .menuBottom span {
   color: var(--accent);
-}
-.footer {
-  position: relative;
-  overflow: hidden;
-  padding: clamp(76px, 10vw, 150px) var(--page-pad) 0;
-  background: var(--ink);
-  color: var(--paper-light);
-}
-.footerTop {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: end;
-  padding-bottom: clamp(80px, 10vw, 150px);
-}
-.footerKicker {
-  grid-column: 1 / -1;
-  font: 400 11px var(--font-data);
-  letter-spacing: 0.1em;
-  color: #b8bdb5;
-  margin-bottom: 35px;
-}
-.footerTop h2 {
-  margin: 0;
-  font: 500 clamp(72px, 11.5vw, 210px) / 0.82 var(--font-title);
-  letter-spacing: -0.085em;
-}
-.footerTop h2 em {
-  font-style: normal;
-  color: var(--accent);
-}
-.footerCta {
-  align-self: end;
-  display: flex;
-  gap: 65px;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid currentColor;
-  min-width: 230px;
-  padding: 16px 0;
-  margin-bottom: 7px;
-  font: 500 13px var(--font-data);
-  text-transform: uppercase;
-  transition: color 0.2s;
-}
-.footerCta:hover {
-  color: var(--accent);
-}
-.footerCta span {
-  font: 25px var(--font-title);
-}
-.footerGrid {
-  border-top: 1px solid var(--line-light);
-  padding: 45px 0 90px;
-  display: grid;
-  grid-template-columns: 2.5fr 1fr 1fr 1fr;
-  gap: 30px;
-}
-.footerGrid > div {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-  font-size: 14px;
-}
-.footerIdentity img {
-  width: 128px;
-  height: auto;
-  margin-bottom: 20px;
-}
-.footerIdentity span {
-  font-size: 13px;
-  color: #b8bdb5;
-  line-height: 1.5;
-}
-.footerGrid a:hover {
-  color: var(--accent);
-}
-.footerLabel {
-  color: #aab0aa;
-  font: 400 11px var(--font-data);
-  letter-spacing: 0.1em;
-  margin-bottom: 16px;
-}
-.footerPending {
-  color: #aab0aa;
-  font-size: 13px;
-}
-.footerBottom {
-  border-top: 1px solid var(--line-light);
-  padding: 22px 0 30px;
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  font: 400 10px var(--font-data);
-  letter-spacing: 0.08em;
-}
-.footerBottom a:hover {
-  color: var(--accent);
-}
-.footerWordmark {
-  font: 600 clamp(250px, 48vw, 850px) / 0.68 var(--font-title);
-  letter-spacing: -0.13em;
-  transform: translateX(-0.05em);
-  white-space: nowrap;
-  color: #242b25;
-  user-select: none;
-}
-/* Slim single-line footer used on pages whose content is one tall stage
-   (currently the gallery), so the immersive area keeps the viewport. */
-.footerCompact {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  padding: 20px var(--page-pad) 24px;
-  border-top: 1px solid var(--line);
-  background: var(--paper);
-  color: var(--muted);
-  font: 400 10px var(--font-data);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.footerCompact i {
-  font-style: normal;
-  color: var(--accent);
-}
-.footerCompact a {
-  color: var(--ink);
-}
-.footerCompact a:hover {
-  color: var(--accent);
-}
-.footerCompactContext {
-  text-align: center;
 }
 .loader {
   position: fixed;
@@ -352,12 +218,6 @@
   .brand {
     margin-right: auto;
   }
-  .footerGrid {
-    grid-template-columns: 2fr 1fr 1fr;
-  }
-  .footerGrid > div:last-child {
-    display: none;
-  }
 }
 @media (max-width: 680px) {
   .headerInner {
@@ -384,37 +244,6 @@
   }
   .menuArrow {
     font-size: 25px;
-  }
-  .footerTop {
-    display: block;
-  }
-  .footerTop h2 {
-    font-size: clamp(68px, 16vw, 110px);
-  }
-  .footerCta {
-    margin-top: 45px;
-    max-width: 310px;
-  }
-  .footerGrid {
-    grid-template-columns: 1fr 1fr;
-    row-gap: 55px;
-    padding-bottom: 70px;
-  }
-  .footerIdentity {
-    grid-column: 1 / -1;
-  }
-  .footerGrid > div:last-child {
-    display: flex;
-  }
-  .footerBottom {
-    flex-wrap: wrap;
-    font-size: 9px;
-  }
-  .footerBottom span:nth-child(2) {
-    display: none;
-  }
-  .footerWordmark {
-    font-size: 51vw;
   }
   .loaderCenter {
     font-size: 37vw;

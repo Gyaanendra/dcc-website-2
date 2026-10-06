@@ -7,7 +7,7 @@ import type { SubMember } from "./types";
  */
 export default function SubMemberItem({ member }: { member: SubMember }) {
   return (
-    <div className="group flex items-center gap-3.5 bg-transparent px-4 py-3.5 transition-colors duration-300 hover:bg-[#C04F2E]/[0.05]">
+    <div className="group flex items-center gap-3.5 bg-transparent px-4 py-3.5 transition-colors duration-300 hover:bg-[#555555]/[0.05]">
       <AlphabetAvatar
         name={member.name}
         initials={member.initials}
@@ -18,7 +18,7 @@ export default function SubMemberItem({ member }: { member: SubMember }) {
         <p className="truncate text-[11.5px] font-bold tracking-[0.12em] uppercase text-[#111111]">
           {member.name}
         </p>
-        <p className="mt-0.5 truncate font-serif text-[13px] text-[#8A8A8A] italic transition-colors duration-300 group-hover:text-[#C04F2E]">
+        <p className="mt-0.5 truncate font-serif text-[13px] text-[#666666] italic transition-colors duration-300 group-hover:text-[#555555]">
           {member.role}
         </p>
       </div>

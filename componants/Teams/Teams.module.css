@@ -1,4 +1,5 @@
 .hero {
+  --accent: #d0d0d0;
   min-height: max(760px, 100svh);
   position: relative;
   overflow: hidden;
@@ -44,7 +45,7 @@
   padding-top: 20px;
   display: flex;
   justify-content: space-between;
-  color: #aeb5ac;
+  color: #bdbdbd;
 }
 .directory {
   background: var(--paper-light);
@@ -179,7 +180,7 @@
 .previewFrame {
   position: relative;
   aspect-ratio: 3 / 4;
-  background: #d4d4cb;
+  background: #d4d4d4;
   overflow: hidden;
 }
 .previewFrame img {
@@ -248,8 +249,8 @@
   font: 11px var(--font-data);
 }
 .end {
-  background: var(--accent);
-  color: var(--paper-light);
+  background: #d8d8d8;
+  color: var(--ink);
   padding: clamp(100px, 11vw, 170px) var(--page-pad);
 }
 .end h2 {

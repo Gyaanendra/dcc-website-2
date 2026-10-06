@@ -1,6 +1,6 @@
 # Dean Career Cloud
 
-An editorial website for Dean Career Cloud at Bennett University / SCSET. The first delivery includes Home, About, and Team. It uses the repository's existing Next.js App Router, `componants/` grouping, and Biome configuration.
+An editorial website for Dean Career Cloud at Bennett University / SCSET. The current routes include Home, About, Teams, Gallery, and Past Events. It uses the repository's existing Next.js App Router, `componants/` grouping, and Biome configuration.
 
 ## Run locally
 
@@ -20,7 +20,7 @@ npm run build
 ## Structure
 
 - `app/` — routes, root layout, and global design tokens
-- `componants/Home`, `componants/About`, `componants/Teams` — page sections and local styles
+- `componants/Home`, `componants/About`, `componants/Teams`, `componants/PastEvents` — page sections and local styles
 - `componants/Shared` — navigation, footer, and intro
 - `content/` — editable site copy and records
 - `types/content.ts` — shared content shapes
@@ -30,7 +30,11 @@ npm run build
 
 The site is deliberately `noindex` until official copy, roster, contact links, and statistics are approved. The current site copy outside names and institutional identifiers is editorial draft based on the supplied brief. Review `content/site.ts` and `content/verticals.ts` before launch.
 
-Fill `content/records.ts` with approved team members, initiatives, and source-backed impact values. Empty statistics appear as `—` with a source-pending label in development; the Impact section stays hidden in production until verified values exist. Initiatives stay hidden while empty. Team filters and profile expansion activate when members are added; the Team page currently shows an explicit empty state. Add portraits to `public/team/` and update the record paths and alt text. A statistic requires a numeric value **and** source before it appears publicly.
+Fill `content/records.ts` with approved team members, initiatives, and source-backed impact values. The homepage now shows six clearly marked illustrative statistics in place of the former “The Thinking” and “What DCC Does” sections; these are layout samples, not DCC outcomes. Replace them with approved numeric values and sources before publication. Initiatives stay hidden while empty. Team filters and profile expansion activate when members are added; the Team page currently shows an explicit empty state. Add portraits to `public/team/` and update the record paths and alt text.
+
+The presentation uses only black, white, and neutral grays throughout the routes. Existing photos and the hero video are displayed in grayscale. The former “04 / Life in Motion” homepage section has been removed; the separate Gallery route remains available from navigation.
+
+The Past Events route and homepage preview currently use four expressly labeled demonstration entries in `content/records.ts`. Their titles, dates, and descriptions are fictional layout samples, not an account of DCC events. Replace or remove every entry before publication; no sample event is paired with a real DCC photograph. The shared footer contains only live internal routes while contact links remain unverified.
 
 The Resources and Opportunities types are ready in `types/content.ts`; their routes are outside this delivery. Do not add live listings without verified sources and destinations. Add a canonical URL and replace the temporary favicon treatment when a production domain and final brand package are supplied, then remove `robots: { index: false }` from `app/layout.tsx`.
 

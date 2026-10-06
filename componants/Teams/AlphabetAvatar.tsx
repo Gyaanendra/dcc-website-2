@@ -38,7 +38,7 @@ export default function AlphabetAvatar({
       <div
         role="img"
         aria-label={`${name} — ${initials}`}
-        className="group-hover:border-[#C04F2E] flex h-11 w-11 flex-none items-center justify-center border border-black/15 bg-[linear-gradient(160deg,#ECE9E3_0%,#E0DDD6_100%)] font-mono text-[13px] font-medium tracking-[0.12em] text-[#111111] transition-colors duration-300"
+        className="group-hover:border-[#555555] flex h-11 w-11 flex-none items-center justify-center border border-black/15 bg-[linear-gradient(160deg,#eeeeee_0%,#d6d6d6_100%)] font-mono text-[13px] font-medium tracking-[0.12em] text-[#111111] transition-colors duration-300"
       >
         {initials}
       </div>
@@ -49,7 +49,7 @@ export default function AlphabetAvatar({
     <div
       role="img"
       aria-label={`Editorial portrait — ${name}`}
-      className="portrait-veil relative aspect-[4/5] overflow-hidden bg-[linear-gradient(160deg,#ECE9E3_0%,#E4E1DA_58%,#DAD7D0_100%)]"
+      className="portrait-veil relative aspect-[4/5] overflow-hidden bg-[linear-gradient(160deg,#eeeeee_0%,#e2e2e2_58%,#c9c9c9_100%)]"
     >
       {src && !imageFailed ? (
         <Image
@@ -70,14 +70,14 @@ export default function AlphabetAvatar({
           </span>
           <span
             aria-hidden
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-black/25 bg-white/60 px-4 py-3 font-mono text-lg font-medium tracking-[0.3em] indent-[0.3em] text-[#111111] transition-colors duration-300 group-hover:border-[#C04F2E]"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-black/25 bg-white/60 px-4 py-3 font-mono text-lg font-medium tracking-[0.3em] indent-[0.3em] text-[#111111] transition-colors duration-300 group-hover:border-[#555555]"
           >
             {initials}
           </span>
           {refCode ? (
             <span
               aria-hidden
-              className="absolute top-3 left-3.5 font-mono text-[9px] uppercase tracking-[0.14em] text-[#8A8A8A]"
+              className="absolute top-3 left-3.5 font-mono text-[9px] uppercase tracking-[0.14em] text-[#666666]"
             >
               REF. {refCode}
             </span>
@@ -85,7 +85,7 @@ export default function AlphabetAvatar({
           {deptCode ? (
             <span
               aria-hidden
-              className="absolute top-3 right-3.5 font-mono text-[9px] uppercase tracking-[0.14em] text-[#8A8A8A]"
+              className="absolute top-3 right-3.5 font-mono text-[9px] uppercase tracking-[0.14em] text-[#666666]"
             >
               DEPT: {deptCode}
             </span>
@@ -93,14 +93,14 @@ export default function AlphabetAvatar({
           {tenure ? (
             <span
               aria-hidden
-              className="absolute bottom-3 left-3.5 font-mono text-[9px] uppercase tracking-[0.14em] text-[#8A8A8A]"
+              className="absolute bottom-3 left-3.5 font-mono text-[9px] uppercase tracking-[0.14em] text-[#666666]"
             >
               {tenure}
             </span>
           ) : null}
           <span
             aria-hidden
-            className="absolute right-3.5 bottom-3 font-mono text-[9px] uppercase tracking-[0.14em] text-[#B5B2AC]"
+            className="absolute right-3.5 bottom-3 font-mono text-[9px] uppercase tracking-[0.14em] text-[#686868]"
           >
             {"35MM // B&W"}
           </span>

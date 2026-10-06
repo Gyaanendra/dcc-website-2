@@ -20,7 +20,7 @@ function SectionHeader({
   return (
     <div className="flex items-end justify-between gap-4 border-b border-black/10 px-6 py-7 sm:px-8">
       <div>
-        <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#C04F2E]">
+        <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#555555]">
           [ {index} ]
         </p>
         <RevealOnView>
@@ -29,7 +29,7 @@ function SectionHeader({
           </h2>
         </RevealOnView>
       </div>
-      <p className="text-right font-mono text-[10px] leading-relaxed tracking-[0.18em] whitespace-nowrap uppercase text-[#777777]">
+      <p className="text-right font-mono text-[10px] leading-relaxed tracking-[0.18em] whitespace-nowrap uppercase text-[#666666]">
         {metaTop}
         {metaBottom ? (
           <>
@@ -48,10 +48,10 @@ function SectionHeader({
  */
 export default function TeamsPage() {
   return (
-    <div className="teams-page min-h-screen bg-[#F4F2ED] pt-[92px] font-sans text-[#111111] max-[680px]:pt-[76px]">
-      <header className="flex items-center justify-between gap-4 border-b border-black/10 px-6 py-3.5 font-mono text-[11px] tracking-[0.18em] uppercase text-[#777777] sm:px-8">
+    <div className="teams-page min-h-screen bg-[#f4f4f4] pt-[92px] font-sans text-[#111111] max-[680px]:pt-[76px]">
+      <header className="flex items-center justify-between gap-4 border-b border-black/10 px-6 py-3.5 font-mono text-[11px] tracking-[0.18em] uppercase text-[#666666] sm:px-8">
         <p className="font-semibold text-[#111111]">
-          DCC CLUB <span className="text-[#C04F2E]">{"//"}</span> DEAN CAREER
+          DCC CLUB <span className="text-[#555555]">{"//"}</span> DEAN CAREER
           CLOUD
         </p>
         <p className="hidden md:block">BENNETT UNIVERSITY</p>
@@ -82,8 +82,8 @@ export default function TeamsPage() {
         </section>
       </main>
 
-      <footer className="flex flex-wrap items-center justify-between gap-3 border-t border-black/10 px-6 py-7 font-mono text-[10.5px] tracking-[0.16em] uppercase text-[#A8A5A0] sm:px-8">
-        <p className="text-[#777777]">
+      <footer className="flex flex-wrap items-center justify-between gap-3 border-t border-black/10 px-6 py-7 font-mono text-[10.5px] tracking-[0.16em] uppercase text-[#666666] sm:px-8">
+        <p className="text-[#666666]">
           DCC CLUB — DEAN CAREER CLOUD &copy; 2026 BENNETT UNIVERSITY
         </p>
         <p>[ BUILT BY MINDS. UNITED BY CODE. ]</p>
