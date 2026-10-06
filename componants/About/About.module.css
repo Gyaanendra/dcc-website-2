@@ -1,4 +1,5 @@
 .hero {
+  --accent: #d0d0d0;
   min-height: max(760px, 100svh);
   position: relative;
   overflow: hidden;
@@ -46,7 +47,7 @@
   justify-content: space-between;
   border-top: 1px solid var(--line-light);
   padding-top: 20px;
-  color: #adb5ad;
+  color: #bdbdbd;
 }
 .mission {
   padding: clamp(100px, 11vw, 180px) var(--page-pad);
@@ -128,6 +129,7 @@
   color: var(--accent);
 }
 .verticalSection {
+  --accent: #d0d0d0;
   background: var(--ink);
   color: var(--paper-light);
   padding: clamp(100px, 11vw, 170px) var(--page-pad);
@@ -168,14 +170,14 @@
 .verticalList p {
   font-size: 15px;
   line-height: 1.4;
-  color: #b9c0b9;
+  color: #bfbfbf;
   max-width: 340px;
   margin: 0;
 }
 .endSection {
   padding: clamp(100px, 11vw, 170px) var(--page-pad);
-  background: var(--accent);
-  color: var(--paper-light);
+  background: #d8d8d8;
+  color: var(--ink);
 }
 .endSection > span {
   font: 11px var(--font-data);
@@ -188,7 +190,7 @@
 }
 .endSection h2 em {
   font-style: normal;
-  color: var(--ink);
+  color: #646464;
 }
 .endSection a {
   display: flex;

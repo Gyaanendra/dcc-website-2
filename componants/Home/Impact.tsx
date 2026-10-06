@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { impactStats } from "@/content/records";
+import { demoImpactStats, impactStats } from "@/content/records";
 import styles from "./Home.module.css";
 
 function Count({
@@ -44,11 +44,18 @@ function Count({
   }, [value]);
   if (value === null) return <span>—</span>;
   return (
-    <span ref={element}>
-      {prefix}
-      {display.toLocaleString()}
-      {suffix}
-    </span>
+    <>
+      <span className={styles.screenReaderOnly}>
+        {prefix}
+        {value.toLocaleString()}
+        {suffix}
+      </span>
+      <span ref={element} aria-hidden="true">
+        {prefix}
+        {display.toLocaleString()}
+        {suffix}
+      </span>
+    </>
   );
 }
 
@@ -56,37 +63,56 @@ export function Impact() {
   const verified = impactStats.filter(
     (stat) => stat.value !== null && stat.source,
   );
-  const records = verified.length
-    ? verified
-    : process.env.NODE_ENV === "development"
-      ? impactStats
-      : [];
-  if (!records.length) return null;
+  const illustrative = verified.length === 0;
+  const records = illustrative ? demoImpactStats : verified;
+
   return (
-    <section className={styles.impact}>
-      <div className={styles.sectionIndex}>04 / IMPACT</div>
-      <h2>
-        THE WORK,
-        <br />
-        IN NUMBERS.
-      </h2>
-      <div className={styles.impactGrid}>
-        {records.map((stat) => (
-          <div key={stat.id}>
-            <Count
-              value={stat.value}
-              prefix={stat.prefix}
-              suffix={stat.suffix}
-            />
+    <section
+      className={styles.impact}
+      id="impact"
+      aria-labelledby="impact-heading"
+    >
+      <div className={styles.sectionIndex}>01 / AT A GLANCE</div>
+      <div className={styles.impactHeading}>
+        <h2 id="impact-heading">
+          THE WORK,
+          <br />
+          <em>IN NUMBERS.</em>
+        </h2>
+        <div className={styles.impactContext}>
+          <p>
+            A clearer view of the people, preparation, and connections that
+            shape a career journey.
+          </p>
+          {illustrative && (
+            <strong>
+              SAMPLE DATA ONLY — THESE ARE NOT VERIFIED DCC RESULTS.
+            </strong>
+          )}
+        </div>
+      </div>
+      <ul className={styles.impactGrid}>
+        {records.map((stat, index) => (
+          <li key={stat.id}>
+            <span className={styles.impactIndex}>
+              0{index + 1} / 0{records.length}
+            </span>
+            <div className={styles.impactValue}>
+              <Count
+                value={stat.value}
+                prefix={stat.prefix}
+                suffix={stat.suffix}
+              />
+            </div>
             <p>{stat.label}</p>
             <small>
-              {stat.source
-                ? `${stat.source}${stat.updatedAt ? ` / ${stat.updatedAt}` : ""}`
-                : "SOURCE PENDING"}
+              {illustrative
+                ? "ILLUSTRATIVE VALUE"
+                : `${stat.source}${stat.updatedAt ? ` / ${stat.updatedAt}` : ""}`}
             </small>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 }

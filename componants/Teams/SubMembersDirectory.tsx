@@ -83,7 +83,7 @@ export default function SubMembersDirectory({
               onClick={() => setActiveDepartment(department)}
               className={`border px-3.5 py-2 font-mono text-[10.5px] tracking-[0.16em] uppercase transition-colors duration-300 ${
                 isActive
-                  ? "border-[#111111] bg-[#111111] text-[#F4F2ED]"
+                  ? "border-[#111111] bg-[#111111] text-[#f4f4f4]"
                   : "border-black/20 text-[#666666] hover:border-[#111111] hover:bg-black/[0.03] hover:text-[#111111]"
               }`}
             >
@@ -91,7 +91,7 @@ export default function SubMembersDirectory({
             </button>
           );
         })}
-        <p className="ml-auto self-center font-mono text-[10.5px] tracking-[0.16em] uppercase text-[#A8A5A0]">
+        <p className="ml-auto self-center font-mono text-[10.5px] tracking-[0.16em] uppercase text-[#666666]">
           COUNT: {String(filteredMembers.length).padStart(2, "0")}
         </p>
       </div>

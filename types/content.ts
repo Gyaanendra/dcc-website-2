@@ -44,6 +44,23 @@ export type GalleryItem = {
   width: number;
   height: number;
 };
+export type PastEvent = {
+  id: string;
+  title: string;
+  category: string;
+  date: string;
+  description: string;
+  isSample: true;
+};
+export type AlumniProfile = {
+  id: string;
+  name: string;
+  cohort: string;
+  discipline: string;
+  direction: string;
+  location: string;
+  isSample: true;
+};
 export type Initiative = {
   id: string;
   title: string;

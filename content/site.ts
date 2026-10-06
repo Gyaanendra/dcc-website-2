@@ -15,5 +15,7 @@ export const navigation = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Teams", href: "/teams" },
+  { label: "Alumni", href: "/alumni" },
+  { label: "Past Events", href: "/past-events" },
   { label: "Gallery", href: "/gallery" },
 ] as const;
