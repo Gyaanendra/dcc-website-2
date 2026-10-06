@@ -137,5 +137,5 @@ export const demoImpactStats: ImpactStat[] = [
   },
   { id: "demo-conversations", label: "Industry conversations", value: 35 },
   { id: "demo-alumni", label: "Alumni-led events", value: 18 },
-  { id: "demo-verticals", label: "Focus areas", value: 7 },
+  { id: "demo-verticals", label: "Focus areas", value: 8 },
 ];
