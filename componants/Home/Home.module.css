@@ -294,7 +294,7 @@
   --accent: #d0d0d0;
   background: var(--ink);
   color: var(--paper-light);
-  padding: clamp(90px, 10vw, 150px) var(--page-pad) 65vh;
+  padding: clamp(90px, 10vw, 150px) var(--page-pad) clamp(190px, 30vh, 360px);
 }
 .verticalIntro {
   padding-bottom: clamp(70px, 9vw, 130px);
@@ -317,21 +317,25 @@
   line-height: 1.4;
 }
 .verticalCards {
-  padding-top: 50px;
+  padding-top: 56px;
 }
 .verticalCard {
   position: sticky;
   height: clamp(380px, 45vw, 540px);
-  margin-bottom: 70px;
+  margin-bottom: 48px;
   padding: clamp(28px, 4vw, 65px);
   background: #d8d8d8;
   color: var(--ink);
-  border: 1px solid var(--ink);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: clamp(22px, 2.4vw, 34px);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.22);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
   transform-origin: center top;
+  backface-visibility: hidden;
+  will-change: transform;
 }
 .verticalCard:nth-child(1) {
   top: 100px;
@@ -354,6 +358,9 @@
 .verticalCard:nth-child(7) {
   top: 172px;
 }
+.verticalCard:nth-child(8) {
+  top: 184px;
+}
 .verticalCard:nth-child(3n + 2) {
   background: #c8c8c8;
 }
@@ -367,7 +374,7 @@
   letter-spacing: 0.08em;
 }
 .cardIndex span {
-  color: var(--accent);
+  color: #666;
   margin: 0 9px;
 }
 .cardBody {
@@ -398,34 +405,16 @@
   font: 400 11px var(--font-data);
   letter-spacing: 0.06em;
 }
-.cardArrow {
-  font: 38px / 1 var(--font-title);
-  color: var(--accent);
-}
-.cardOrbit {
+.cardNumber {
   position: absolute;
-  width: 420px;
-  height: 420px;
-  right: -40px;
-  top: -30px;
-  border: 1px solid rgba(11, 11, 11, 0.12);
-  border-radius: 50%;
-}
-.cardOrbit i {
-  position: absolute;
-  display: block;
-  border: 1px solid rgba(11, 11, 11, 0.12);
-  border-radius: 50%;
-  inset: 40px;
-}
-.cardOrbit i:nth-child(2) {
-  inset: 90px;
-}
-.cardOrbit i:nth-child(3) {
-  inset: 140px;
-  background: var(--accent);
-  border: 0;
-  opacity: 0.75;
+  z-index: 1;
+  right: clamp(14px, 3vw, 46px);
+  bottom: -0.12em;
+  font: 400 clamp(200px, 29vw, 440px) / 0.8 var(--font-title);
+  letter-spacing: -0.13em;
+  color: rgba(11, 11, 11, 0.075);
+  pointer-events: none;
+  user-select: none;
 }
 .impact {
   background: #f0f0f0;
@@ -611,9 +600,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 35px;
   }
-  .cardOrbit {
-    right: -150px;
-  }
   .impactHeading {
     grid-template-columns: 1fr;
     gap: 0;
@@ -629,12 +615,13 @@
   .verticalSection {
     padding-bottom: 100px;
   }
-  .verticalCard {
+  .verticalCard:nth-child(n) {
     position: relative;
     top: auto;
     margin-bottom: 16px;
     height: auto;
     min-height: 380px;
+    will-change: auto;
   }
   .manifesto {
     height: auto;
@@ -783,10 +770,10 @@
   .cardBottom {
     font-size: 9px;
   }
-  .cardOrbit {
-    width: 300px;
-    height: 300px;
-    right: -150px;
+  .cardNumber {
+    right: 16px;
+    bottom: 0;
+    font-size: clamp(160px, 44vw, 260px);
   }
   .teamPreviewInner {
     display: block;
@@ -837,6 +824,9 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
+  .verticalCard {
+    will-change: auto;
+  }
   .routePath {
     animation: none;
     stroke-dashoffset: 0;

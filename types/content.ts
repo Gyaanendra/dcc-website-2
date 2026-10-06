@@ -5,7 +5,8 @@ export type VerticalId =
   | "operations"
   | "media-content"
   | "research-higher-studies"
-  | "strategic-intelligence";
+  | "strategic-intelligence"
+  | "tech-department";
 
 export type Vertical = {
   id: VerticalId;
