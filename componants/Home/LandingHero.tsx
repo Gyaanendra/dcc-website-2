@@ -25,9 +25,6 @@ export function LandingHero() {
     const topStatement = section.querySelector<HTMLElement>(
       `.${styles.topStatement}`,
     );
-    const descriptor = section.querySelector<HTMLElement>(
-      `.${styles.descriptor}`,
-    );
     const bottomBar = section.querySelector<HTMLElement>(`.${styles.bottom}`);
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -57,7 +54,7 @@ export function LandingHero() {
       window.clearTimeout(playbackFallback);
       section.dataset.heroIntro = "complete";
       gsap.set(supportingCopy, { y: 0, autoAlpha: 1 });
-      if (!topStatement || !descriptor || !bottomBar) return;
+      if (!topStatement || !bottomBar) return;
       copyScroll = gsap
         .timeline({
           scrollTrigger: {
@@ -70,11 +67,6 @@ export function LandingHero() {
         .to(
           topStatement,
           { y: -28, autoAlpha: 0, duration: 0.28, ease: "power1.in" },
-          0,
-        )
-        .to(
-          descriptor,
-          { scale: 0.95, autoAlpha: 0, duration: 0.22, ease: "power1.in" },
           0,
         )
         .to(
@@ -129,8 +121,7 @@ export function LandingHero() {
       const letterStage = section.querySelector<HTMLElement>(
         "[data-letter-stage]",
       );
-      if (!stage || !letterStage || !topStatement || !descriptor || !bottomBar)
-        return;
+      if (!stage || !letterStage || !topStatement || !bottomBar) return;
       scrollMotion?.scrollTrigger?.kill();
       scrollMotion?.kill();
       gsap.set(wordmark, { clearProps: "transform" });
@@ -290,11 +281,6 @@ export function LandingHero() {
             <span data-letter>C</span>
             <span data-letter>C</span>
           </h1>
-        </div>
-        <div className={styles.descriptor} data-hero-copy>
-          DEAN CAREER CLOUD
-          <br />
-          BENNETT UNIVERSITY / {site.school}
         </div>
         <div className={styles.bottom} data-hero-copy>
           <p>
