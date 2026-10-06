@@ -38,7 +38,7 @@ export function VerticalStack() {
   return (
     <section className={styles.verticalSection} id="verticals" ref={root}>
       <div className={styles.verticalIntro}>
-        <div className={styles.sectionIndex}>03 / THE SYSTEM</div>
+        <div className={styles.sectionIndex}>04 / THE SYSTEM</div>
         <h2>
           SEVEN WAYS
           <br />
