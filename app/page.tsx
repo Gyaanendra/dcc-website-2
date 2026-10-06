@@ -1,65 +1,25 @@
-import Image from "next/image";
 import Link from "next/link";
+import { AlumniPreview } from "@/componants/Alumni/AlumniPreview";
 import styles from "@/componants/Home/Home.module.css";
 import { Impact } from "@/componants/Home/Impact";
 import { LandingHero } from "@/componants/Home/LandingHero";
-import { Manifesto } from "@/componants/Home/Manifesto";
 import { VerticalStack } from "@/componants/Home/VerticalStack";
-import { gallery, initiatives, teamMembers } from "@/content/records";
+import { PastEventsPreview } from "@/componants/PastEvents/PastEventsPreview";
+import { initiatives, teamMembers } from "@/content/records";
 import { site } from "@/content/site";
 
 export default function Home() {
   return (
     <main id="main">
       <LandingHero />
-
-      <div id="thinking">
-        <Manifesto />
-      </div>
-
-      <section className={styles.what}>
-        <div className={styles.sectionIndex}>02 / WHAT DCC DOES</div>
-        <div className={styles.whatContent}>
-          <h2>
-            FROM
-            <br />
-            QUESTION
-            <br />
-            <em>TO DIRECTION.</em>
-          </h2>
-          <div className={styles.whatSide}>
-            <p>
-              A career is shaped by more than one application. DCC brings the
-              moving parts into view, helping students think earlier and move
-              with purpose.
-            </p>
-            <Link href="/about" className={styles.textLink}>
-              THE IDEA BEHIND DCC <span aria-hidden="true">↗</span>
-            </Link>
-          </div>
-        </div>
-        <div className={styles.outcomeGrid}>
-          {[
-            ["01", "PREPARE", "Build readiness before the deadline."],
-            ["02", "CONNECT", "Meet people who expand the picture."],
-            ["03", "EXPLORE", "See more than a single route."],
-            ["04", "MOVE", "Turn information into action."],
-          ].map(([index, title, copy]) => (
-            <div key={index}>
-              <span>{index}</span>
-              <h3>{title}</h3>
-              <p>{copy}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <VerticalStack />
       <Impact />
+      <AlumniPreview />
+      <PastEventsPreview />
+      <VerticalStack />
 
       {initiatives.length > 0 && (
         <section className={styles.initiatives}>
-          <div className={styles.sectionIndex}>05 / INITIATIVES</div>
+          <div className={styles.sectionIndex}>DCC / INITIATIVES</div>
           <h2>
             WORK IN
             <br />
@@ -89,40 +49,8 @@ export default function Home() {
         </section>
       )}
 
-      <section className={styles.mediaSection}>
-        <div className={styles.mediaHeading}>
-          <div className={styles.sectionIndex}>05 / LIFE IN MOTION</div>
-          <h2>
-            NOT JUST
-            <br />
-            <em>ON PAPER.</em>
-          </h2>
-          <p>A glimpse at the people and moments behind DCC.</p>
-          <Link className={styles.textLink} href="/gallery">
-            EXPLORE THE GALLERY <span aria-hidden="true">↗</span>
-          </Link>
-        </div>
-        <div className={styles.mediaGrid}>
-          {gallery.map((item) => (
-            <figure key={item.id} className={styles.photoFrame}>
-              <Image
-                src={item.src}
-                alt={item.alt}
-                width={item.width}
-                height={item.height}
-                sizes="(max-width: 760px) 100vw, 40vw"
-              />
-              <figcaption className={styles.mediaCaption}>
-                <span>{item.category}</span>
-                <span>{item.title.toUpperCase()}</span>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
-
       <section className={styles.teamPreview}>
-        <div className={styles.sectionIndex}>06 / PEOPLE</div>
+        <div className={styles.sectionIndex}>05 / PEOPLE</div>
         <div className={styles.teamPreviewInner}>
           <h2>
             THE PEOPLE

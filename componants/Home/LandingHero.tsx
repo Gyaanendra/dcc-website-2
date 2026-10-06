@@ -48,7 +48,6 @@ export function LandingHero() {
     let introComplete = false;
     let disposed = false;
     let scrollMotion: gsap.core.Timeline | undefined;
-    let copyReveal: gsap.core.Timeline | undefined;
     let copyScroll: gsap.core.Timeline | undefined;
     let resizeFrame = 0;
     let playbackFallback = 0;
@@ -57,43 +56,33 @@ export function LandingHero() {
       introComplete = true;
       window.clearTimeout(playbackFallback);
       section.dataset.heroIntro = "complete";
-      copyReveal = gsap.timeline({
-        onComplete: () => {
-          if (!topStatement || !descriptor || !bottomBar) return;
-          copyScroll = gsap
-            .timeline({
-              scrollTrigger: {
-                trigger: section,
-                start: "top top",
-                end: "bottom bottom",
-                scrub: 0.65,
-              },
-            })
-            .to(
-              topStatement,
-              { y: -28, autoAlpha: 0, duration: 0.28, ease: "power1.in" },
-              0,
-            )
-            .to(
-              descriptor,
-              { scale: 0.95, autoAlpha: 0, duration: 0.22, ease: "power1.in" },
-              0,
-            )
-            .to(
-              bottomBar,
-              { y: 22, autoAlpha: 0, duration: 0.32, ease: "power1.in" },
-              0,
-            );
-          ScrollTrigger.refresh();
-        },
-      });
-      copyReveal.to(supportingCopy, {
-        y: 0,
-        autoAlpha: 1,
-        duration: 0.7,
-        stagger: 0.08,
-        ease: "power3.out",
-      });
+      gsap.set(supportingCopy, { y: 0, autoAlpha: 1 });
+      if (!topStatement || !descriptor || !bottomBar) return;
+      copyScroll = gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.65,
+          },
+        })
+        .to(
+          topStatement,
+          { y: -28, autoAlpha: 0, duration: 0.28, ease: "power1.in" },
+          0,
+        )
+        .to(
+          descriptor,
+          { scale: 0.95, autoAlpha: 0, duration: 0.22, ease: "power1.in" },
+          0,
+        )
+        .to(
+          bottomBar,
+          { y: 22, autoAlpha: 0, duration: 0.32, ease: "power1.in" },
+          0,
+        );
+      ScrollTrigger.refresh();
     };
     const syncPlayback = () => {
       if (visible && revealStarted && !mediaFailed && !document.hidden) {
@@ -120,6 +109,7 @@ export function LandingHero() {
     );
     observer.observe(section);
     document.addEventListener("visibilitychange", syncPlayback);
+    const onVideoPlaying = () => completeIntro();
     // Restart manually because the native loop attribute suppresses "ended".
     const onVideoEnd = () => {
       completeIntro();
@@ -130,6 +120,7 @@ export function LandingHero() {
       mediaFailed = true;
       if (revealStarted) completeIntro();
     };
+    media.addEventListener("playing", onVideoPlaying);
     media.addEventListener("ended", onVideoEnd);
     media.addEventListener("error", onVideoError);
 
@@ -246,6 +237,7 @@ export function LandingHero() {
       disposed = true;
       observer.disconnect();
       document.removeEventListener("visibilitychange", syncPlayback);
+      media.removeEventListener("playing", onVideoPlaying);
       media.removeEventListener("ended", onVideoEnd);
       media.removeEventListener("error", onVideoError);
       window.removeEventListener("resize", onResize);
@@ -255,7 +247,6 @@ export function LandingHero() {
       entrance.kill();
       scrollMotion?.scrollTrigger?.kill();
       scrollMotion?.kill();
-      copyReveal?.kill();
       copyScroll?.scrollTrigger?.kill();
       copyScroll?.kill();
       gsap.set([...characters, wordmark, videoLayer, ...supportingCopy], {
@@ -314,7 +305,7 @@ export function LandingHero() {
           <span>THE CAREER ECOSYSTEM / {site.year}</span>
           {/* Plain anchor: Next.js Link suppresses same-page fragment
               scrolling, which left this scroll cue dead. */}
-          <a href="#thinking" aria-label="Scroll to DCC philosophy">
+          <a href="#impact" aria-label="Scroll to DCC statistics">
             ↓
           </a>
         </div>

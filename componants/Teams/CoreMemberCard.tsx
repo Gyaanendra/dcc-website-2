@@ -12,7 +12,7 @@ function refCode(order: number): string {
  */
 export default function CoreMemberCard({ member }: { member: CoreMember }) {
   return (
-    <article className="group flex h-full flex-col bg-transparent transition-colors duration-300 hover:bg-[#C04F2E]/[0.04]">
+    <article className="group flex h-full flex-col bg-transparent transition-colors duration-300 hover:bg-[#555555]/[0.04]">
       <AlphabetAvatar
         name={member.name}
         initials={member.initials}
@@ -26,10 +26,10 @@ export default function CoreMemberCard({ member }: { member: CoreMember }) {
         <h3 className="text-[15px] font-bold tracking-[0.12em] uppercase text-[#111111]">
           {member.name}
         </h3>
-        <p className="mt-0.5 font-serif text-sm text-[#666666] italic transition-colors duration-300 group-hover:text-[#C04F2E]">
+        <p className="mt-0.5 font-serif text-sm text-[#666666] italic transition-colors duration-300 group-hover:text-[#555555]">
           {member.role}
         </p>
-        <div className="mt-auto flex items-center justify-between border-t border-black/10 pt-3 font-mono text-[9.5px] tracking-[0.14em] uppercase text-[#8A8A8A]">
+        <div className="mt-auto flex items-center justify-between border-t border-black/10 pt-3 font-mono text-[9.5px] tracking-[0.14em] uppercase text-[#666666]">
           <span>{member.leadRole}</span>
           <span>{refCode(member.order)}</span>
         </div>

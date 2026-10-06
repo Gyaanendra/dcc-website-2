@@ -34,7 +34,7 @@ export default function SplitTextHeader({
               <span
                 className={
                   dimLastWord && index === words.length - 1
-                    ? "text-[#C7C4BD]"
+                    ? "text-[#c7c7c7]"
                     : undefined
                 }
                 style={{ "--word-index": startIndex + index } as CSSProperties}
