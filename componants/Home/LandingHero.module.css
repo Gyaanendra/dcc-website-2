@@ -60,13 +60,11 @@
   white-space: nowrap;
 }
 .topStatement,
-.descriptor,
 .bottom {
   opacity: 0;
   visibility: hidden;
 }
 .hero[data-hero-intro="complete"] .topStatement,
-.hero[data-hero-intro="complete"] .descriptor,
 .hero[data-hero-intro="complete"] .bottom {
   visibility: visible;
 }
@@ -90,23 +88,6 @@
 .letters span {
   display: block;
   will-change: transform;
-}
-.descriptor {
-  position: absolute;
-  z-index: 4;
-  top: calc(48% + clamp(110px, 13.5vw, 205px));
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  font: 500 clamp(10px, 0.95vw, 13px) / 1.25 var(--font-data);
-  letter-spacing: 0.04em;
-  color: #303030;
-  background: rgba(247, 247, 247, 0.86);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(11, 11, 11, 0.08);
-  border-radius: 2px;
-  padding: 8px 14px;
 }
 .bottom {
   position: absolute;
@@ -187,14 +168,6 @@
   .letters {
     font-size: clamp(76.8px, 24.8vw, 128px);
   }
-  .descriptor {
-    top: 60%;
-    left: auto;
-    right: 24px;
-    transform: none;
-    text-align: right;
-    font-size: 10px;
-  }
   .bottom {
     left: 20px;
     right: 20px;
@@ -228,7 +201,6 @@
 }
 @media (scripting: none) {
   .topStatement,
-  .descriptor,
   .bottom {
     opacity: 1;
     visibility: visible;
