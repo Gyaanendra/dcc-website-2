@@ -3,11 +3,9 @@ import Link from "next/link";
 import styles from "@/componants/About/About.module.css";
 import { RouteVisual } from "@/componants/Home/RouteVisual";
 import { verticals } from "@/content/verticals";
+import { metadataFor } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About",
-  description: "Explore the idea and structure behind Dean Career Cloud.",
-};
+export const metadata: Metadata = metadataFor("/about");
 
 export default function AboutPage() {
   return (
@@ -106,7 +104,7 @@ export default function AboutPage() {
           <br />
           <em>PEOPLE BEHIND IT.</em>
         </h2>
-        <Link href="/team">
+        <Link href="/teams">
           MEET THE TEAM <span aria-hidden="true">↗</span>
         </Link>
       </section>
