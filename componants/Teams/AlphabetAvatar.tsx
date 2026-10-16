@@ -34,11 +34,29 @@ export default function AlphabetAvatar({
   const [imageFailed, setImageFailed] = useState(false);
 
   if (variant === "square") {
+    if (src && !imageFailed) {
+      return (
+        <div
+          role="img"
+          aria-label={`${name} — ${initials}`}
+          className="relative h-11 w-11 flex-none overflow-hidden border border-black/15 transition-colors duration-300 group-hover:border-[#555555]"
+        >
+          <Image
+            src={src}
+            alt={name}
+            fill
+            sizes="44px"
+            className="object-cover"
+            onError={() => setImageFailed(true)}
+          />
+        </div>
+      );
+    }
     return (
       <div
         role="img"
         aria-label={`${name} — ${initials}`}
-        className="group-hover:border-[#555555] flex h-11 w-11 flex-none items-center justify-center border border-black/15 bg-[linear-gradient(160deg,#eeeeee_0%,#d6d6d6_100%)] font-mono text-[13px] font-medium tracking-[0.12em] text-[#111111] transition-colors duration-300"
+        className="flex h-11 w-11 flex-none items-center justify-center border border-black/15 bg-[linear-gradient(160deg,#eeeeee_0%,#d6d6d6_100%)] font-mono text-[13px] font-medium tracking-[0.12em] text-[#111111] transition-colors duration-300 group-hover:border-[#555555]"
       >
         {initials}
       </div>

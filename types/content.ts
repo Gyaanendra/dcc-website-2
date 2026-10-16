@@ -4,9 +4,11 @@ export type VerticalId =
   | "training-preparation"
   | "operations"
   | "media-content"
+  | "design-team"
   | "research-higher-studies"
   | "strategic-intelligence"
-  | "tech-department";
+  | "tech-department"
+  | "pr-outreach";
 
 export type Vertical = {
   id: VerticalId;

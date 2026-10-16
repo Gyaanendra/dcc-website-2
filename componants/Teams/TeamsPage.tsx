@@ -4,8 +4,8 @@ import SubMembersDirectory from "./SubMembersDirectory";
 import TeamsHero from "./TeamsHero";
 import { coreMembers, subMembers } from "./team-data";
 
-// Core page shows the top three leads only; the count must follow the slice.
-const coreTeam = coreMembers.slice(0, 3);
+// Core page shows the top seven leads; the count must follow the slice.
+const coreTeam = coreMembers.slice(0, 7);
 
 interface SectionHeaderProps {
   index: string;
