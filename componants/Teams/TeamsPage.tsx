@@ -4,6 +4,9 @@ import SubMembersDirectory from "./SubMembersDirectory";
 import TeamsHero from "./TeamsHero";
 import { coreMembers, subMembers } from "./team-data";
 
+// Core page shows the top three leads only; the count must follow the slice.
+const coreTeam = coreMembers.slice(0, 3);
+
 interface SectionHeaderProps {
   index: string;
   title: string;
@@ -66,9 +69,9 @@ export default function TeamsPage() {
             index="01"
             title="Core Leadership"
             metaTop="// CORE LEADERSHIP"
-            metaBottom={`COUNT: ${String(coreMembers.length).padStart(2, "0")}`}
+            metaBottom={`COUNT: ${String(coreTeam.length).padStart(2, "0")}`}
           />
-          <CoreTeamGrid members={coreMembers} />
+          <CoreTeamGrid members={coreTeam} />
         </section>
 
         <section aria-label="Sub-members directory">
