@@ -53,7 +53,11 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className={`${styles.header} ${light ? styles.headerLight : ""}`}>
+    <header
+      className={`${styles.header} ${light ? styles.headerLight : ""} ${
+        open ? styles.headerOpen : ""
+      }`}
+    >
       <div className={styles.headerInner}>
         <Link
           className={styles.brand}
@@ -77,12 +81,17 @@ export function Header() {
         <span className={styles.headerContext}>
           {site.institution} <i>/</i> {site.school}
         </span>
-        <nav className={styles.desktopNav} aria-label="Primary navigation">
+        <nav
+          className={`${styles.desktopNav} ${open ? styles.desktopNavHidden : ""}`}
+          aria-label="Primary navigation"
+          aria-hidden={open}
+        >
           {navigation.slice(1).map((item) => (
             <Link
               key={item.href}
               href={item.href}
               aria-current={pathname === item.href ? "page" : undefined}
+              tabIndex={open ? -1 : undefined}
             >
               {item.label}
             </Link>
