@@ -1,56 +1,180 @@
-# Dean Career Cloud
+# Dean Career Cloud (DCC)
 
-An editorial website for Dean Career Cloud at Bennett University / SCSET. The current routes include Home, About, Teams, Gallery, and Past Events. It uses the repository's existing Next.js App Router, `componants/` grouping, and Biome configuration.
+An architectural, editorial web experience for the **Dean Career Cloud** at **Bennett University** (School of Computer Science Engineering and Technology).
 
-## Run locally
+Designed with a high-contrast monochromatic aesthetic, kinetic typographic choreography, and responsive layouts inspired by contemporary editorial and brutalist publications.
+
+---
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Routes & Pages](#routes--pages)
+- [Content Management](#content-management)
+- [Pre-Publication Checklist](#pre-publication-checklist)
+- [Media & Assets](#media--assets)
+
+---
+
+## Overview
+
+Dean Career Cloud (DCC) bridges students with industry exposure, mentorship, and career acceleration. This website serves as the club's public digital platform, providing an overview of its mission, departmental teams, events archive, alumni trajectories, and curated visual gallery.
+
+---
+
+## Key Features
+
+- **Kinetic Typographic Hero**: Scrub-driven landing stage powered by GSAP and ScrollTrigger with fluid letter transitions and video backdrop choreography.
+- **Editorial Navigation Panel**: Fullscreen navigation overlay with staggered reveals, keyboard focus traps, and smooth navbar fade transitions.
+- **Horizontal Runway Gallery**: Drag- and scrub-enabled showcase of club events and milestones with modal view and detail cards.
+- **Structured Team Directory**: Comprehensive roster featuring core members, departmental divisions (Tech, Design, PR, Operations), and alphabetical sub-member indices.
+- **Editorial Design System**: Custom typography pairing Geist Sans, Geist Mono, Instrument Serif, and Space Grotesk, built on CSS variables and responsive `clamp()` scaling.
+- **Accessibility & Motion Safety**: Built-in support for `prefers-reduced-motion`, semantic landmarks, skip links, and ARIA modal controls.
+
+---
+
+## Tech Stack
+
+| Layer | Technologies |
+| :--- | :--- |
+| **Framework** | [Next.js 16](https://nextjs.org/) (App Router, Turbopack) |
+| **Core Libraries** | [React 19](https://react.dev/), [TypeScript 5](https://www.typescriptlang.org/) |
+| **Animation** | [GSAP 3](https://greensock.com/gsap/) (ScrollTrigger) |
+| **Styling** | CSS Modules, [Tailwind CSS 4](https://tailwindcss.com/) (scoped utilities), custom CSS tokens |
+| **Typography** | `next/font/google` (Geist Sans, Geist Mono, Instrument Serif, Space Grotesk) |
+| **Tooling & Quality** | [Biome](https://biomejs.dev/) (linter & formatter), TypeScript strict checking |
+
+---
+
+## Project Structure
+
+```text
+├── app/                        # Next.js App Router
+│   ├── globals.css             # Global design tokens, theme layers, and resets
+│   ├── layout.tsx              # Root layout, font definitions, and site chrome
+│   ├── page.tsx                # Homepage (Landing)
+│   ├── about/                  # About page
+│   ├── teams/                  # Teams directory & departmental structure
+│   ├── alumni/                 # Alumni network and trajectory directory
+│   ├── past-events/            # Historical events archive
+│   └── gallery/                # Horizontal runway gallery
+├── componants/                 # Feature-based modular UI components
+│   ├── Home/                   # Hero stage, manifesto, impact metrics, verticals
+│   ├── About/                  # Philosophy, mission, and institutional blocks
+│   ├── Teams/                  # Team hero, core cards, member directory, avatars
+│   ├── Alumni/                 # Alumni directory and trajectory layouts
+│   ├── PastEvents/             # Past events previews and timeline cards
+│   ├── Gallery/                # Runway container, controls, cards, detail modal
+│   └── Shared/                 # Global Header, SiteLoader, Footer, overlays
+├── content/                    # Centralized, type-safe data and editable copy
+│   ├── site.ts                 # Metadata, institutional info, navigation links
+│   ├── records.ts              # Teams, alumni, events, and impact datasets
+│   └── verticals.ts            # Club departments and domain definitions
+├── public/                     # Static media and assets
+│   └── media/                  # Optimized logos, photography, and video reels
+├── types/                      # Shared TypeScript definitions
+│   └── content.ts              # Schema models for site records and content
+├── biome.json                  # Biome code quality and linting configuration
+└── tsconfig.json               # TypeScript compiler options
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js `18.18+` or `20+`
+- npm `9+` (or pnpm / yarn)
+
+### Installation
+
+Clone the repository and install dependencies:
 
 ```bash
+git clone https://github.com/Gyaanendra/dcc-website-2.git
+cd dcc-website-2
 npm ci
+```
+
+### Development Server
+
+Start the local development server with Turbopack:
+
+```bash
 npm run dev
 ```
 
-Open `http://localhost:3000`. To verify a release candidate:
+Visit [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Quality Verification
+
+Before committing changes, verify types, linting, and production builds:
 
 ```bash
+# Typecheck TypeScript files
 npm run typecheck
+
+# Check code formatting and lint rules
 npm run lint
+
+# Automatically format files with Biome
+npm run format
+
+# Create a production build
 npm run build
 npm run start
 # In another terminal:
 SEO_BASE_URL=http://localhost:3000 npm run seo:check
 ```
 
-## Structure
+---
 
-- `app/` — routes, root layout, and global design tokens
-- `componants/Home`, `componants/About`, `componants/Teams`, `componants/PastEvents` — page sections and local styles
-- `componants/Shared` — navigation, footer, and intro
-- `content/` — editable site copy and records
-- `types/content.ts` — shared content shapes
-- `public/media/` — approved logo, photo, and video from the media repository
+## Routes & Pages
 
-## Content intake before publication
+| Route | Purpose | Key Components |
+| :--- | :--- | :--- |
+| `/` | Flagship landing page with kinetic hero, impact metrics, and verticals | `LandingHero`, `Manifesto`, `Impact`, `VerticalStack` |
+| `/about` | Mission, institutional affiliation, and organizational philosophy | `About` sections, strategic pillars |
+| `/teams` | Leadership roster, departmental directories, and member index | `TeamsPage`, `CoreTeamGrid`, `TeamDirectory`, `SubMembersDirectory` |
+| `/alumni` | Alumni network, historical graduating cohorts, and industry paths | `AlumniDirectory`, `AlumniPreview` |
+| `/past-events` | Chronological archive of past workshops, hackathons, and talks | `PastEventsPreview`, archive cards |
+| `/gallery` | Interactive horizontal runway showcasing club moments and visual records | `GalleryRunway`, `GalleryControls`, `GalleryDetailModal` |
 
-The site is deliberately `noindex, follow` until official copy, roster, contact links, statistics, media, and the production domain are approved. Crawlers are allowed in `robots.txt` so they can read `noindex`; `app/sitemap.ts` currently emits no page URLs. The current site copy outside names and institutional identifiers is editorial draft based on the supplied brief. Review `content/site.ts` and `content/verticals.ts` before launch.
+---
 
-## Search launch gate
+## Content Management
 
-`content/seo.ts` owns the search status, titles, descriptions, review attribution, and real modification dates for each route. Every route starts as `draft`. Before changing one to `approved`, replace or remove all demonstration material on that page, verify claims and media rights, and add `reviewedBy`, `reviewedAt`, and a truthful `lastModified` date. The Home route must also be free of illustrative stats and sample previews. `/teams` needs a verified roster; `/alumni` needs consented profiles; `/past-events` needs actual event records; `/gallery` needs DCC-related licensed imagery. Do not approve a route merely because its layout is complete.
+Site copy and record entries are separated from view components for straightforward editing:
 
-Set `SITE_URL` to the final HTTPS custom domain in the production environment, without a path or trailing content (for example `https://dcc.example.org`). Vercel preview deployments stay `noindex` even if this value is present. Invalid, absent, or `*.vercel.app` values keep the site gated. The old `/team` URL permanently redirects to `/teams`; update any new internal links to `/teams`.
+- **Site Metadata & Navigation** (`content/site.ts`): Edit institution name, department, academic year, social links, and main menu routes.
+- **Team, Alumni & Events Data** (`content/records.ts`): Update member rosters, roles, LinkedIn URLs, event dates, and impact statistics.
+- **Club Verticals** (`content/verticals.ts`): Define core departments, descriptions, and operational focus areas.
+- **TypeScript Schemas** (`types/content.ts`): Provides compile-time checking for all content models.
 
-After approval and deployment, verify the custom domain, canonical tags, sitemap, and representative URLs in Google Search Console; submit the sitemap and monitor coverage and Core Web Vitals. A sitemap or structured data does not guarantee indexing or a rich result. Organization, person, and event schema remain deferred until the corresponding facts and content are verified. The approved homepage can emit minimal `WebSite` schema.
+---
 
-Fill `content/records.ts` with approved team members, initiatives, and source-backed impact values. The homepage now shows six clearly marked illustrative statistics in place of the former “The Thinking” and “What DCC Does” sections; these are layout samples, not DCC outcomes. Replace them with approved numeric values and sources before publication. Initiatives stay hidden while empty. The canonical `/teams` page currently uses a demonstration roster in `componants/Teams/team-data.ts`; replace it with the approved roster and portraits before making that route indexable.
+## Pre-Publication Checklist
 
-The presentation uses only black, white, and neutral grays throughout the routes. Existing photos and the hero video are displayed in grayscale. The former “04 / Life in Motion” homepage section has been removed; the separate Gallery route remains available from navigation.
+Before deploying the website to production:
 
-The Past Events route and homepage preview currently use four expressly labeled demonstration entries in `content/records.ts`. Their titles, dates, and descriptions are fictional layout samples, not an account of DCC events. Replace or remove every entry before publication; no sample event is paired with a real DCC photograph. The shared footer contains only live internal routes while contact links remain unverified.
+1. **Verify Records**: Replace demo records in `content/records.ts` (events, team rosters, and alumni data) with verified entries.
+2. **Impact Metrics**: Review the illustrative numbers on the homepage and update with verified club statistics and data sources.
+3. **Photography**: Place approved portraits in `public/team/` and update references in `content/records.ts`.
+4. **Social & Contact**: Add active LinkedIn, Instagram, and email addresses in `content/site.ts`.
+5. **SEO & Indexing**:
+   - Update canonical URLs and metadata in `app/layout.tsx`.
+   - Remove `robots: { index: false, follow: false }` from `app/layout.tsx` to enable search engine indexing.
+6. **Favicon**: Replace temporary favicon assets in `app/icon.png` with final high-resolution brand assets if required.
 
-The Resources and Opportunities types are ready in `types/content.ts`; their routes are outside this delivery. Do not add live listings without verified sources and destinations. Replace the temporary favicon treatment and add an approved social-sharing image when the final brand package is supplied. Do not remove the root `noindex` fallback; approve routes individually through `content/seo.ts` after the production domain is configured.
+---
 
-## Media provenance
+## Media & Assets
 
-The DCC white and black logos, badging ceremony photo, and event video were copied from the user-specified [`dcc-wesbite/public`](https://github.com/Gyaanendra/dcc-wesbite/tree/main/public) repository on 2026-10-02. The linked `Video-74056.mp4` is the landing hero background; the poster is a thumbnail of that video. The source repository's `building.jpg` was not used because its relation to DCC or Bennett University could not be verified visually.
-
-The oversized DCC letter composition is an original adaptation of the user's [AIR reference](https://aircenter.space/), with the supplied DCC footage behind it. The visible letters begin grouped at the left edge and travel outward across a plain hero. The footage then fades in; the navigation and supporting hero copy appear after its first complete play, while the video continues looping. Scrolling gathers the wordmark into the top-left corner. This entrance replaces the separate first-session loader on Home. Motion is skipped when reduced motion is requested; playback pauses offscreen or when the tab is hidden, and video errors or an intentional scroll past the intro reveal the content so navigation is not trapped. Reference code, imagery, and copy are not used here.
+- **Logos**: High-resolution dark and light vectors (`/media/dcc-black.png`, `/media/dcc-white.png`).
+- **Hero Video**: Optimized reel (`/media/dcc-event-reel.mp4`) with poster fallback (`/media/dcc-event-reel-poster.png`).
+- **Photography**: Monochromatic and graded imagery preserving brand contrast across dark and light surfaces.
