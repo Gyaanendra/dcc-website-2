@@ -23,7 +23,7 @@ export const galleryImages: GalleryImage[] = [
     category: "ALPINE / TERRAIN",
     location: "Dolomite Alps, Italy",
     year: "2026",
-    aspectRatio: "3 / 2",
+    aspectRatio: "16 / 10",
     src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1600&auto=format&fit=crop",
     alt: "Rugged alpine limestone peaks shrouded in drifting morning clouds",
     caption:
@@ -38,7 +38,7 @@ export const galleryImages: GalleryImage[] = [
     category: "MACRO / TEXTURE",
     location: "Kew Botanical Gardens",
     year: "2026",
-    aspectRatio: "4 / 3",
+    aspectRatio: "16 / 10",
     src: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=1600&auto=format&fit=crop",
     alt: "Macro photograph of Monstera leaf venation with condensation droplets",
     caption:
@@ -53,7 +53,7 @@ export const galleryImages: GalleryImage[] = [
     category: "HYDROLOGY / BRAIDED",
     location: "Vatnajökull Outwash, Iceland",
     year: "2026",
-    aspectRatio: "16 / 9",
+    aspectRatio: "16 / 10",
     src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop",
     alt: "Aerial patterns of volcanic glacial meltwater branching across black sand",
     caption:
@@ -68,7 +68,7 @@ export const galleryImages: GalleryImage[] = [
     category: "GEOMORPHOLOGY / DESERT",
     location: "Sossusvlei, Namibia",
     year: "2026",
-    aspectRatio: "2 / 1",
+    aspectRatio: "16 / 10",
     src: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?q=80&w=1600&auto=format&fit=crop",
     alt: "Crest of a monumental red desert sand dune casting sharp black shadow",
     caption:
@@ -83,7 +83,7 @@ export const galleryImages: GalleryImage[] = [
     category: "MIST / FJORD",
     location: "Geirangerfjord, Norway",
     year: "2026",
-    aspectRatio: "4 / 3",
+    aspectRatio: "16 / 10",
     src: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1600&auto=format&fit=crop",
     alt: "Mirror-like fjord reflecting evergreen slopes veiled in soft morning mist",
     caption:
@@ -98,7 +98,7 @@ export const galleryImages: GalleryImage[] = [
     category: "ORGANIC / SPIRAL",
     location: "Daintree Rainforest, Australia",
     year: "2026",
-    aspectRatio: "1 / 1",
+    aspectRatio: "16 / 10",
     src: "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1600&auto=format&fit=crop",
     alt: "Overhead view of radial tree fern fronds forming natural Fibonacci spiral",
     caption:
@@ -113,7 +113,7 @@ export const galleryImages: GalleryImage[] = [
     category: "LITHIC / FRACTURE",
     location: "Reynisfjara, Iceland",
     year: "2026",
-    aspectRatio: "3 / 2",
+    aspectRatio: "16 / 10",
     src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600&auto=format&fit=crop",
     alt: "Geometric columnar basalt cliffs rising from turbulent sea foam",
     caption:
@@ -128,7 +128,7 @@ export const galleryImages: GalleryImage[] = [
     category: "EROSION / OPTICS",
     location: "Navajo Nation, Arizona",
     year: "2026",
-    aspectRatio: "4 / 5",
+    aspectRatio: "16 / 10",
     src: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=80&w=1600&auto=format&fit=crop",
     alt: "Sunbeam descending through twisting red sandstone slot canyon walls",
     caption:
