@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { AlumniPreview } from "@/componants/Alumni/AlumniPreview";
 import styles from "@/componants/Home/Home.module.css";
@@ -7,10 +8,29 @@ import { VerticalStack } from "@/componants/Home/VerticalStack";
 import { PastEventsPreview } from "@/componants/PastEvents/PastEventsPreview";
 import { initiatives, teamMembers } from "@/content/records";
 import { site } from "@/content/site";
+import { getOfficialSiteUrl, isIndexable, metadataFor } from "@/lib/seo";
+
+export const metadata: Metadata = metadataFor("/");
 
 export default function Home() {
+  const officialUrl = isIndexable("/") ? getOfficialSiteUrl() : null;
   return (
     <main id="main">
+      {officialUrl && (
+        <script
+          type="application/ld+json"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: The JSON is generated from site-owned values, escaped, and emitted only after approval.
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: site.name,
+              alternateName: site.shortName,
+              url: officialUrl.toString(),
+            }).replace(/</g, "\\u003c"),
+          }}
+        />
+      )}
       <LandingHero />
       <Impact />
       <AlumniPreview />
@@ -65,7 +85,7 @@ export default function Home() {
                 ? `${teamMembers.length} people, one shared direction.`
                 : "An evolving team, working across the DCC verticals."}
             </p>
-            <Link className={styles.textLink} href="/team">
+            <Link className={styles.textLink} href="/teams">
               MEET THE TEAM <span aria-hidden="true">↗</span>
             </Link>
           </div>
