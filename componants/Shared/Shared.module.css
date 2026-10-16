@@ -6,7 +6,8 @@
   transition: opacity 0.7s ease;
 }
 @media (prefers-reduced-motion: reduce) {
-  .header {
+  .header,
+  .desktopNav {
     transition: none;
   }
 }
@@ -67,6 +68,13 @@
   display: flex;
   gap: 30px;
   align-items: center;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition:
+    opacity 0.6s var(--ease-editorial, cubic-bezier(0.16, 1, 0.3, 1)),
+    transform 0.6s var(--ease-editorial, cubic-bezier(0.16, 1, 0.3, 1)),
+    visibility 0.6s var(--ease-editorial, cubic-bezier(0.16, 1, 0.3, 1));
 }
 .desktopNav a {
   position: relative;
@@ -74,6 +82,7 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   padding: 15px 0;
+  transition: color 0.4s ease;
 }
 .desktopNav a::after {
   content: "";
@@ -88,6 +97,13 @@
 .desktopNav a:hover::after,
 .desktopNav a[aria-current="page"]::after {
   right: 0;
+}
+.headerOpen .desktopNav,
+.desktopNavHidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-8px);
 }
 .menuTrigger {
   display: inline-flex;
