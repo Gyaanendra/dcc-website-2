@@ -126,7 +126,7 @@ export function LandingHero() {
       scrollMotion?.kill();
       gsap.set(wordmark, { clearProps: "transform" });
       const stageBounds = stage.getBoundingClientRect();
-      const bounds = letterStage.getBoundingClientRect();
+      const bounds = wordmark.getBoundingClientRect();
       const pagePad = Number.parseFloat(
         getComputedStyle(document.documentElement).getPropertyValue(
           "--page-pad",
@@ -182,28 +182,68 @@ export function LandingHero() {
     const initialPositions = characters.map((character) =>
       character.getBoundingClientRect(),
     );
-    const mobile = window.innerWidth <= 680;
-    const groupStart = mobile ? -70 : -Math.min(window.innerWidth * 0.1, 135);
-    const groupStep = mobile ? 110 : Math.min(window.innerWidth * 0.18, 250);
+    // Begin with every glyph entirely beyond the left edge of the viewport.
+    const offscreenGap = Math.max(64, window.innerWidth * 0.12);
+    const rightInset =
+      window.innerWidth <= 680 ? 16 : Math.max(24, window.innerWidth * 0.025);
+    const rightEdgeX = Math.max(
+      0,
+      window.innerWidth - rightInset - initialPositions[2].right,
+    );
     gsap.set(characters, {
-      x: (index) =>
-        groupStart + index * groupStep - initialPositions[index].left,
+      x: (index) => -initialPositions[index].right - offscreenGap,
     });
+    gsap.set(wordmark, { autoAlpha: 1 });
     gsap.set(videoLayer, { opacity: 0 });
     gsap.set(supportingCopy, { y: 12, autoAlpha: 0 });
+    // The middle C leads, then D and the rebounding C join it together.
+    const letterTravelDuration = 1.35;
+    const meetingDelay = 0.15;
+    const meetingTime = letterTravelDuration + meetingDelay;
+    const reboundDuration = 0.55;
     const entrance = gsap
-      .timeline({ delay: 0.15 })
-      .to(characters, {
-        x: 0,
-        duration: 1.35,
-        stagger: 0.08,
-        ease: "power3.out",
-      })
+      .timeline({ delay: 0.125 })
+      .to(
+        characters[1],
+        {
+          x: 0,
+          duration: letterTravelDuration,
+          ease: "power1.inOut",
+        },
+        0,
+      )
+      .to(
+        characters[0],
+        {
+          x: 0,
+          duration: letterTravelDuration,
+          ease: "power1.inOut",
+        },
+        meetingDelay,
+      )
+      .to(
+        characters[2],
+        {
+          x: rightEdgeX,
+          duration: meetingTime - reboundDuration,
+          ease: "power2.in",
+        },
+        0,
+      )
+      .to(
+        characters[2],
+        {
+          x: 0,
+          duration: reboundDuration,
+          ease: "power3.out",
+        },
+        meetingTime - reboundDuration,
+      )
       .to(
         videoLayer,
         {
           opacity: 1,
-          duration: 1,
+          duration: 0.833,
           ease: "power2.out",
           onStart: () => {
             revealStarted = true;
@@ -220,7 +260,7 @@ export function LandingHero() {
             }
           },
         },
-        ">+0.2",
+        ">+0.167",
       )
       .call(createScrollMotion);
 

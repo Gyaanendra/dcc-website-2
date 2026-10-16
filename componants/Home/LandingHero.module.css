@@ -78,16 +78,21 @@
 }
 .letters {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin: 0;
+  gap: 0.72em;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto;
   font: 320 clamp(152px, 20vw, 312px) / 0.8 var(--font-body);
-  letter-spacing: -0.11em;
+  letter-spacing: 0;
   will-change: transform;
 }
 .letters span {
   display: block;
   will-change: transform;
+}
+.hero[data-hero-intro="pending"] .letters {
+  opacity: 0;
 }
 .bottom {
   position: absolute;
@@ -200,6 +205,9 @@
   }
 }
 @media (scripting: none) {
+  .hero[data-hero-intro="pending"] .letters {
+    opacity: 1;
+  }
   .topStatement,
   .bottom {
     opacity: 1;

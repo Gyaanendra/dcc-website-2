@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "biome check",
     "typecheck": "tsc --noEmit",
+    "seo:check": "node scripts/check-seo.mjs",
     "format": "biome format --write"
   },
   "dependencies": {
