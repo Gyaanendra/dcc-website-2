@@ -2,12 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import styles from "@/componants/Alumni/Alumni.module.css";
 import { AlumniDirectory } from "@/componants/Alumni/AlumniDirectory";
+import { metadataFor } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Alumni",
-  description:
-    "An illustrative alumni directory layout for Dean Career Cloud. Profiles are fictional placeholders.",
-};
+export const metadata: Metadata = metadataFor("/alumni");
 
 export default function AlumniPage() {
   return (
