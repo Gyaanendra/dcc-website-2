@@ -95,7 +95,8 @@ export function Impact() {
         {records.map((stat, index) => (
           <li key={stat.id}>
             <span className={styles.impactIndex}>
-              0{index + 1} / 0{records.length}
+              {String(index + 1).padStart(2, "0")} /{" "}
+              {String(records.length).padStart(2, "0")}
             </span>
             <div className={styles.impactValue}>
               <Count

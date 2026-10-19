@@ -26,6 +26,7 @@ export const DEPARTMENT_CODES: Record<Department, string> = {
 
 export const DEPARTMENT_FILTERS: Department[] = [
   "All",
+  "Executive",
   "Technical",
   "Placement Turnaround",
   "Corporate & Alumni Relations",
@@ -85,49 +86,50 @@ export const coreMembers: CoreMember[] = [
     order: 3,
     tenure: "2025 — PRESENT",
   },
+];
+
+// Executive leads below the top three render in the sub-members directory,
+// not in the core grid — names, roles and tenure are unchanged.
+export const executiveSubMembers: SubMember[] = [
   {
     id: "core-04",
     name: "Sanchit Jain",
     role: "Treasurer",
-    leadRole: "TREASURER",
+    teamSubgroup: "Core",
     department: "Executive",
     initials: initialsOf("Sanchit Jain"),
-    order: 4,
-    tenure: "2025 — PRESENT",
+    order: 95,
   },
   {
     id: "core-05",
     name: "Yash Mittal",
     role: "Coordinator 3rd Year",
-    leadRole: "COORDINATOR 3RD YEAR",
+    teamSubgroup: "Core",
     department: "Executive",
     initials: initialsOf("Yash Mittal"),
-    order: 5,
-    tenure: "2025 — PRESENT",
+    order: 96,
   },
   {
     id: "core-06",
     name: "Vrinda",
     role: "Coordinator 2nd Year",
-    leadRole: "COORDINATOR 2ND YEAR",
+    teamSubgroup: "Core",
     department: "Executive",
     initials: initialsOf("Vrinda"),
-    order: 6,
-    tenure: "2025 — PRESENT",
+    order: 97,
   },
   {
     id: "core-07",
     name: "Siddharth",
     role: "Coordinator 1st Year",
-    leadRole: "COORDINATOR 1ST YEAR",
+    teamSubgroup: "Core",
     department: "Executive",
     initials: initialsOf("Siddharth"),
-    order: 7,
-    tenure: "2025 — PRESENT",
+    order: 98,
   },
 ];
 
-export const subMembers: SubMember[] = [
+const departmentSubMembers: SubMember[] = [
   {
     id: "sub-01",
     name: "Gyanendra Prakash",
@@ -979,4 +981,9 @@ export const subMembers: SubMember[] = [
     initials: initialsOf("Verchasva R Tandon"),
     order: 94,
   },
+];
+
+export const subMembers: SubMember[] = [
+  ...executiveSubMembers,
+  ...departmentSubMembers,
 ];
