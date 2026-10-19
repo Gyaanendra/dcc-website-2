@@ -6,7 +6,8 @@ import { Impact } from "@/componants/Home/Impact";
 import { LandingHero } from "@/componants/Home/LandingHero";
 import { VerticalStack } from "@/componants/Home/VerticalStack";
 import { PastEventsPreview } from "@/componants/PastEvents/PastEventsPreview";
-import { initiatives, teamMembers } from "@/content/records";
+import { coreMembers, subMembers } from "@/componants/Teams/team-data";
+import { initiatives } from "@/content/records";
 import { site } from "@/content/site";
 import { getOfficialSiteUrl, isIndexable, metadataFor } from "@/lib/seo";
 
@@ -81,8 +82,8 @@ export default function Home() {
           </h2>
           <div>
             <p>
-              {teamMembers.length
-                ? `${teamMembers.length} people, one shared direction.`
+              {coreMembers.length + subMembers.length
+                ? `${coreMembers.length + subMembers.length} people, one shared direction.`
                 : "An evolving team, working across the DCC verticals."}
             </p>
             <Link className={styles.textLink} href="/teams">
