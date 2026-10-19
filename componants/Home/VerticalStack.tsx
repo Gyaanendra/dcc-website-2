@@ -59,7 +59,7 @@ export function VerticalStack() {
       <div className={styles.verticalIntro}>
         <div className={styles.sectionIndex}>04 / THE SYSTEM</div>
         <h2>
-          EIGHT WAYS
+          TEN WAYS
           <br />
           TO MOVE <em>FORWARD.</em>
         </h2>

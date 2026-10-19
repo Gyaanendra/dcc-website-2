@@ -4,8 +4,9 @@ import SubMembersDirectory from "./SubMembersDirectory";
 import TeamsHero from "./TeamsHero";
 import { coreMembers, subMembers } from "./team-data";
 
-// Core page shows the top seven leads; the count must follow the slice.
-const coreTeam = coreMembers.slice(0, 7);
+// Core page shows only the top three leads (President, Vice President,
+// General Secretary); every other member renders in the directory below.
+const coreTeam = coreMembers.slice(0, 3);
 
 interface SectionHeaderProps {
   index: string;
