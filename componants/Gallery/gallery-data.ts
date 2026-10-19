@@ -16,6 +16,20 @@ export const galleryImages: GalleryImage[] = [
     featured: true,
   },
   {
+    id: "dcc-keynote-address",
+    slug: "dcc-keynote-address",
+    title: "Keynote Address",
+    category: "DCC / EVENT",
+    location: "Bennett University, Greater Noida",
+    year: "2026",
+    aspectRatio: "16 / 10",
+    src: "/images/gallery/dcc-keynote-speaker.png",
+    alt: "Keynote speaker delivering an address at a DCC event at Bennett University",
+    caption:
+      "A distinguished speaker engages students during a keynote session on career growth and industry readiness.",
+    featured: true,
+  },
+  {
     id: "dcc-badging-ceremony",
     slug: "dcc-badging-ceremony",
     title: "Badging Ceremony",
