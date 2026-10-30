@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Tag } from "@/componants/Shared/Separators";
 import { alumniProfiles } from "@/content/records";
 import styles from "./Alumni.module.css";
 
@@ -15,7 +16,9 @@ export function AlumniDirectory() {
     >
       <div className={styles.directoryHeader}>
         <div>
-          <span className={styles.kicker}>DCC / ALUMNI INDEX</span>
+          <span className={styles.kicker}>
+            <Tag category="DCC" label="ALUMNI INDEX" />
+          </span>
           <h2 id="alumni-directory-title">
             DIFFERENT
             <br />
@@ -50,7 +53,9 @@ export function AlumniDirectory() {
         </div>
         <div className={styles.profile} aria-live="polite" aria-atomic="true">
           <div className={styles.profileTop}>
-            <span>PROFILE / 0{selected + 1}</span>
+            <span>
+              <Tag category="PROFILE" label={`0${selected + 1}`} />
+            </span>
             <span>ILLUSTRATIVE</span>
           </div>
           <div className={styles.profileGlyph} aria-hidden="true">

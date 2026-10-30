@@ -3,6 +3,7 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
+import { SectionLabel, Tag } from "@/componants/Shared/Separators";
 import { verticals } from "@/content/verticals";
 import styles from "./Home.module.css";
 
@@ -57,7 +58,9 @@ export function VerticalStack() {
   return (
     <section className={styles.verticalSection} id="verticals" ref={root}>
       <div className={styles.verticalIntro}>
-        <div className={styles.sectionIndex}>04 / THE SYSTEM</div>
+        <div className={styles.sectionIndex}>
+          <SectionLabel index="04" name="THE SYSTEM" />
+        </div>
         <h2>
           TEN WAYS
           <br />
@@ -75,15 +78,15 @@ export function VerticalStack() {
             key={item.id}
           >
             <div className={styles.cardIndex}>
-              DCC / {String(index + 1).padStart(2, "0")} <span>—</span>{" "}
-              {String(verticals.length).padStart(2, "0")}
+              <Tag category="DCC" label={String(index + 1).padStart(2, "0")} />{" "}
+              <span>—</span> {String(verticals.length).padStart(2, "0")}
             </div>
             <div className={styles.cardBody}>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
             </div>
             <div className={styles.cardBottom}>
-              <span>{item.focus.join(" / ")}</span>
+              <span>{item.focus.join(", ")}</span>
             </div>
             <div className={styles.cardNumber} aria-hidden="true">
               {String(index + 1).padStart(2, "0")}

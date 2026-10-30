@@ -864,7 +864,7 @@ export const gallery: GalleryItem[] = [
     src: "/media/dcc-badging.jpg",
     alt: "Group photograph at the Dean Career Cloud badging ceremony",
     title: "Badging ceremony",
-    category: "DCC / PEOPLE",
+    category: "DCC: PEOPLE",
     width: 1170,
     height: 1170,
   },
