@@ -11,6 +11,46 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async headers() {
+    return [
+      {
+        source: "/_next/image",
+        headers: [
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Access-Control-Allow-Methods", value: "GET, OPTIONS" },
+          {
+            key: "Access-Control-Allow-Headers",
+            value: "X-Requested-With, Content-Type, Accept",
+          },
+          { key: "Cross-Origin-Resource-Policy", value: "cross-origin" },
+        ],
+      },
+      {
+        source: "/media/:path*",
+        headers: [
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Access-Control-Allow-Methods", value: "GET, OPTIONS" },
+          {
+            key: "Access-Control-Allow-Headers",
+            value: "X-Requested-With, Content-Type, Accept",
+          },
+          { key: "Cross-Origin-Resource-Policy", value: "cross-origin" },
+        ],
+      },
+      {
+        source: "/icon.png",
+        headers: [
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Access-Control-Allow-Methods", value: "GET, OPTIONS" },
+          {
+            key: "Access-Control-Allow-Headers",
+            value: "X-Requested-With, Content-Type, Accept",
+          },
+          { key: "Cross-Origin-Resource-Policy", value: "cross-origin" },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
