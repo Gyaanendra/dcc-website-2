@@ -1,7 +1,6 @@
 "use client";
 
-import {
-  type CSSProperties,
+import React, {
   type ReactNode,
   useEffect,
   useRef,
@@ -11,64 +10,65 @@ import SubMemberItem from "./SubMemberItem";
 import { DEPARTMENT_FILTERS, FILTER_LABELS } from "./team-data";
 import type { Department, SubMember } from "./types";
 
-/**
- * Grid wrapper owning the staggered reveal (animation type 5). Remounted via
- * `key` on every filter change so the IntersectionObserver re-binds to the
- * fresh rows and the entrance stagger replays.
- */
-function RevealGrid({
+const BATCH_SIZE = 18;
+
+function LazyGrid({
   className,
   children,
 }: {
   className: string;
   children: ReactNode;
 }) {
-  const gridRef = useRef<HTMLDivElement>(null);
+  const childArray = React.Children.toArray(children);
+  const total = childArray.length;
+  const [shown, setShown] = useState(BATCH_SIZE);
+  const sentinelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const gridElement = gridRef.current;
-    if (!gridElement) {
-      return;
-    }
-    const targets = gridElement.querySelectorAll("[data-reveal]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-revealed");
-            observer.unobserve(entry.target);
-          }
+    setShown(BATCH_SIZE);
+  }, [total]);
+
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShown((prev) => Math.min(prev + BATCH_SIZE, total));
         }
       },
-      { threshold: 0.1 },
+      { rootMargin: "200px" },
     );
-    targets.forEach((target) => {
-      observer.observe(target);
-    });
-    return () => observer.disconnect();
-  }, []);
+    io.observe(el);
+    return () => io.disconnect();
+  }, [total, shown]);
 
   return (
-    <div ref={gridRef} className={className}>
-      {children}
+    <div className={className}>
+      {childArray.slice(0, shown)}
+      {shown < total && (
+        <div
+          ref={sentinelRef}
+          aria-hidden
+          className="col-span-full h-px"
+        />
+      )}
     </div>
   );
 }
 
-/**
- * High-density 3-column sub-member directory with department filtering.
- */
 export default function SubMembersDirectory({
   members,
 }: {
   members: SubMember[];
 }) {
-  const [activeDepartment, setActiveDepartment] = useState<Department>("All");
+  const [activeDepartment, setActiveDepartment] = useState<Department>(
+    DEPARTMENT_FILTERS[0],
+  );
 
-  const filteredMembers =
-    activeDepartment === "All"
-      ? members
-      : members.filter((member) => member.department === activeDepartment);
+  const filteredMembers = members.filter(
+    (member) => member.department === activeDepartment,
+  );
 
   return (
     <div>
@@ -99,21 +99,19 @@ export default function SubMembersDirectory({
           </p>
         </div>
       </div>
-      <RevealGrid
+      <LazyGrid
         key={activeDepartment}
-        className="grid grid-cols-1 border-l border-black/10 md:grid-cols-2 lg:grid-cols-3"
+        className="grid grid-cols-2 border-l border-black/10 md:grid-cols-2 lg:grid-cols-3"
       >
-        {filteredMembers.map((member, index) => (
+        {filteredMembers.map((member) => (
           <div
             key={member.id}
-            data-reveal
             className="border-r border-b border-black/10"
-            style={{ "--stagger-index": index } as CSSProperties}
           >
             <SubMemberItem member={member} />
           </div>
         ))}
-      </RevealGrid>
+      </LazyGrid>
     </div>
   );
 }

@@ -24,16 +24,16 @@ export default function CoreMemberCard({ member }: { member: CoreMember }) {
           tenure={member.tenure}
         />
       </div>
-      <div className="flex flex-1 flex-col p-4">
-        <h3 className="text-[15px] font-bold tracking-[0.12em] uppercase text-[#111111]">
+      <div className="flex flex-1 flex-col p-2 md:p-4">
+        <h3 className="text-[11px] font-bold tracking-[0.10em] uppercase text-[#111111] md:text-[15px] md:tracking-[0.12em]">
           {member.name}
         </h3>
-        <p className="mt-0.5 font-serif text-sm text-[#666666] italic transition-colors duration-300 group-hover:text-[#555555]">
+        <p className="mt-0.5 font-serif text-xs text-[#666666] italic transition-colors duration-300 group-hover:text-[#555555] md:text-sm">
           {member.role}
         </p>
-        <div className="mt-auto flex items-center justify-between border-t border-black/10 pt-3 font-mono text-[9.5px] tracking-[0.14em] uppercase text-[#666666]">
+        <div className="mt-auto flex items-center justify-between border-t border-black/10 pt-2 font-mono text-[7.5px] tracking-[0.12em] uppercase text-[#666666] md:pt-3 md:text-[9.5px] md:tracking-[0.14em]">
           <span>{member.leadRole}</span>
-          <span>{refCode(member.order)}</span>
+          <span className="hidden md:inline">{refCode(member.order)}</span>
         </div>
       </div>
     </article>

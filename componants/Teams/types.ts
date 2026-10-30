@@ -1,6 +1,5 @@
 export type Department =
-  | "All"
-  | "Executive"
+  | "Core"
   | "Technical"
   | "Placement Turnaround"
   | "Corporate & Alumni Relations"
