@@ -2,11 +2,12 @@ import CoreTeamGrid from "./CoreTeamGrid";
 import RevealOnView from "./RevealOnView";
 import SubMembersDirectory from "./SubMembersDirectory";
 import TeamsHero from "./TeamsHero";
-import { coreMembers, subMembers } from "./team-data";
+import { coreMembers, deanMember, subMembers } from "./team-data";
 
-// Core page shows only the top three leads (President, Vice President,
-// General Secretary); every other member renders in the directory below.
+// Core page shows the top three leads (President, Vice President,
+// General Secretary) plus the Dean card beside them.
 const coreTeam = coreMembers.slice(0, 3);
+const coreLeadership = [...coreTeam, deanMember];
 
 interface SectionHeaderProps {
   index: string;
@@ -70,9 +71,9 @@ export default function TeamsPage() {
             index="01"
             title="Core Leadership"
             metaTop="// CORE LEADERSHIP"
-            metaBottom={`COUNT: ${String(coreTeam.length).padStart(2, "0")}`}
+            metaBottom={`COUNT: ${String(coreLeadership.length).padStart(2, "0")}`}
           />
-          <CoreTeamGrid members={coreTeam} />
+          <CoreTeamGrid members={coreLeadership} />
         </section>
 
         <section aria-label="Sub-members directory">

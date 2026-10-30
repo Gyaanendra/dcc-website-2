@@ -36,10 +36,10 @@ export default function CoreTeamGrid({ members }: { members: CoreMember[] }) {
   }, []);
 
   return (
-    <div className="mx-auto max-w-6xl">
+    <div className="mx-auto">
       <div
         ref={gridRef}
-        className="grid grid-cols-1 border-l border-black/10 md:grid-cols-3 md:gap-4 md:border-l-0"
+        className="grid grid-cols-2 gap-2 border-l border-black/10 md:grid-cols-4 md:gap-4 md:border-l-0"
       >
         {members.map((member, index) => (
           <div
