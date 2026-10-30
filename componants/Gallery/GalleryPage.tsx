@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
+import { Affiliation } from "@/componants/Shared/Separators";
 import { site } from "@/content/site";
 import styles from "./Gallery.module.css";
 import { GalleryControls } from "./GalleryControls";
@@ -71,9 +72,9 @@ export function GalleryPage() {
     <main className={styles.galleryPage} id="main">
       <section className={styles.galleryHero}>
         <div className={styles.heroTopline}>
-          <span>{"DCC // ARCHIVE // VISUAL ATLAS"}</span>
+          <span>{"DCC: ARCHIVE, VISUAL ATLAS"}</span>
           <span>
-            {site.institution} / {site.school}
+            <Affiliation institution={site.institution} school={site.school} />
           </span>
         </div>
 

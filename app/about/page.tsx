@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import styles from "@/componants/About/About.module.css";
 import { RouteVisual } from "@/componants/Home/RouteVisual";
+import { SectionLabel, Tag } from "@/componants/Shared/Separators";
 import { verticals } from "@/content/verticals";
 import { metadataFor } from "@/lib/seo";
 
@@ -12,7 +13,11 @@ export default function AboutPage() {
     <main id="main">
       <section className={styles.hero}>
         <RouteVisual />
-        <div className={styles.heroIndex}>DCC / ABOUT / 01</div>
+        <div className={styles.heroIndex}>
+          <Tag category="DCC" label="ABOUT" />
+          {"\u2003"}
+          <span style={{ opacity: 0.5 }}>01</span>
+        </div>
         <div className={styles.heroContent}>
           <h1>
             CAREERS ARE
@@ -27,12 +32,14 @@ export default function AboutPage() {
           </p>
         </div>
         <div className={styles.heroBottom}>
-          <span>MISSION / SYSTEM / PEOPLE</span>
+          <span>MISSION, SYSTEM, PEOPLE</span>
           <span>SCROLL TO EXPLORE ↓</span>
         </div>
       </section>
       <section className={styles.mission}>
-        <div className={styles.index}>01 / THE IDEA</div>
+        <div className={styles.index}>
+          <SectionLabel index="01" name="THE IDEA" />
+        </div>
         <div>
           <h2>
             THE NEXT MOVE
@@ -49,7 +56,9 @@ export default function AboutPage() {
         </div>
       </section>
       <section className={styles.routeSection}>
-        <div className={styles.index}>02 / HOW IT CONNECTS</div>
+        <div className={styles.index}>
+          <SectionLabel index="02" name="HOW IT CONNECTS" />
+        </div>
         <div className={styles.routeHeader}>
           <h2>
             ONE SYSTEM.
@@ -78,7 +87,9 @@ export default function AboutPage() {
         </div>
       </section>
       <section className={styles.verticalSection}>
-        <div className={styles.index}>03 / THE VERTICALS</div>
+        <div className={styles.index}>
+          <SectionLabel index="03" name="THE VERTICALS" />
+        </div>
         <h2>
           FOCUSED WORK.
           <br />
@@ -96,7 +107,9 @@ export default function AboutPage() {
         </div>
       </section>
       <section className={styles.endSection}>
-        <span>DCC / THE PEOPLE</span>
+        <span>
+          <Tag category="DCC" label="THE PEOPLE" />
+        </span>
         <h2>
           A SYSTEM IS ONLY
           <br />

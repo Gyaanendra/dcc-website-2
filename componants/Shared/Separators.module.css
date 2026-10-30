@@ -1,0 +1,8 @@
+.muted {
+  opacity: 0.5;
+}
+
+.wideSpace {
+  display: inline-block;
+  width: 0.75em;
+}
