@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Counter, Tag } from "@/componants/Shared/Separators";
+import { resolveMediaUrl } from "@/lib/cloudinary";
 import styles from "./Gallery.module.css";
 import type { GalleryImage } from "./types";
 
@@ -144,7 +145,7 @@ export function GalleryDetailModal({
 
         <div className={styles.modalImageArea}>
           <Image
-            src={image.src}
+            src={resolveMediaUrl(image.src)}
             alt={image.alt}
             fill
             sizes="(max-width: 900px) 100vw, 60vw"

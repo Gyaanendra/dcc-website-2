@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { resolveMediaUrl } from "@/lib/cloudinary";
 
 interface AlphabetAvatarProps {
   name: string;
@@ -32,9 +33,10 @@ export default function AlphabetAvatar({
   tenure,
 }: AlphabetAvatarProps) {
   const [imageFailed, setImageFailed] = useState(false);
+  const resolvedSrc = src ? resolveMediaUrl(src) : undefined;
 
   if (variant === "square") {
-    if (src && !imageFailed) {
+    if (resolvedSrc && !imageFailed) {
       return (
         <div
           role="img"
@@ -42,7 +44,7 @@ export default function AlphabetAvatar({
           className="relative h-20 w-20 flex-none overflow-hidden border border-black/15 transition-colors duration-300 group-hover:border-[#555555]"
         >
           <Image
-            src={src}
+            src={resolvedSrc}
             alt={name}
             fill
             sizes="80px"
@@ -69,9 +71,9 @@ export default function AlphabetAvatar({
       aria-label={`Editorial portrait — ${name}`}
       className="portrait-veil relative aspect-[4/5] overflow-hidden bg-[linear-gradient(160deg,#eeeeee_0%,#e2e2e2_58%,#c9c9c9_100%)]"
     >
-      {src && !imageFailed ? (
+      {resolvedSrc && !imageFailed ? (
         <Image
-          src={src}
+          src={resolvedSrc}
           alt={name}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"

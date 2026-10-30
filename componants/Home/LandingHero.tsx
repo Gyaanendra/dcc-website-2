@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLayoutEffect, useRef } from "react";
 import { site } from "@/content/site";
+import { resolveMediaUrl } from "@/lib/cloudinary";
 import styles from "./LandingHero.module.css";
 
 export function LandingHero() {
@@ -355,8 +356,8 @@ export function LandingHero() {
         <div className={styles.videoBackdrop} data-video aria-hidden="true">
           <video
             ref={video}
-            src="/media/dcc-event-reel.mp4"
-            poster="/media/dcc-event-reel-poster.png"
+            src={resolveMediaUrl("/media/dcc-event-reel.mp4")}
+            poster={resolveMediaUrl("/media/dcc-event-reel-poster.png")}
             muted
             playsInline
             disablePictureInPicture
