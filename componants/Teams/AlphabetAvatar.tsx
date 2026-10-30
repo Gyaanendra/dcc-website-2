@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { resolveMediaUrl } from "@/lib/cloudinary";
 
 interface AlphabetAvatarProps {
   name: string;
@@ -32,9 +33,10 @@ export default function AlphabetAvatar({
   tenure,
 }: AlphabetAvatarProps) {
   const [imageFailed, setImageFailed] = useState(false);
+  const resolvedSrc = src ? resolveMediaUrl(src) : undefined;
 
   if (variant === "square") {
-    if (src && !imageFailed) {
+    if (resolvedSrc && !imageFailed) {
       return (
         <div
           role="img"
@@ -42,7 +44,7 @@ export default function AlphabetAvatar({
           className="relative h-12 w-12 flex-none overflow-hidden border border-black/15 transition-colors duration-300 group-hover:border-[#555555] md:h-20 md:w-20"
         >
           <Image
-            src={src}
+            src={resolvedSrc}
             alt={name}
             fill
             sizes="(min-resolution: 2dppx) 160px, 80px"
@@ -70,9 +72,9 @@ export default function AlphabetAvatar({
       aria-label={`Editorial portrait — ${name}`}
       className="portrait-veil relative aspect-[4/5] overflow-hidden bg-[linear-gradient(160deg,#eeeeee_0%,#e2e2e2_58%,#c9c9c9_100%)]"
     >
-      {src && !imageFailed ? (
+      {resolvedSrc && !imageFailed ? (
         <Image
-          src={src}
+          src={resolvedSrc}
           alt={name}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -122,7 +124,7 @@ export default function AlphabetAvatar({
             aria-hidden
             className="absolute right-3.5 bottom-3 font-mono text-[9px] uppercase tracking-[0.14em] text-[#686868]"
           >
-            {"35MM // B&W"}
+            {"35MM · B&W"}
           </span>
         </>
       )}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import styles from "@/componants/Alumni/Alumni.module.css";
 import { AlumniDirectory } from "@/componants/Alumni/AlumniDirectory";
+import { Tag } from "@/componants/Shared/Separators";
 import { metadataFor } from "@/lib/seo";
 
 export const metadata: Metadata = metadataFor("/alumni");
@@ -11,8 +12,12 @@ export default function AlumniPage() {
     <main id="main" className={styles.page}>
       <section className={styles.hero} aria-labelledby="alumni-title">
         <div className={styles.heroTop}>
-          <span>DCC / BEYOND CAMPUS</span>
-          <span>FICTIONAL PROFILES / DEMO</span>
+          <span>
+            <Tag category="DCC" label="BEYOND CAMPUS" />
+          </span>
+          <span>
+            <Tag category="FICTIONAL PROFILES" label="DEMO" />
+          </span>
         </div>
         <div className={styles.heroMain}>
           <span className={styles.heroOverline}>A CONTINUING STORY OF</span>

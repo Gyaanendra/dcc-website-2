@@ -3,6 +3,7 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
+import { SectionLabel } from "@/componants/Shared/Separators";
 import styles from "./Home.module.css";
 
 const lines = [
@@ -50,7 +51,9 @@ export function Manifesto() {
       aria-label="DCC philosophy"
     >
       <div className={styles.manifestoSticky}>
-        <div className={styles.sectionIndex}>01 / THE THINKING</div>
+        <div className={styles.sectionIndex}>
+          <SectionLabel index="01" name="THE THINKING" />
+        </div>
         <p className={styles.manifestoText}>
           {lines.map((line) => (
             <span key={line} data-manifesto-line>
