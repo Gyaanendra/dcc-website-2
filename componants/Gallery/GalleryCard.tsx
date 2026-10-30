@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Counter } from "@/componants/Shared/Separators";
+import { resolveMediaUrl } from "@/lib/cloudinary";
 import styles from "./Gallery.module.css";
 import type { GalleryImage } from "./types";
 
@@ -37,7 +38,7 @@ export function GalleryCard({
     >
       <div className={styles.cardMedia}>
         <Image
-          src={image.src}
+          src={resolveMediaUrl(image.src)}
           alt={image.alt}
           fill
           sizes="(max-width: 680px) 85vw, (max-width: 1200px) 50vw, 40vw"

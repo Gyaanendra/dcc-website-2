@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Affiliation, Tag } from "@/componants/Shared/Separators";
 import { navigation, site } from "@/content/site";
+import { resolveMediaUrl } from "@/lib/cloudinary";
 import styles from "./Shared.module.css";
 
 export function Header() {
@@ -67,7 +68,11 @@ export function Header() {
           onClick={() => setOpen(false)}
         >
           <Image
-            src={light ? "/media/dcc-black.png" : "/media/dcc-white.png"}
+            src={
+              light
+                ? resolveMediaUrl("/media/dcc-black.png")
+                : resolveMediaUrl("/media/dcc-white.png")
+            }
             alt=""
             width={72}
             height={50}
