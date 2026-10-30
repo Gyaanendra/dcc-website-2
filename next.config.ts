@@ -3,11 +3,15 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: {
     // The gallery's placeholder nature photos come from the Unsplash CDN.
-    // Swap this entry when real DCC event photos are hosted elsewhere.
+    // Cloudinary hosts team, event, and gallery media.
     remotePatterns: [
       {
         protocol: "https",
         hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
       },
     ],
   },
