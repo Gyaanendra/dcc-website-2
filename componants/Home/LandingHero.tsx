@@ -9,6 +9,17 @@ import styles from "./LandingHero.module.css";
 export function LandingHero() {
   const root = useRef<HTMLElement>(null);
   const video = useRef<HTMLVideoElement>(null);
+  const fixedButton = useRef<HTMLButtonElement>(null);
+
+  const scrollToTop = () => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
+  };
 
   useLayoutEffect(() => {
     if (!root.current) return;
@@ -31,11 +42,30 @@ export function LandingHero() {
     ).matches;
     if (!videoLayer || !wordmark || !media) return;
 
+    const updateFixedState = (fixed: boolean) => {
+      fixedButton.current?.setAttribute(
+        "data-visible",
+        fixed ? "true" : "false",
+      );
+      if (wordmark) {
+        wordmark.style.opacity = fixed ? "0" : "1";
+        wordmark.style.pointerEvents = fixed ? "none" : "auto";
+      }
+    };
+
     if (reducedMotion) {
       videoLayer.style.opacity = "1";
       section.dataset.heroIntro = "complete";
       gsap.set(supportingCopy, { autoAlpha: 1 });
-      return;
+      const onScrollReduced = () => {
+        const pastHero = window.scrollY > section.offsetHeight - 100;
+        updateFixedState(pastHero);
+      };
+      window.addEventListener("scroll", onScrollReduced, { passive: true });
+      return () => {
+        window.removeEventListener("scroll", onScrollReduced);
+        fixedButton.current?.removeAttribute("data-visible");
+      };
     }
 
     gsap.registerPlugin(ScrollTrigger);
@@ -132,13 +162,26 @@ export function LandingHero() {
           "--page-pad",
         ),
       );
-      const compactWidth = window.innerWidth <= 680 ? 85 : 120;
+      const compactWidth = window.innerWidth <= 680 ? 120 : 176;
       const compactLeft = Number.isNaN(pagePad)
         ? window.innerWidth <= 680
           ? 20
           : 28
         : pagePad;
-      const compactTop = window.innerWidth <= 680 ? 22 : 24;
+      const compactTop = window.innerWidth <= 680 ? 24 : 36;
+      const scale = compactWidth / bounds.width;
+      const rawFontSize = Number.parseFloat(
+        getComputedStyle(wordmark).fontSize,
+      );
+      const scaledFontSize = Number.isNaN(rawFontSize)
+        ? 34
+        : rawFontSize * scale;
+
+      section.style.setProperty("--compact-left", `${compactLeft}px`);
+      section.style.setProperty("--compact-top", `${compactTop}px`);
+      section.style.setProperty("--compact-width", `${compactWidth}px`);
+      section.style.setProperty("--compact-font-size", `${scaledFontSize}px`);
+
       scrollMotion = gsap
         .timeline({
           scrollTrigger: {
@@ -146,6 +189,15 @@ export function LandingHero() {
             start: "top top",
             end: "bottom bottom",
             scrub: 0.65,
+            onUpdate: (self) => {
+              updateFixedState(self.progress >= 0.995);
+            },
+            onLeave: () => {
+              updateFixedState(true);
+            },
+            onEnterBack: () => {
+              updateFixedState(false);
+            },
           },
         })
         .to(
@@ -153,7 +205,7 @@ export function LandingHero() {
           {
             x: compactLeft - (bounds.left - stageBounds.left),
             y: compactTop - (bounds.top - stageBounds.top),
-            scale: compactWidth / bounds.width,
+            scale,
             transformOrigin: "top left",
             ease: "power1.inOut",
           },
@@ -275,6 +327,7 @@ export function LandingHero() {
       cancelAnimationFrame(resizeFrame);
       window.clearTimeout(playbackFallback);
       media.pause();
+      fixedButton.current?.removeAttribute("data-visible");
       entrance.kill();
       scrollMotion?.scrollTrigger?.kill();
       scrollMotion?.kill();
@@ -336,6 +389,19 @@ export function LandingHero() {
           </a>
         </div>
       </div>
+      <button
+        ref={fixedButton}
+        type="button"
+        className={styles.fixedMark}
+        onClick={scrollToTop}
+        aria-label="Dean Career Cloud — Return to top of page"
+        title="Return to top"
+        data-visible="false"
+      >
+        <span aria-hidden="true">D</span>
+        <span aria-hidden="true">C</span>
+        <span aria-hidden="true">C</span>
+      </button>
     </section>
   );
 }
