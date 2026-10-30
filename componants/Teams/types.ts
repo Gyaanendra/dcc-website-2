@@ -2,9 +2,15 @@ export type Department =
   | "All"
   | "Executive"
   | "Technical"
-  | "Design & Creative"
-  | "Operations & Logistics"
-  | "Research & Content";
+  | "Placement Turnaround"
+  | "Corporate & Alumni Relations"
+  | "Training & Preparation"
+  | "Operations"
+  | "Media Team"
+  | "Design Team"
+  | "Research & Higher Studies"
+  | "Strategic Intelligence"
+  | "PR & Outreach";
 
 export interface BaseMember {
   id: string;

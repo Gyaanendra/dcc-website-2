@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 import styles from "@/componants/PastEvents/PastEvents.module.css";
 import { pastEvents } from "@/content/records";
+import { metadataFor } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Past Events",
-  description:
-    "A demonstration archive layout for Dean Career Cloud events. Entries are sample content, not verified events.",
-};
+export const metadata: Metadata = metadataFor("/past-events");
 
 export default function PastEventsPage() {
   return (

@@ -25,6 +25,10 @@
     background-color: transparent;
     font: inherit;
   }
+  img,
+  video {
+    filter: grayscale(1);
+  }
 }
 
 :root {
@@ -75,10 +79,6 @@ a {
 img {
   display: block;
   max-width: 100%;
-}
-img,
-video {
-  filter: grayscale(1);
 }
 ::selection {
   background: var(--accent);
@@ -210,6 +210,23 @@ video {
 .group:hover .portrait-veil::before,
 .group:focus-within .portrait-veil::before {
   opacity: 1;
+}
+
+/* Touch devices can't hover — show team images in full colour by default.
+   Un-layered so it overrides the Tailwind grayscale utility. */
+@media (hover: none) {
+  .teams-page img {
+    filter: grayscale(0) contrast(1);
+  }
+}
+
+/* Scrollbar hiding for horizontal filter strip on mobile */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

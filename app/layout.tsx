@@ -9,6 +9,7 @@ import { Footer } from "@/componants/Shared/Footer";
 import { Header } from "@/componants/Shared/Header";
 import { SiteLoader } from "@/componants/Shared/SiteLoader";
 import { site } from "@/content/site";
+import { getOfficialSiteUrl } from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -34,12 +35,13 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
+  ...(getOfficialSiteUrl() ? { metadataBase: getOfficialSiteUrl() } : {}),
   title: {
     default: `${site.name} — ${site.institution}`,
     template: `%s — ${site.name}`,
   },
   description: site.description,
-  robots: { index: false, follow: false },
+  robots: { index: false, follow: true },
 };
 
 export default function RootLayout({
