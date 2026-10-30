@@ -127,6 +127,9 @@ npm run format
 
 # Create a production build
 npm run build
+npm run start
+# In another terminal:
+SEO_BASE_URL=http://localhost:3000 npm run seo:check
 ```
 
 ---

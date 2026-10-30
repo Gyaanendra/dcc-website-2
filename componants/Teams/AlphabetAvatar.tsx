@@ -34,11 +34,29 @@ export default function AlphabetAvatar({
   const [imageFailed, setImageFailed] = useState(false);
 
   if (variant === "square") {
+    if (src && !imageFailed) {
+      return (
+        <div
+          role="img"
+          aria-label={`${name} — ${initials}`}
+          className="relative h-20 w-20 flex-none overflow-hidden border border-black/15 transition-colors duration-300 group-hover:border-[#555555]"
+        >
+          <Image
+            src={src}
+            alt={name}
+            fill
+            sizes="80px"
+            className="object-cover grayscale transition-[filter] duration-500 group-hover:grayscale-0"
+            onError={() => setImageFailed(true)}
+          />
+        </div>
+      );
+    }
     return (
       <div
         role="img"
         aria-label={`${name} — ${initials}`}
-        className="group-hover:border-[#555555] flex h-11 w-11 flex-none items-center justify-center border border-black/15 bg-[linear-gradient(160deg,#eeeeee_0%,#d6d6d6_100%)] font-mono text-[13px] font-medium tracking-[0.12em] text-[#111111] transition-colors duration-300"
+        className="flex h-20 w-20 flex-none items-center justify-center border border-black/15 bg-[linear-gradient(160deg,#eeeeee_0%,#d6d6d6_100%)] font-mono text-lg font-medium tracking-[0.12em] text-[#111111] transition-colors duration-300 group-hover:border-[#555555]"
       >
         {initials}
       </div>
@@ -57,7 +75,7 @@ export default function AlphabetAvatar({
           alt={name}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          className="object-cover grayscale contrast-125"
+          className="object-cover grayscale contrast-125 transition-[filter] duration-500 group-hover:grayscale-0 group-hover:contrast-100"
           onError={() => setImageFailed(true)}
         />
       ) : (
