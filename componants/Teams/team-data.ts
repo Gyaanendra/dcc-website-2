@@ -10,8 +10,7 @@ function initialsOf(name: string): string {
 }
 
 export const DEPARTMENT_CODES: Record<Department, string> = {
-  All: "ALL",
-  Executive: "EXEC",
+  Core: "CORE",
   Technical: "TECH",
   "Placement Turnaround": "PLAC",
   "Corporate & Alumni Relations": "CORP",
@@ -25,23 +24,21 @@ export const DEPARTMENT_CODES: Record<Department, string> = {
 };
 
 export const DEPARTMENT_FILTERS: Department[] = [
-  "All",
-  "Executive",
-  "Technical",
-  "Placement Turnaround",
+  "Core",
   "Corporate & Alumni Relations",
-  "Training & Preparation",
-  "Operations",
-  "Media Team",
   "Design Team",
+  "Media Team",
+  "Operations",
+  "Placement Turnaround",
+  "PR & Outreach",
   "Research & Higher Studies",
   "Strategic Intelligence",
-  "PR & Outreach",
+  "Technical",
+  "Training & Preparation",
 ];
 
 export const FILTER_LABELS: Record<Department, string> = {
-  All: "ALL",
-  Executive: "EXECUTIVE",
+  Core: "CORE",
   Technical: "TECHNICAL",
   "Placement Turnaround": "PLACEMENT",
   "Corporate & Alumni Relations": "CORPORATE",
@@ -60,7 +57,7 @@ export const coreMembers: CoreMember[] = [
     name: "Saurabh Singh",
     role: "President",
     leadRole: "PRESIDENT",
-    department: "Executive",
+    department: "Core",
     initials: initialsOf("Saurabh Singh"),
     imageUrl: "/images/team/saurabh-singh.jpeg",
     order: 1,
@@ -71,7 +68,7 @@ export const coreMembers: CoreMember[] = [
     name: "Sneh Gupta",
     role: "Vice President",
     leadRole: "VICE PRESIDENT",
-    department: "Executive",
+    department: "Core",
     initials: initialsOf("Sneh Gupta"),
     order: 2,
     tenure: "2025 — PRESENT",
@@ -81,23 +78,62 @@ export const coreMembers: CoreMember[] = [
     name: "Akshat Rastogi",
     role: "General Secretary",
     leadRole: "GENERAL SECRETARY",
-    department: "Executive",
+    department: "Core",
     initials: initialsOf("Akshat Rastogi"),
     order: 3,
     tenure: "2025 — PRESENT",
   },
 ];
 
+export const deanMember: CoreMember = {
+  id: "core-00a",
+  name: "Abhay Bansal",
+  role: "Dean",
+  leadRole: "DEAN",
+  department: "Core",
+  initials: initialsOf("Abhay Bansal"),
+  order: 0,
+  tenure: "2025 — PRESENT",
+};
+
 // Executive leads below the top three render in the sub-members directory,
 // not in the core grid — names, roles and tenure are unchanged.
 export const executiveSubMembers: SubMember[] = [
+  {
+    id: "core-00b",
+    name: "Indrajeet Gupta",
+    role: "Faculty Mentor",
+    teamSubgroup: "Core",
+    department: "Core",
+    initials: initialsOf("Indrajeet Gupta"),
+    order: 91,
+  },
+  {
+    id: "core-00c",
+    name: "Priyanka Gupta",
+    role: "Faculty Mentor",
+    teamSubgroup: "Core",
+    department: "Core",
+    initials: initialsOf("Priyanka Gupta"),
+    order: 92,
+  },
+  {
+    id: "core-00d",
+    name: "Shashwat Ranjan",
+    role: "Advisor",
+    teamSubgroup: "Core",
+    department: "Core",
+    initials: initialsOf("Shashwat Ranjan"),
+    order: 93,
+  },
   {
     id: "core-04",
     name: "Sanchit Jain",
     role: "Treasurer",
     teamSubgroup: "Core",
-    department: "Executive",
+    department: "Core",
     initials: initialsOf("Sanchit Jain"),
+    imageUrl: "/images/team/sanchit-jain.jpg",
     order: 95,
   },
   {
@@ -105,8 +141,9 @@ export const executiveSubMembers: SubMember[] = [
     name: "Yash Mittal",
     role: "Coordinator 3rd Year",
     teamSubgroup: "Core",
-    department: "Executive",
+    department: "Core",
     initials: initialsOf("Yash Mittal"),
+    imageUrl: "/images/team/yash-mittal.jpg",
     order: 96,
   },
   {
@@ -114,7 +151,7 @@ export const executiveSubMembers: SubMember[] = [
     name: "Vrinda",
     role: "Coordinator 2nd Year",
     teamSubgroup: "Core",
-    department: "Executive",
+    department: "Core",
     initials: initialsOf("Vrinda"),
     order: 97,
   },
@@ -123,7 +160,7 @@ export const executiveSubMembers: SubMember[] = [
     name: "Siddharth",
     role: "Coordinator 1st Year",
     teamSubgroup: "Core",
-    department: "Executive",
+    department: "Core",
     initials: initialsOf("Siddharth"),
     order: 98,
   },
@@ -147,6 +184,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Core",
     department: "Technical",
     initials: initialsOf("Sajal Yadav"),
+    imageUrl: "/images/team/sajal-kumar.png",
     order: 2,
   },
   {
@@ -171,11 +209,11 @@ const departmentSubMembers: SubMember[] = [
   },
   {
     id: "sub-05",
-    name: "Satvik Gupta",
+    name: "Satveek Gupta",
     role: "Senior Executive",
     teamSubgroup: "Senior Core",
     department: "Technical",
-    initials: initialsOf("Satvik Gupta"),
+    initials: initialsOf("Satveek Gupta"),
     imageUrl: "/images/team/satvik-gupta.jpeg",
     order: 5,
   },
@@ -205,6 +243,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Core",
     department: "Placement Turnaround",
     initials: initialsOf("Aryan Jaiswal"),
+    imageUrl: "/images/team/aryan-jaiswal.png",
     order: 8,
   },
   {
@@ -214,6 +253,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Core",
     department: "Placement Turnaround",
     initials: initialsOf("Rupanshi Dhanger"),
+    imageUrl: "/images/team/rupanshi.png",
     order: 9,
   },
   {
@@ -232,6 +272,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Placement Turnaround",
     initials: initialsOf("Sahil Goyal"),
+    imageUrl: "/images/team/sahil-goyal.jpg",
     order: 11,
   },
   {
@@ -241,6 +282,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Placement Turnaround",
     initials: initialsOf("Tanzil Gupta"),
+    imageUrl: "/images/team/tanzil.jpg",
     order: 12,
   },
   {
@@ -250,6 +292,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Placement Turnaround",
     initials: initialsOf("Vaibhav Raj"),
+    imageUrl: "/images/team/vaibhav-raj.jpg",
     order: 13,
   },
   {
@@ -268,6 +311,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Placement Turnaround",
     initials: initialsOf("Mohammad Naqvi"),
+    imageUrl: "/images/team/mohammad-naqvi.jpeg",
     order: 15,
   },
   {
@@ -295,6 +339,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Corporate & Alumni Relations",
     initials: initialsOf("Piyush Vats"),
+    imageUrl: "/images/team/piyush-vats.jpg",
     order: 18,
   },
   {
@@ -304,6 +349,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Corporate & Alumni Relations",
     initials: initialsOf("Aadit Munjal"),
+    imageUrl: "/images/team/aadit-munjal.jpg",
     order: 19,
   },
   {
@@ -313,6 +359,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Corporate & Alumni Relations",
     initials: initialsOf("Manas Kholiya"),
+    imageUrl: "/images/team/manas-kholiya.jpeg",
     order: 20,
   },
   {
@@ -322,6 +369,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Corporate & Alumni Relations",
     initials: initialsOf("Angel Gupta"),
+    imageUrl: "/images/team/angel-gupta.jpg",
     order: 21,
   },
   {
@@ -331,6 +379,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Corporate & Alumni Relations",
     initials: initialsOf("Shikha Kandhwey"),
+    imageUrl: "/images/team/shikha-kandhwey.jpg",
     order: 22,
   },
   {
@@ -340,6 +389,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Corporate & Alumni Relations",
     initials: initialsOf("Akif Omar Moharkan"),
+    imageUrl: "/images/team/akif-moharkan.jpeg",
     order: 23,
   },
   {
@@ -358,6 +408,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Core",
     department: "Training & Preparation",
     initials: initialsOf("Disha Sinha"),
+    imageUrl: "/images/team/disha-sinha.jpg",
     order: 25,
   },
   {
@@ -367,6 +418,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Core",
     department: "Training & Preparation",
     initials: initialsOf("Disha Mehendiratta"),
+    imageUrl: "/images/team/disha-mehendiratta.jpg",
     order: 26,
   },
   {
@@ -376,6 +428,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Training & Preparation",
     initials: initialsOf("Asmita Srivastav"),
+    imageUrl: "/images/team/asmita-srivastav.jpg",
     order: 27,
   },
   {
@@ -385,6 +438,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Training & Preparation",
     initials: initialsOf("Nehal Mishra"),
+    imageUrl: "/images/team/nehal-mishra.jpg",
     order: 28,
   },
   {
@@ -394,6 +448,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Training & Preparation",
     initials: initialsOf("Parth Gupta"),
+    imageUrl: "/images/team/parth-gupta.jpg",
     order: 29,
   },
   {
@@ -403,6 +458,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Training & Preparation",
     initials: initialsOf("Gurnayan Kaur"),
+    imageUrl: "/images/team/gurnayan-kaur.png",
     order: 30,
   },
   {
@@ -412,6 +468,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Training & Preparation",
     initials: initialsOf("Shubhika Singh Thakur"),
+    imageUrl: "/images/team/shubhika-thakur.jpeg",
     order: 31,
   },
   {
@@ -421,6 +478,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Training & Preparation",
     initials: initialsOf("Bhavya Lal"),
+    imageUrl: "/images/team/bhavya-lal.png",
     order: 32,
   },
   {
@@ -439,6 +497,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Training & Preparation",
     initials: initialsOf("Atharva Yadav"),
+    imageUrl: "/images/team/atharva-yadav.jpeg",
     order: 34,
   },
   {
@@ -448,6 +507,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Training & Preparation",
     initials: initialsOf("Sahil Kumar"),
+    imageUrl: "/images/team/sahil-kumar.jpg",
     order: 35,
   },
   {
@@ -457,6 +517,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Core",
     department: "Operations",
     initials: initialsOf("Aditya Raj"),
+    imageUrl: "/images/team/aditya-raj.png",
     order: 36,
   },
   {
@@ -466,6 +527,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Core",
     department: "Operations",
     initials: initialsOf("Tushar Sharma"),
+    imageUrl: "/images/team/tushar-sharma.jpg",
     order: 37,
   },
   {
@@ -475,6 +537,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Core",
     department: "Operations",
     initials: initialsOf("Tanmay Maliwal"),
+    imageUrl: "/images/team/tanmay-maliwal.jpeg",
     order: 38,
   },
   {
@@ -484,6 +547,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Operations",
     initials: initialsOf("Sivant Raj"),
+    imageUrl: "/images/team/sivant-raj.jpg",
     order: 39,
   },
   {
@@ -502,6 +566,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Operations",
     initials: initialsOf("Aaditya Jain"),
+    imageUrl: "/images/team/aaditya-jain.png",
     order: 41,
   },
   {
@@ -511,6 +576,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Operations",
     initials: initialsOf("Rushil Mahajan"),
+    imageUrl: "/images/team/rushil-mahajan.jpg",
     order: 42,
   },
   {
@@ -520,6 +586,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Operations",
     initials: initialsOf("Vansh Gautam"),
+    imageUrl: "/images/team/vansh-gautam.jpg",
     order: 43,
   },
   {
@@ -529,6 +596,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Operations",
     initials: initialsOf("Adrika Gupta"),
+    imageUrl: "/images/team/adrika-gupta.jpeg",
     order: 44,
   },
   {
@@ -538,6 +606,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Operations",
     initials: initialsOf("Shagun"),
+    imageUrl: "/images/team/shagun.jpg",
     order: 45,
   },
   {
@@ -547,6 +616,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Operations",
     initials: initialsOf("Navvarsh Pratap Singh"),
+    imageUrl: "/images/team/navvarsh-singh.jpg",
     order: 46,
   },
   {
@@ -556,6 +626,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Operations",
     initials: initialsOf("Aditya Sangwan"),
+    imageUrl: "/images/team/aditya-sangwan.jpg",
     order: 47,
   },
   {
@@ -565,6 +636,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Operations",
     initials: initialsOf("Jasmeet Singh"),
+    imageUrl: "/images/team/jasmeet-singh.jpg",
     order: 48,
   },
   {
@@ -574,6 +646,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Operations",
     initials: initialsOf("Ajay Kumar"),
+    imageUrl: "/images/team/ajay-kumar.png",
     order: 49,
   },
   {
@@ -583,6 +656,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Operations",
     initials: initialsOf("Sparsh Kaushik"),
+    imageUrl: "/images/team/sparsh-kaushik.png",
     order: 50,
   },
   {
@@ -592,6 +666,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Operations",
     initials: initialsOf("Pravesh Jaiswal"),
+    imageUrl: "/images/team/pravesh-jaiswal.jpg",
     order: 51,
   },
   {
@@ -601,6 +676,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Core",
     department: "Media Team",
     initials: initialsOf("Modhith Baratam"),
+    imageUrl: "/images/team/modhith-baratam.jpg",
     order: 52,
   },
   {
@@ -610,6 +686,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Core",
     department: "Media Team",
     initials: initialsOf("Anurag Singh"),
+    imageUrl: "/images/team/anurag-singh.jpg",
     order: 53,
   },
   {
@@ -619,6 +696,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Media Team",
     initials: initialsOf("Utsav Kumar"),
+    imageUrl: "/images/team/utsav-kumar.jpeg",
     order: 54,
   },
   {
@@ -628,6 +706,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Media Team",
     initials: initialsOf("Divya Saini"),
+    imageUrl: "/images/team/divya-saini.jpeg",
     order: 55,
   },
   {
@@ -637,6 +716,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Media Team",
     initials: initialsOf("Umang Kumar Agrawal"),
+    imageUrl: "/images/team/umang-agrawal.jpeg",
     order: 56,
   },
   {
@@ -646,6 +726,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Media Team",
     initials: initialsOf("Proma Kandar"),
+    imageUrl: "/images/team/proma-kandar.jpg",
     order: 57,
   },
   {
@@ -673,6 +754,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Media Team",
     initials: initialsOf("Divya Shukla"),
+    imageUrl: "/images/team/divya-shukla.jpg",
     order: 60,
   },
   {
@@ -709,6 +791,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Design Team",
     initials: initialsOf("Nimisha Sonare"),
+    imageUrl: "/images/team/nimisha-sonare.jpg",
     order: 64,
   },
   {
@@ -718,6 +801,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Design Team",
     initials: initialsOf("Kanishka"),
+    imageUrl: "/images/team/kanishka.jpg",
     order: 65,
   },
   {
@@ -727,6 +811,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Design Team",
     initials: initialsOf("Pratyush Ranjan Dev"),
+    imageUrl: "/images/team/pratyush-dev.png",
     order: 66,
   },
   {
@@ -736,6 +821,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Design Team",
     initials: initialsOf("Tanishka Takthar"),
+    imageUrl: "/images/team/tanishka-takthar.jpeg",
     order: 67,
   },
   {
@@ -745,6 +831,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Design Team",
     initials: initialsOf("Anushka Sinha"),
+    imageUrl: "/images/team/anushka-sinha.jpg",
     order: 68,
   },
   {
@@ -754,6 +841,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Core",
     department: "Research & Higher Studies",
     initials: initialsOf("Shreya Singh"),
+    imageUrl: "/images/team/shreya-singh.jpg",
     order: 69,
   },
   {
@@ -763,6 +851,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Core",
     department: "Research & Higher Studies",
     initials: initialsOf("Kshitiz Kumar Mishra"),
+    imageUrl: "/images/team/kshitiz-mishra.jpeg",
     order: 70,
   },
   {
@@ -772,6 +861,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Research & Higher Studies",
     initials: initialsOf("Nishtha Garg"),
+    imageUrl: "/images/team/nishtha-garg.jpeg",
     order: 71,
   },
   {
@@ -781,6 +871,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Research & Higher Studies",
     initials: initialsOf("Aayushi Malik"),
+    imageUrl: "/images/team/aayushi-malik.jpeg",
     order: 72,
   },
   {
@@ -790,6 +881,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Research & Higher Studies",
     initials: initialsOf("Abhijeet Singh"),
+    imageUrl: "/images/team/abhijeet-singh.jpg",
     order: 73,
   },
   {
@@ -799,6 +891,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Research & Higher Studies",
     initials: initialsOf("Prakash Gupta"),
+    imageUrl: "/images/team/prakash-gupta.jpg",
     order: 74,
   },
   {
@@ -808,6 +901,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Core",
     department: "Strategic Intelligence",
     initials: initialsOf("Aaryan Chawla"),
+    imageUrl: "/images/team/aaryan-chawla.jpg",
     order: 75,
   },
   {
@@ -817,6 +911,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Core",
     department: "Strategic Intelligence",
     initials: initialsOf("Sneha Sharma"),
+    imageUrl: "/images/team/sneha-sharma.jpg",
     order: 76,
   },
   {
@@ -826,6 +921,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Strategic Intelligence",
     initials: initialsOf("Ishant Bansal"),
+    imageUrl: "/images/team/ishant.jpeg",
     order: 77,
   },
   {
@@ -835,6 +931,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Strategic Intelligence",
     initials: initialsOf("Mimangshu Mahanta"),
+    imageUrl: "/images/team/mimangshu-mahanta.jpg",
     order: 78,
   },
   {
@@ -853,6 +950,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "Strategic Intelligence",
     initials: initialsOf("Shristy Devyani"),
+    imageUrl: "/images/team/shristy-devyani.jpg",
     order: 80,
   },
   {
@@ -862,6 +960,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Strategic Intelligence",
     initials: initialsOf("Vivek Bansal"),
+    imageUrl: "/images/team/vivek-bansal.jpeg",
     order: 81,
   },
   {
@@ -871,6 +970,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "Strategic Intelligence",
     initials: initialsOf("Vvrinda Bhateja"),
+    imageUrl: "/images/team/vvrinda-bhateja.jpeg",
     order: 82,
   },
   {
@@ -889,6 +989,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Core",
     department: "PR & Outreach",
     initials: initialsOf("Tanu Somani"),
+    imageUrl: "/images/team/tanu-somani.jpg",
     order: 84,
   },
   {
@@ -898,6 +999,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "PR & Outreach",
     initials: initialsOf("Divyansh Sharma"),
+    imageUrl: "/images/team/divyansh-sharma.jpeg",
     order: 85,
   },
   {
@@ -907,6 +1009,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "PR & Outreach",
     initials: initialsOf("Naman"),
+    imageUrl: "/images/team/naman.jpg",
     order: 86,
   },
   {
@@ -916,6 +1019,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "PR & Outreach",
     initials: initialsOf("Mannat Bansal"),
+    imageUrl: "/images/team/mannat-bansal.jpeg",
     order: 87,
   },
   {
@@ -925,6 +1029,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Senior Core",
     department: "PR & Outreach",
     initials: initialsOf("Prasun Pandey"),
+    imageUrl: "/images/team/prasun-pandey.png",
     order: 88,
   },
   {
@@ -961,6 +1066,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "PR & Outreach",
     initials: initialsOf("Latika Nagar"),
+    imageUrl: "/images/team/latika-nagar.jpg",
     order: 92,
   },
   {
@@ -970,6 +1076,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "PR & Outreach",
     initials: initialsOf("Satakshi Pal"),
+    imageUrl: "/images/team/satakshi-pal.jpeg",
     order: 93,
   },
   {
@@ -979,6 +1086,7 @@ const departmentSubMembers: SubMember[] = [
     teamSubgroup: "Junior Core",
     department: "PR & Outreach",
     initials: initialsOf("Verchasva R Tandon"),
+    imageUrl: "/images/team/verchasva-tandon.jpg",
     order: 94,
   },
 ];
