@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { Counter } from "@/componants/Shared/Separators";
 import styles from "./Gallery.module.css";
 import type { GalleryImage } from "./types";
 
@@ -64,7 +65,7 @@ export function GalleryCard({
             className={`${styles.cardIndex} ${styles.captionAnim}`}
             style={{ animationDelay: `${0.28 + index * 0.06}s` }}
           >
-            {formattedIndex} / {formattedTotal}
+            <Counter current={formattedIndex} total={formattedTotal} />
           </span>
         </div>
       </div>
