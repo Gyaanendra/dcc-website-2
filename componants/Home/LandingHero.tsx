@@ -381,7 +381,7 @@ export function LandingHero() {
             <br />
             DCC helps you navigate what comes next.
           </p>
-          <span>THE CAREER ECOSYSTEM / {site.year}</span>
+          <span>THE CAREER ECOSYSTEM, {site.year}</span>
           {/* Plain anchor: Next.js Link suppresses same-page fragment
               scrolling, which left this scroll cue dead. */}
           <a href="#impact" aria-label="Scroll to DCC statistics">

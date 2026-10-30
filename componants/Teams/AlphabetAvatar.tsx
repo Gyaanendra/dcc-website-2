@@ -120,7 +120,7 @@ export default function AlphabetAvatar({
             aria-hidden
             className="absolute right-3.5 bottom-3 font-mono text-[9px] uppercase tracking-[0.14em] text-[#686868]"
           >
-            {"35MM // B&W"}
+            {"35MM · B&W"}
           </span>
         </>
       )}

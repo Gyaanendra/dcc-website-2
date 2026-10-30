@@ -18,7 +18,7 @@ export default function TeamsHero() {
   return (
     <section className="border-b border-black/10 px-6 pt-28 pb-24 sm:px-8">
       <p className="inline-block border border-black/25 px-3.5 py-2 font-mono text-xs tracking-[0.22em] uppercase text-[#555555]">
-        [ TEAM <span className="text-[#555555]">{"//"}</span> 2026&mdash;2027 ]
+        [ TEAM <span className="text-[#555555]">·</span> 2026&mdash;2027 ]
       </p>
       <h1 className="mt-10 text-[clamp(38px,6.5vw,84px)] leading-[0.98] font-extrabold tracking-[-0.02em] uppercase text-[#111111]">
         <SplitTextHeader text="BUILT BY MINDS." startIndex={0} />

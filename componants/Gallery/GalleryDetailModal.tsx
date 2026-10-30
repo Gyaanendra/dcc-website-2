@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { Counter, Tag } from "@/componants/Shared/Separators";
 import styles from "./Gallery.module.css";
 import type { GalleryImage } from "./types";
 
@@ -155,7 +156,7 @@ export function GalleryDetailModal({
           <div className={styles.modalTopline}>
             <span>{image.category}</span>
             <span>
-              {formattedIndex} / {formattedTotal}
+              <Counter current={formattedIndex} total={formattedTotal} />
             </span>
           </div>
 
@@ -172,7 +173,9 @@ export function GalleryDetailModal({
 
               {image.cameraMeta && (
                 <>
-                  <span>CAMERA / EXIF</span>
+                  <span>
+                    <Tag category="CAMERA" label="EXIF" />
+                  </span>
                   <span>{image.cameraMeta}</span>
                 </>
               )}
