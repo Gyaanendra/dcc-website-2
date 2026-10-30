@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SectionLabel, Tag } from "@/componants/Shared/Separators";
 import { pastEvents } from "@/content/records";
 import styles from "./PastEvents.module.css";
 
@@ -6,8 +7,12 @@ export function PastEventsPreview() {
   return (
     <section className={styles.preview} aria-labelledby="events-preview-title">
       <div className={styles.previewTop}>
-        <span>03 / PAST EVENTS</span>
-        <span>DCC / ARCHIVE</span>
+        <span>
+          <SectionLabel index="03" name="PAST EVENTS" />
+        </span>
+        <span>
+          <Tag category="DCC" label="ARCHIVE" />
+        </span>
       </div>
       <h2 id="events-preview-title">
         MOMENTS
@@ -22,7 +27,9 @@ export function PastEventsPreview() {
               href="/past-events"
               key={event.id}
             >
-              <span>SAMPLE EVENT / {event.category}</span>
+              <span>
+                <Tag category="SAMPLE EVENT" label={event.category} />
+              </span>
               <strong>{event.title}</strong>
               <span>
                 {new Date(`${event.date}T12:00:00Z`).getUTCFullYear()}

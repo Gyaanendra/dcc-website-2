@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Affiliation, Tag } from "@/componants/Shared/Separators";
 import { site } from "@/content/site";
 import styles from "./Gallery.module.css";
 import { GalleryCard } from "./GalleryCard";
@@ -242,9 +243,17 @@ export function GalleryRunway({
       <div className={styles.floor} aria-hidden="true" />
       <div className={styles.chrome}>
         <span>
-          FEATURED <i>/</i> {String(images.length).padStart(2, "0")}
+          <Tag
+            category="FEATURED"
+            label={String(images.length).padStart(2, "0")}
+          />
         </span>
-        <span>{site.school.toUpperCase()} / BENNETT UNIVERSITY</span>
+        <span>
+          <Affiliation
+            institution="BENNETT UNIVERSITY"
+            school={site.school.toUpperCase()}
+          />
+        </span>
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Affiliation, Tag } from "@/componants/Shared/Separators";
 import { navigation, site } from "@/content/site";
 import styles from "./Footer.module.css";
 
@@ -6,7 +7,9 @@ export function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.topline}>
-        <span>DCC / FROM HERE</span>
+        <span>
+          <Tag category="DCC" label="FROM HERE" />
+        </span>
         <span>THE NEXT MOVE IS YOURS</span>
       </div>
 
@@ -44,7 +47,7 @@ export function Footer() {
             CAREER CLOUD
           </strong>
           <span>
-            {site.institution} / {site.school}
+            <Affiliation institution={site.institution} school={site.school} />
           </span>
         </div>
         <nav aria-label="Footer navigation" className={styles.navigation}>
@@ -59,7 +62,7 @@ export function Footer() {
 
       <div className={styles.bottomline}>
         <span>© {new Date().getFullYear()} DEAN CAREER CLOUD</span>
-        <span>BUILT FOR WHAT COMES NEXT / {site.year}</span>
+        <span>BUILT FOR WHAT COMES NEXT, {site.year}</span>
         <a href="#main">BACK TO TOP ↑</a>
       </div>
       <div className={styles.ghostMark} aria-hidden="true">
