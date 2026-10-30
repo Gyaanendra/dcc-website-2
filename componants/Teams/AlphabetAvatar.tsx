@@ -41,13 +41,14 @@ export default function AlphabetAvatar({
         <div
           role="img"
           aria-label={`${name} — ${initials}`}
-          className="relative h-20 w-20 flex-none overflow-hidden border border-black/15 transition-colors duration-300 group-hover:border-[#555555]"
+          className="relative h-12 w-12 flex-none overflow-hidden border border-black/15 transition-colors duration-300 group-hover:border-[#555555] md:h-20 md:w-20"
         >
           <Image
             src={resolvedSrc}
             alt={name}
             fill
-            sizes="80px"
+            sizes="(min-resolution: 2dppx) 160px, 80px"
+            quality={90}
             className="object-cover grayscale transition-[filter] duration-500 group-hover:grayscale-0"
             onError={() => setImageFailed(true)}
           />
@@ -58,7 +59,7 @@ export default function AlphabetAvatar({
       <div
         role="img"
         aria-label={`${name} — ${initials}`}
-        className="flex h-20 w-20 flex-none items-center justify-center border border-black/15 bg-[linear-gradient(160deg,#eeeeee_0%,#d6d6d6_100%)] font-mono text-lg font-medium tracking-[0.12em] text-[#111111] transition-colors duration-300 group-hover:border-[#555555]"
+        className="flex h-12 w-12 flex-none items-center justify-center border border-black/15 bg-[linear-gradient(160deg,#eeeeee_0%,#d6d6d6_100%)] font-mono text-sm font-medium tracking-[0.12em] text-[#111111] transition-colors duration-300 group-hover:border-[#555555] md:h-20 md:w-20 md:text-lg"
       >
         {initials}
       </div>
@@ -77,6 +78,7 @@ export default function AlphabetAvatar({
           alt={name}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          quality={90}
           className="object-cover grayscale contrast-125 transition-[filter] duration-500 group-hover:grayscale-0 group-hover:contrast-100"
           onError={() => setImageFailed(true)}
         />
