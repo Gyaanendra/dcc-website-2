@@ -6,7 +6,9 @@ import { Impact } from "@/componants/Home/Impact";
 import { LandingHero } from "@/componants/Home/LandingHero";
 import { VerticalStack } from "@/componants/Home/VerticalStack";
 import { PastEventsPreview } from "@/componants/PastEvents/PastEventsPreview";
-import { initiatives, teamMembers } from "@/content/records";
+import { SectionLabel, Tag } from "@/componants/Shared/Separators";
+import { coreMembers, subMembers } from "@/componants/Teams/team-data";
+import { initiatives } from "@/content/records";
 import { site } from "@/content/site";
 import { getOfficialSiteUrl, isIndexable, metadataFor } from "@/lib/seo";
 
@@ -39,7 +41,9 @@ export default function Home() {
 
       {initiatives.length > 0 && (
         <section className={styles.initiatives}>
-          <div className={styles.sectionIndex}>DCC / INITIATIVES</div>
+          <div className={styles.sectionIndex}>
+            <Tag category="DCC" label="INITIATIVES" />
+          </div>
           <h2>
             WORK IN
             <br />
@@ -49,7 +53,7 @@ export default function Home() {
             {initiatives.map((item, index) => (
               <article key={item.id}>
                 <span>
-                  0{index + 1} / {item.category}
+                  <SectionLabel index={`0${index + 1}`} name={item.category} />
                 </span>
                 <h3>{item.title}</h3>
                 <p>{item.summary}</p>
@@ -70,7 +74,9 @@ export default function Home() {
       )}
 
       <section className={styles.teamPreview}>
-        <div className={styles.sectionIndex}>05 / PEOPLE</div>
+        <div className={styles.sectionIndex}>
+          <SectionLabel index="05" name="PEOPLE" />
+        </div>
         <div className={styles.teamPreviewInner}>
           <h2>
             THE PEOPLE
@@ -81,8 +87,8 @@ export default function Home() {
           </h2>
           <div>
             <p>
-              {teamMembers.length
-                ? `${teamMembers.length} people, one shared direction.`
+              {coreMembers.length + subMembers.length
+                ? `${coreMembers.length + subMembers.length} people, one shared direction.`
                 : "An evolving team, working across the DCC verticals."}
             </p>
             <Link className={styles.textLink} href="/teams">
@@ -91,7 +97,7 @@ export default function Home() {
           </div>
         </div>
         <div className={styles.teamPreviewMark} aria-hidden="true">
-          DCC / PEOPLE / {site.year}
+          <Tag category="DCC" label={`PEOPLE, ${site.year}`} />
         </div>
       </section>
     </main>

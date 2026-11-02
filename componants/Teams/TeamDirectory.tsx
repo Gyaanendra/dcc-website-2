@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { Counter, SectionLabel, Tag } from "@/componants/Shared/Separators";
 import { teamMembers } from "@/content/records";
 import { verticals } from "@/content/verticals";
 import type { VerticalId } from "@/types/content";
@@ -26,7 +27,9 @@ export function TeamDirectory() {
   return (
     <section className={styles.directory} aria-label="DCC team directory">
       <div className={styles.directoryTop}>
-        <span>01 / THE ROSTER</span>
+        <span>
+          <SectionLabel index="01" name="THE ROSTER" />
+        </span>
         <span>
           {sorted.length
             ? `${sorted.length.toString().padStart(2, "0")} PEOPLE`
@@ -142,7 +145,10 @@ export function TeamDirectory() {
                   />
                 </div>
                 <span>
-                  {active.name.toUpperCase()} / {active.role.toUpperCase()}
+                  <Tag
+                    category={active.name.toUpperCase()}
+                    label={active.role.toUpperCase()}
+                  />
                 </span>
               </div>
             )}
@@ -151,7 +157,9 @@ export function TeamDirectory() {
       ) : (
         <div className={styles.empty}>
           <div className={styles.emptyLine}>
-            <span>00 / 00</span>
+            <span>
+              <Counter current="00" total="00" />
+            </span>
             <span>CONTENT INTAKE</span>
           </div>
           <h2>

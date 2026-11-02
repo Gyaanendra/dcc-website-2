@@ -1,0 +1,100 @@
+{
+  "/images/team/gyanendra-prakash.jpeg": {
+    "public_id": "dcc/team/gyanendra-prakash",
+    "secure_url": "https://res.cloudinary.com/djjdhzda8/image/upload/v1793393747/dcc/team/gyanendra-prakash.jpg",
+    "format": "jpg",
+    "width": 1024,
+    "height": 1536
+  },
+  "/images/team/satvik-gupta.jpeg": {
+    "public_id": "dcc/team/satvik-gupta",
+    "secure_url": "https://res.cloudinary.com/djjdhzda8/image/upload/v1793393748/dcc/team/satvik-gupta.jpg",
+    "format": "jpg",
+    "width": 1200,
+    "height": 1600
+  },
+  "/images/team/saurabh-singh.jpeg": {
+    "public_id": "dcc/team/saurabh-singh",
+    "secure_url": "https://res.cloudinary.com/djjdhzda8/image/upload/v1793393749/dcc/team/saurabh-singh.jpg",
+    "format": "jpg",
+    "width": 1108,
+    "height": 1419
+  },
+  "/images/team/shivam-rai.jpeg": {
+    "public_id": "dcc/team/shivam-rai",
+    "secure_url": "https://res.cloudinary.com/djjdhzda8/image/upload/v1793393750/dcc/team/shivam-rai.jpg",
+    "format": "jpg",
+    "width": 1052,
+    "height": 1316
+  },
+  "/images/team/shrish-raghuwanshi.jpeg": {
+    "public_id": "dcc/team/shrish-raghuwanshi",
+    "secure_url": "https://res.cloudinary.com/djjdhzda8/image/upload/v1793393751/dcc/team/shrish-raghuwanshi.jpg",
+    "format": "jpg",
+    "width": 1200,
+    "height": 1600
+  },
+  "/images/team/shubham-kulshreshtha.jpeg": {
+    "public_id": "dcc/team/shubham-kulshreshtha",
+    "secure_url": "https://res.cloudinary.com/djjdhzda8/image/upload/v1793393752/dcc/team/shubham-kulshreshtha.jpg",
+    "format": "jpg",
+    "width": 1440,
+    "height": 1440
+  },
+  "/images/gallery/dcc-badging.jpg": {
+    "public_id": "dcc/gallery/dcc-badging",
+    "secure_url": "https://res.cloudinary.com/djjdhzda8/image/upload/v1793393752/dcc/gallery/dcc-badging.jpg",
+    "format": "jpg",
+    "width": 1170,
+    "height": 1170
+  },
+  "/images/gallery/dcc-keynote-speaker.png": {
+    "public_id": "dcc/gallery/dcc-keynote-speaker",
+    "secure_url": "https://res.cloudinary.com/djjdhzda8/image/upload/v1793393753/dcc/gallery/dcc-keynote-speaker.png",
+    "format": "png",
+    "width": 637,
+    "height": 490
+  },
+  "/images/gallery/dcc-speaker-event.png": {
+    "public_id": "dcc/gallery/dcc-speaker-event",
+    "secure_url": "https://res.cloudinary.com/djjdhzda8/image/upload/v1793393755/dcc/gallery/dcc-speaker-event.png",
+    "format": "png",
+    "width": 771,
+    "height": 462
+  },
+  "/media/dcc-badging.jpg": {
+    "public_id": "dcc/media/dcc-badging",
+    "secure_url": "https://res.cloudinary.com/djjdhzda8/image/upload/v1793393756/dcc/media/dcc-badging.jpg",
+    "format": "jpg",
+    "width": 1170,
+    "height": 1170
+  },
+  "/media/dcc-black.png": {
+    "public_id": "dcc/media/dcc-black",
+    "secure_url": "https://res.cloudinary.com/djjdhzda8/image/upload/v1793393757/dcc/media/dcc-black.png",
+    "format": "png",
+    "width": 2360,
+    "height": 1640
+  },
+  "/media/dcc-event-reel-poster.png": {
+    "public_id": "dcc/media/dcc-event-reel-poster",
+    "secure_url": "https://res.cloudinary.com/djjdhzda8/image/upload/v1793393758/dcc/media/dcc-event-reel-poster.png",
+    "format": "png",
+    "width": 900,
+    "height": 506
+  },
+  "/media/dcc-event-reel.mp4": {
+    "public_id": "dcc/media/dcc-event-reel",
+    "secure_url": "https://res.cloudinary.com/djjdhzda8/video/upload/v1793393759/dcc/media/dcc-event-reel.mp4",
+    "format": "mp4",
+    "width": 1280,
+    "height": 720
+  },
+  "/media/dcc-white.png": {
+    "public_id": "dcc/media/dcc-white",
+    "secure_url": "https://res.cloudinary.com/djjdhzda8/image/upload/v1793393760/dcc/media/dcc-white.png",
+    "format": "png",
+    "width": 2360,
+    "height": 1640
+  }
+}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import styles from "@/componants/PastEvents/PastEvents.module.css";
+import { Tag } from "@/componants/Shared/Separators";
 import { pastEvents } from "@/content/records";
 import { metadataFor } from "@/lib/seo";
 
@@ -10,8 +11,10 @@ export default function PastEventsPage() {
     <main id="main" className={styles.page}>
       <section className={styles.hero} aria-labelledby="events-title">
         <div className={styles.heroTop}>
-          <span>DCC / THE ARCHIVE</span>
-          <span>PEOPLE / IDEAS / MOMENTUM</span>
+          <span>
+            <Tag category="DCC" label="THE ARCHIVE" />
+          </span>
+          <span>PEOPLE, IDEAS, MOMENTUM</span>
         </div>
         <h1 id="events-title">
           PAST
@@ -32,7 +35,9 @@ export default function PastEventsPage() {
         aria-labelledby="archive-title"
       >
         <div className={styles.archiveTop}>
-          <span>THE ARCHIVE / DEMONSTRATION</span>
+          <span>
+            <Tag category="THE ARCHIVE" label="DEMONSTRATION" />
+          </span>
           <span>{pastEvents.length} SAMPLE ENTRIES</span>
         </div>
         <div className={styles.archiveIntro}>

@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Counter, Tag } from "@/componants/Shared/Separators";
+import { resolveMediaUrl } from "@/lib/cloudinary";
 import styles from "./Gallery.module.css";
 import type { GalleryImage } from "./types";
 
@@ -33,9 +35,7 @@ export function GalleryDetailModal({
   const dialogRef = useRef<HTMLDivElement>(null);
   const [closing, setClosing] = useState(false);
 
-  // Close: play the reverse animation, restore focus to the card, then
-  // let the parent unmount this view.
-  const requestClose = () => {
+  const requestClose = useCallback(() => {
     if (!image || closing) return;
     const trigger = getTriggerElement(image.id);
     const dialog = dialogRef.current;
@@ -54,29 +54,55 @@ export function GalleryDetailModal({
     window.setTimeout(() => {
       onClose();
       if (trigger) {
-        // Restore focus to the triggering card after unmount.
         requestAnimationFrame(() => trigger.focus());
       }
     }, CLOSE_MS);
-  };
+  }, [image, closing, getTriggerElement, onClose]);
+
+  const handlersRef = useRef({ requestClose, onNext, onPrev });
+  handlersRef.current = { requestClose, onNext, onPrev };
 
   useEffect(() => {
     if (!image) return;
     const onKeyDown = (e: KeyboardEvent) => {
+      const handlers = handlersRef.current;
       if (e.key === "Escape") {
         e.preventDefault();
-        requestClose();
+        handlers.requestClose();
       } else if (e.key === "ArrowRight") {
         e.preventDefault();
-        onNext();
+        handlers.onNext();
       } else if (e.key === "ArrowLeft") {
         e.preventDefault();
-        onPrev();
+        handlers.onPrev();
       }
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  });
+  }, [image]);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!image || !dialog) return;
+    const focusable = dialog.querySelectorAll<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+    );
+    if (focusable.length) focusable[0].focus();
+    const trap = (e: KeyboardEvent) => {
+      if (e.key !== "Tab" || !focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    dialog.addEventListener("keydown", trap);
+    return () => dialog.removeEventListener("keydown", trap);
+  }, [image]);
 
   if (!image) return null;
 
@@ -119,7 +145,7 @@ export function GalleryDetailModal({
 
         <div className={styles.modalImageArea}>
           <Image
-            src={image.src}
+            src={resolveMediaUrl(image.src)}
             alt={image.alt}
             fill
             sizes="(max-width: 900px) 100vw, 60vw"
@@ -131,7 +157,7 @@ export function GalleryDetailModal({
           <div className={styles.modalTopline}>
             <span>{image.category}</span>
             <span>
-              {formattedIndex} / {formattedTotal}
+              <Counter current={formattedIndex} total={formattedTotal} />
             </span>
           </div>
 
@@ -148,7 +174,9 @@ export function GalleryDetailModal({
 
               {image.cameraMeta && (
                 <>
-                  <span>CAMERA / EXIF</span>
+                  <span>
+                    <Tag category="CAMERA" label="EXIF" />
+                  </span>
                   <span>{image.cameraMeta}</span>
                 </>
               )}

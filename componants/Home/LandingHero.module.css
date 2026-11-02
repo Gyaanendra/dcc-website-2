@@ -86,6 +86,7 @@
   font: 320 clamp(152px, 20vw, 312px) / 0.8 var(--font-body);
   letter-spacing: 0;
   will-change: transform;
+  cursor: pointer;
 }
 .letters span {
   display: block;
@@ -93,6 +94,52 @@
 }
 .hero[data-hero-intro="pending"] .letters {
   opacity: 0;
+}
+.fixedMark {
+  position: fixed;
+  z-index: 35;
+  left: var(--compact-left, var(--page-pad));
+  top: var(--compact-top, 36px);
+  display: flex;
+  align-items: center;
+  gap: 0.72em;
+  width: max-content;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease,
+    transform 0.25s var(--ease-editorial, cubic-bezier(0.16, 1, 0.3, 1));
+  font-family: var(--font-body);
+  font-weight: 320;
+  font-size: var(--compact-font-size, 34px);
+  line-height: 0.8;
+  letter-spacing: 0;
+  mix-blend-mode: difference;
+  color: #ffffff;
+  transform-origin: top left;
+}
+.fixedMark span {
+  display: block;
+}
+.fixedMark[data-visible="true"] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.fixedMark:hover {
+  opacity: 0.75;
+  transform: scale(1.04);
+}
+.fixedMark:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
 }
 .bottom {
   position: absolute;
@@ -185,6 +232,9 @@
   .bottom > span {
     display: none;
   }
+  .fixedMark {
+    top: var(--compact-top, 24px);
+  }
 }
 @media (max-width: 380px) {
   .letters {
@@ -194,13 +244,15 @@
 @media (prefers-reduced-motion: reduce) {
   .videoBackdrop,
   .letters,
-  .letters span {
+  .letters span,
+  .fixedMark {
     will-change: auto;
   }
   .videoBackdrop {
     opacity: 1;
   }
-  .bottom a {
+  .bottom a,
+  .fixedMark {
     transition: none;
   }
 }

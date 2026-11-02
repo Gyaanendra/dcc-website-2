@@ -32,10 +32,17 @@ export const verticals: Vertical[] = [
   },
   {
     id: "media-content",
-    title: "Media & Content",
+    title: "Media Team",
     shortTitle: "Media",
     description: "Useful information, made visible and easier to act on.",
     focus: ["STORIES", "INFORMATION", "CLARITY"],
+  },
+  {
+    id: "design-team",
+    title: "Design Team",
+    shortTitle: "Design",
+    description: "Visual identity, branding, and creative direction for DCC.",
+    focus: ["BRAND", "VISUAL", "CREATIVE"],
   },
   {
     id: "research-higher-studies",
@@ -58,5 +65,12 @@ export const verticals: Vertical[] = [
     description:
       "Technology, tools, and systems that support the DCC experience.",
     focus: ["SYSTEMS", "TOOLS", "SUPPORT"],
+  },
+  {
+    id: "pr-outreach",
+    title: "PR & Outreach",
+    shortTitle: "PR",
+    description: "Public relations, outreach, and external communications.",
+    focus: ["COMMUNICATE", "CONNECT", "OUTREACH"],
   },
 ];

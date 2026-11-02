@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SectionLabel, Tag } from "@/componants/Shared/Separators";
 import { alumniProfiles } from "@/content/records";
 import styles from "./Alumni.module.css";
 
@@ -6,7 +7,9 @@ export function AlumniPreview() {
   return (
     <section className={styles.preview} aria-labelledby="alumni-preview-title">
       <div className={styles.previewMeta}>
-        <span>02 / ALUMNI</span>
+        <span>
+          <SectionLabel index="02" name="ALUMNI" />
+        </span>
         <span>THE NETWORK CONTINUES</span>
       </div>
       <div className={styles.previewBody}>
@@ -40,7 +43,10 @@ export function AlumniPreview() {
         ))}
       </div>
       <p className={styles.sampleNotice}>
-        DEMONSTRATION PROFILES ONLY / NOT ACTUAL DCC ALUMNI
+        <Tag
+          category="DEMONSTRATION PROFILES ONLY"
+          label="NOT ACTUAL DCC ALUMNI"
+        />
       </p>
     </section>
   );
