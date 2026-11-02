@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Counter, Tag } from "@/componants/Shared/Separators";
 import styles from "./Shared.module.css";
 
 export function SiteLoader() {
@@ -52,7 +53,9 @@ export function SiteLoader() {
       aria-hidden="true"
     >
       <div className={styles.loaderTop}>
-        <span>DCC / INTRO</span>
+        <span>
+          <Tag category="DCC" label="INTRO" />
+        </span>
         <span>BENNETT UNIVERSITY</span>
       </div>
       <div className={styles.loaderCenter}>
@@ -60,7 +63,9 @@ export function SiteLoader() {
       </div>
       <div className={styles.loaderBottom}>
         <span>YOUR NEXT MOVE</span>
-        <span>{String(progress).padStart(2, "0")} / 100</span>
+        <span>
+          <Counter current={String(progress).padStart(2, "0")} total="100" />
+        </span>
       </div>
     </div>
   );

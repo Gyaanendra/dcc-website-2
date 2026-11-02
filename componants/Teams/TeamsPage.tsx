@@ -2,10 +2,12 @@ import CoreTeamGrid from "./CoreTeamGrid";
 import RevealOnView from "./RevealOnView";
 import SubMembersDirectory from "./SubMembersDirectory";
 import TeamsHero from "./TeamsHero";
-import { coreMembers, subMembers } from "./team-data";
+import { coreMembers, deanMember, subMembers } from "./team-data";
 
-// Core page shows the top three leads only; the count must follow the slice.
+// Core page shows the top three leads (President, Vice President,
+// General Secretary) plus the Dean card beside them.
 const coreTeam = coreMembers.slice(0, 3);
+const coreLeadership = [...coreTeam, deanMember];
 
 interface SectionHeaderProps {
   index: string;
@@ -54,8 +56,7 @@ export default function TeamsPage() {
     <div className="teams-page min-h-screen bg-[#f4f4f4] pt-[92px] font-sans text-[#111111] max-[680px]:pt-[76px]">
       <header className="flex items-center justify-between gap-4 border-b border-black/10 px-6 py-3.5 font-mono text-[11px] tracking-[0.18em] uppercase text-[#666666] sm:px-8">
         <p className="font-semibold text-[#111111]">
-          DCC CLUB <span className="text-[#555555]">{"//"}</span> DEAN CAREER
-          CLOUD
+          DCC CLUB <span className="text-[#555555]">·</span> DEAN CAREER CLOUD
         </p>
         <p className="hidden md:block">BENNETT UNIVERSITY</p>
         <p>[ TEAM INDEX ]</p>
@@ -68,17 +69,17 @@ export default function TeamsPage() {
           <SectionHeader
             index="01"
             title="Core Leadership"
-            metaTop="// CORE LEADERSHIP"
+            metaTop="CORE LEADERSHIP"
             metaBottom={`COUNT: ${String(coreTeam.length).padStart(2, "0")}`}
           />
-          <CoreTeamGrid members={coreTeam} />
+          <CoreTeamGrid members={coreLeadership} />
         </section>
 
         <section aria-label="Sub-members directory">
           <SectionHeader
             index="02"
             title="Directory — Sub-Members"
-            metaTop="// DIRECTORY"
+            metaTop="DIRECTORY"
             metaBottom={`COUNT: ${String(subMembers.length).padStart(2, "0")}`}
           />
           <SubMembersDirectory members={subMembers} />

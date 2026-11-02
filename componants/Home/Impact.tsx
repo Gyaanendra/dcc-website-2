@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Counter, SectionLabel } from "@/componants/Shared/Separators";
 import { demoImpactStats, impactStats } from "@/content/records";
 import styles from "./Home.module.css";
 
@@ -72,7 +73,9 @@ export function Impact() {
       id="impact"
       aria-labelledby="impact-heading"
     >
-      <div className={styles.sectionIndex}>01 / AT A GLANCE</div>
+      <div className={styles.sectionIndex}>
+        <SectionLabel index="01" name="AT A GLANCE" />
+      </div>
       <div className={styles.impactHeading}>
         <h2 id="impact-heading">
           THE WORK,
@@ -95,7 +98,10 @@ export function Impact() {
         {records.map((stat, index) => (
           <li key={stat.id}>
             <span className={styles.impactIndex}>
-              0{index + 1} / 0{records.length}
+              <Counter
+                current={String(index + 1).padStart(2, "0")}
+                total={String(records.length).padStart(2, "0")}
+              />
             </span>
             <div className={styles.impactValue}>
               <Count
@@ -108,7 +114,7 @@ export function Impact() {
             <small>
               {illustrative
                 ? "ILLUSTRATIVE VALUE"
-                : `${stat.source}${stat.updatedAt ? ` / ${stat.updatedAt}` : ""}`}
+                : `${stat.source}${stat.updatedAt ? `, ${stat.updatedAt}` : ""}`}
             </small>
           </li>
         ))}
