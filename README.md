@@ -160,7 +160,7 @@ Site copy and record entries are separated from view components for straightforw
 
 ## Pre-Publication Checklist
 
-The presentation uses black, white, and neutral grays with `#FF6D1F` as its highlight color. Small accent text on light surfaces uses a darker companion token for legibility. Existing photos and the hero video are displayed in grayscale. The former “04 / Life in Motion” homepage section has been removed; the separate Gallery route remains available from navigation.
+The presentation uses black, white, and neutral grays with `#F65B62` coral, `#006C76` teal, and `#D9E66B` lime highlights. Teal carries readable accent text on light surfaces; coral and lime mark selected moments on dark surfaces. Existing photos are displayed in grayscale, while the hero video retains its original color under a translucent overlay. The former “04 / Life in Motion” homepage section has been removed; the separate Gallery route remains available from navigation.
 
 The Past Events route and homepage preview currently use four expressly labeled demonstration entries in `content/records.ts`. Their titles, dates, and descriptions are fictional layout samples, not an account of DCC events. The homepage's four-card preview uses one decorative still from the DCC video as a shared background; it does not depict the sample events. Replace or remove every sample entry before publication. The shared footer contains only live internal routes while contact links remain unverified.
 
