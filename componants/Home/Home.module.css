@@ -4,7 +4,6 @@
   text-transform: uppercase;
 }
 .hero {
-  --accent: #d0d0d0;
   position: relative;
   height: max(760px, 100svh);
   min-height: 760px;
@@ -257,7 +256,7 @@
   font: 25px var(--font-title);
 }
 .textLink:hover {
-  color: var(--accent);
+  color: var(--accent-ink);
 }
 .outcomeGrid {
   display: grid;
@@ -277,7 +276,7 @@
 }
 .outcomeGrid span {
   font: 400 11px var(--font-data);
-  color: var(--accent);
+  color: var(--accent-ink);
 }
 .outcomeGrid h3 {
   font: 500 clamp(22px, 2.5vw, 39px) / 1 var(--font-title);
@@ -291,10 +290,9 @@
   margin: 0;
 }
 .verticalSection {
-  --accent: #d0d0d0;
   background: var(--ink);
   color: var(--paper-light);
-  padding: clamp(90px, 10vw, 150px) var(--page-pad) clamp(190px, 30vh, 360px);
+  padding: clamp(90px, 10vw, 150px) var(--page-pad) clamp(64px, 7vw, 108px);
 }
 .verticalIntro {
   padding-bottom: clamp(70px, 9vw, 130px);
@@ -337,6 +335,9 @@
   backface-visibility: hidden;
   will-change: transform;
 }
+.verticalCard:last-child {
+  margin-bottom: 0;
+}
 .verticalCard:nth-child(1) {
   top: 100px;
 }
@@ -372,6 +373,7 @@
   z-index: 2;
   font: 500 11px var(--font-data);
   letter-spacing: 0.08em;
+  color: var(--accent-ink);
 }
 .cardIndex span {
   color: #666;
@@ -449,7 +451,7 @@
   max-width: 320px;
   border-left: 2px solid var(--accent);
   padding-left: 14px;
-  color: var(--accent);
+  color: var(--accent-ink);
   font: 500 11px / 1.5 var(--font-data);
   letter-spacing: 0.03em;
 }
@@ -566,7 +568,7 @@
   letter-spacing: -0.085em;
 }
 .teamPreview h2 em {
-  color: #6b6b6b;
+  color: var(--accent);
   font-style: normal;
 }
 .teamPreviewInner > div {

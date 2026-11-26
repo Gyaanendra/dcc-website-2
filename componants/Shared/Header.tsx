@@ -10,11 +10,76 @@ import styles from "./Shared.module.css";
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(pathname !== "/");
   const light =
     (pathname === "/" || pathname === "/teams" || pathname === "/gallery") &&
-    !open;
+    !open &&
+    !scrolled;
   const menuRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    let previousY = window.scrollY;
+    let frame = 0;
+
+    function updateHeader() {
+      const nextY = window.scrollY;
+      const waitingForLetters =
+        pathname === "/" &&
+        !document.querySelector('[data-letter-intro="complete"]');
+      const keyboardFocusInHeader =
+        document.activeElement instanceof Element &&
+        document.activeElement.matches(":focus-visible") &&
+        document.activeElement.closest("header");
+      setScrolled(nextY > 48);
+
+      if (open || keyboardFocusInHeader) {
+        setVisible(true);
+      } else if (waitingForLetters) {
+        setVisible(false);
+      } else if (nextY <= 4) {
+        setVisible(true);
+      } else if (nextY < previousY) {
+        setVisible(true);
+      } else if (nextY > previousY) {
+        setVisible(false);
+      }
+
+      previousY = nextY;
+      frame = 0;
+    }
+
+    function onScroll() {
+      if (!frame) frame = window.requestAnimationFrame(updateHeader);
+    }
+
+    updateHeader();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [open, pathname]);
+
+  useEffect(() => {
+    setVisible(
+      window.scrollY <= 4 &&
+        (pathname !== "/" ||
+          Boolean(document.querySelector('[data-letter-intro="complete"]'))),
+    );
+  }, [pathname]);
+
+  useEffect(() => {
+    if (pathname !== "/") return;
+    const revealAfterLetters = () => setVisible(true);
+    window.addEventListener("dcc:letters-complete", revealAfterLetters);
+    if (document.querySelector('[data-letter-intro="complete"]')) {
+      revealAfterLetters();
+    }
+    return () =>
+      window.removeEventListener("dcc:letters-complete", revealAfterLetters);
+  }, [pathname]);
 
   useEffect(() => {
     if (!open) return;
@@ -56,7 +121,10 @@ export function Header() {
     <header
       className={`${styles.header} ${light ? styles.headerLight : ""} ${
         open ? styles.headerOpen : ""
+      } ${scrolled ? styles.headerScrolled : ""} ${
+        !visible && !open ? styles.headerHidden : ""
       }`}
+      onFocusCapture={() => setVisible(true)}
     >
       <div className={styles.headerInner}>
         <Link
@@ -103,7 +171,10 @@ export function Header() {
           type="button"
           aria-expanded={open}
           aria-controls="site-menu"
-          onClick={() => setOpen((value) => !value)}
+          onClick={() => {
+            setVisible(true);
+            setOpen((value) => !value);
+          }}
         >
           <span>{open ? "CLOSE" : "MENU"}</span>
           <span className={styles.menuGlyph} aria-hidden="true">
@@ -122,7 +193,9 @@ export function Header() {
         >
           <div className={styles.menuTopline}>
             <span>DCC / NAVIGATION</span>
-            <span>{site.year}</span>
+            <span>
+              0{navigation.length} PAGES / {site.year}
+            </span>
           </div>
           <nav aria-label="Full navigation" className={styles.menuNav}>
             {navigation.map((item, index) => (

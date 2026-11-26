@@ -45,20 +45,11 @@
   position: relative;
   align-self: center;
 }
-.previewAsterisk {
-  display: block;
-  margin-bottom: 20px;
-  font: 300 clamp(38px, 6vw, 84px) / 0.6 var(--font-title);
-}
 .preview h2 {
   margin: 0;
   font: 500 clamp(82px, 11.3vw, 184px) / 0.82 var(--font-title);
   letter-spacing: -0.105em;
-}
-.preview h2 span {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
+  color: var(--accent);
 }
 .previewSide {
   padding-bottom: 7px;
@@ -166,6 +157,7 @@
   font-weight: 400;
   font-style: italic;
   letter-spacing: -0.16em;
+  color: var(--accent);
 }
 .heroUnderline {
   height: 1px;
@@ -176,7 +168,7 @@
   display: block;
   width: 18%;
   height: 1px;
-  background: #f3f1ed;
+  background: var(--accent);
   animation: underlineIn 1.8s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 .heroBottom {
@@ -226,6 +218,7 @@
 .closing h2 em {
   font: italic 400 1em / 0.85 var(--font-serif);
   letter-spacing: -0.06em;
+  color: var(--accent);
 }
 .directoryHeader p {
   max-width: 260px;

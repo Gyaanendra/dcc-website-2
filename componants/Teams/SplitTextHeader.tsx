@@ -4,7 +4,7 @@ interface SplitTextHeaderProps {
   text: string;
   /** Continue the stagger count across multiple lines. */
   startIndex?: number;
-  /** Render the final word in muted gray. */
+  /** Render the final word in the brand accent. */
   dimLastWord?: boolean;
   className?: string;
 }
@@ -34,7 +34,7 @@ export default function SplitTextHeader({
               <span
                 className={
                   dimLastWord && index === words.length - 1
-                    ? "text-[#c7c7c7]"
+                    ? "text-[var(--accent)]"
                     : undefined
                 }
                 style={{ "--word-index": startIndex + index } as CSSProperties}

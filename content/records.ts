@@ -86,6 +86,10 @@ export const pastEvents: PastEvent[] = [
     date: "2025-09-18",
     description:
       "A sample roundtable format for candid questions about early career choices.",
+    image: "/media/dcc-event-reel-poster.png",
+    imageAlt:
+      "Audience pictured in DCC video footage, not at this sample event",
+    imagePosition: "35% center",
     isSample: true,
   },
   {
@@ -95,6 +99,9 @@ export const pastEvents: PastEvent[] = [
     date: "2025-08-22",
     description:
       "A sample hands-on session for turning project work into a clearer story.",
+    image: "/media/dcc-badging.jpg",
+    imageAlt: "DCC badging ceremony group photograph, not this sample event",
+    imagePosition: "center 42%",
     isSample: true,
   },
   {
@@ -104,6 +111,10 @@ export const pastEvents: PastEvent[] = [
     date: "2025-07-17",
     description:
       "A sample forum for exploring how teams, roles, and opportunities connect.",
+    image: "/media/dcc-event-reel-poster.png",
+    imageAlt:
+      "Audience pictured in DCC video footage, not at this sample event",
+    imagePosition: "80% center",
     isSample: true,
   },
   {
@@ -113,6 +124,9 @@ export const pastEvents: PastEvent[] = [
     date: "2025-06-12",
     description:
       "A sample panel concept focused on the many routes from campus to work.",
+    image: "/media/dcc-badging.jpg",
+    imageAlt: "DCC badging ceremony group photograph, not this sample event",
+    imagePosition: "75% 28%",
     isSample: true,
   },
 ];
