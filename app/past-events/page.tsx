@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import styles from "@/componants/PastEvents/PastEvents.module.css";
 import { Tag } from "@/componants/Shared/Separators";
 import { pastEvents } from "@/content/records";
@@ -54,26 +55,39 @@ export default function PastEventsPage() {
         <div className={styles.eventList}>
           {pastEvents.map((event, index) => (
             <article className={styles.event} key={event.id}>
-              <span className={styles.eventIndex}>0{index + 1}</span>
-              <time className={styles.eventDate} dateTime={event.date}>
-                {new Intl.DateTimeFormat("en-US", {
-                  day: "2-digit",
-                  month: "short",
-                  year: "numeric",
-                  timeZone: "UTC",
-                }).format(new Date(`${event.date}T12:00:00Z`))}
-              </time>
-              <div className={styles.eventBody}>
-                <h3>{event.title}</h3>
-                <p>{event.description}</p>
-                <span className={styles.eventSample}>
-                  SAMPLE EVENT — NOT A DCC RECORD
+              <div className={styles.eventInfo}>
+                <span className={styles.eventIndex}>0{index + 1}</span>
+                <time className={styles.eventDate} dateTime={event.date}>
+                  {new Intl.DateTimeFormat("en-US", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                    timeZone: "UTC",
+                  }).format(new Date(`${event.date}T12:00:00Z`))}
+                </time>
+                <div className={styles.eventBody}>
+                  <span className={styles.eventCategory}>{event.category}</span>
+                  <h3>{event.title}</h3>
+                  <p>{event.description}</p>
+                  <span className={styles.eventSample}>
+                    SAMPLE EVENT — NOT A DCC RECORD
+                  </span>
+                </div>
+                <span className={styles.eventArrow} aria-hidden="true">
+                  ↗
                 </span>
               </div>
-              <span className={styles.eventCategory}>{event.category}</span>
-              <span className={styles.eventArrow} aria-hidden="true">
-                ↗
-              </span>
+              <figure className={styles.eventMedia}>
+                <Image
+                  src={event.image}
+                  alt={event.imageAlt}
+                  fill
+                  sizes="(max-width: 680px) 100vw, 30vw"
+                  className={styles.eventImage}
+                  style={{ objectPosition: event.imagePosition }}
+                />
+                <figcaption>DCC MEDIA / ILLUSTRATIVE</figcaption>
+              </figure>
             </article>
           ))}
         </div>

@@ -87,7 +87,7 @@
 
 .heroHeading h1 em {
   font-style: normal;
-  color: var(--accent);
+  color: var(--accent-ink);
 }
 
 .heroHeading p {
@@ -96,6 +96,26 @@
   font-size: clamp(15px, 1.2vw, 18px);
   line-height: 1.45;
   color: var(--ink-soft);
+}
+.galleryHero {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(
+      ellipse 70% 78% at 90% 20%,
+      transparent 20%,
+      var(--paper) 100%
+    ),
+    conic-gradient(
+      from 90deg,
+      rgba(11, 11, 11, 0.16) 25%,
+      transparent 0 50%,
+      rgba(11, 11, 11, 0.16) 0 75%,
+      transparent 0
+    );
+  background-size:
+    100% 100%,
+    8px 8px;
+  background-repeat: no-repeat, repeat;
 }
 
 /* ==========================================================================
@@ -192,7 +212,7 @@
 }
 .chrome i {
   font-style: normal;
-  color: var(--accent);
+  color: var(--accent-ink);
 }
 
 .runwayTrack {
@@ -232,7 +252,7 @@
 }
 
 .card:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-ink);
   outline-offset: 4px;
 }
 
