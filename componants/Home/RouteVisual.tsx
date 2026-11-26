@@ -1,3 +1,4 @@
+import { Tag } from "@/componants/Shared/Separators";
 import styles from "./Home.module.css";
 
 export function RouteVisual() {
@@ -24,16 +25,16 @@ export function RouteVisual() {
         <circle cx="610" cy="443" r="4" className={styles.routeNode} />
       </svg>
       <div className={`${styles.routeLabel} ${styles.routeLabelOne}`}>
-        START / 00
+        <Tag category="START" label="00" />
       </div>
       <div className={`${styles.routeLabel} ${styles.routeLabelTwo}`}>
-        PREPARE / 01
+        <Tag category="PREPARE" label="01" />
       </div>
       <div className={`${styles.routeLabel} ${styles.routeLabelThree}`}>
-        CONNECT / 02
+        <Tag category="CONNECT" label="02" />
       </div>
       <div className={`${styles.routeLabel} ${styles.routeLabelFour}`}>
-        NEXT / ∞
+        <Tag category="NEXT" label="∞" />
       </div>
     </div>
   );

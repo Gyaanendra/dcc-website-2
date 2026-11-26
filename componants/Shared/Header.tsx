@@ -4,7 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { Affiliation, Tag } from "@/componants/Shared/Separators";
 import { navigation, site } from "@/content/site";
+import { resolveMediaUrl } from "@/lib/cloudinary";
 import styles from "./Shared.module.css";
 
 export function Header() {
@@ -134,7 +136,11 @@ export function Header() {
           onClick={() => setOpen(false)}
         >
           <Image
-            src={light ? "/media/dcc-black.png" : "/media/dcc-white.png"}
+            src={
+              light
+                ? resolveMediaUrl("/media/dcc-black.png")
+                : resolveMediaUrl("/media/dcc-white.png")
+            }
             alt=""
             width={72}
             height={50}
@@ -147,7 +153,7 @@ export function Header() {
           </span>
         </Link>
         <span className={styles.headerContext}>
-          {site.institution} <i>/</i> {site.school}
+          <Affiliation institution={site.institution} school={site.school} />
         </span>
         <nav
           className={`${styles.desktopNav} ${open ? styles.desktopNavHidden : ""}`}
@@ -192,7 +198,9 @@ export function Header() {
           aria-label="Site menu"
         >
           <div className={styles.menuTopline}>
-            <span>DCC / NAVIGATION</span>
+            <span>
+              <Tag category="DCC" label="NAVIGATION" />
+            </span>
             <span>
               0{navigation.length} PAGES / {site.year}
             </span>
