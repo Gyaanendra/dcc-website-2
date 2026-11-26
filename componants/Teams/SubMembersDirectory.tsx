@@ -1,11 +1,6 @@
 "use client";
 
-import React, {
-  type ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { type ReactNode, useEffect, useRef, useState } from "react";
 import SubMemberItem from "./SubMemberItem";
 import { DEPARTMENT_FILTERS, FILTER_LABELS } from "./team-data";
 import type { Department, SubMember } from "./types";
@@ -24,6 +19,7 @@ function LazyGrid({
   const [shown, setShown] = useState(BATCH_SIZE);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: reset pagination when filter/total changes
   useEffect(() => {
     setShown(BATCH_SIZE);
   }, [total]);
@@ -41,17 +37,13 @@ function LazyGrid({
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [total, shown]);
+  }, [total]);
 
   return (
     <div className={className}>
       {childArray.slice(0, shown)}
       {shown < total && (
-        <div
-          ref={sentinelRef}
-          aria-hidden
-          className="col-span-full h-px"
-        />
+        <div ref={sentinelRef} aria-hidden className="col-span-full h-px" />
       )}
     </div>
   );
@@ -104,10 +96,7 @@ export default function SubMembersDirectory({
         className="grid grid-cols-2 border-l border-black/10 md:grid-cols-2 lg:grid-cols-3"
       >
         {filteredMembers.map((member) => (
-          <div
-            key={member.id}
-            className="border-r border-b border-black/10"
-          >
+          <div key={member.id} className="border-r border-b border-black/10">
             <SubMemberItem member={member} />
           </div>
         ))}
