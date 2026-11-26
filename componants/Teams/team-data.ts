@@ -25,6 +25,7 @@ export const DEPARTMENT_CODES: Record<Department, string> = {
 
 export const DEPARTMENT_FILTERS: Department[] = [
   "Core",
+  "Technical",
   "Corporate & Alumni Relations",
   "Design Team",
   "Media Team",
@@ -33,7 +34,6 @@ export const DEPARTMENT_FILTERS: Department[] = [
   "PR & Outreach",
   "Research & Higher Studies",
   "Strategic Intelligence",
-  "Technical",
   "Training & Preparation",
 ];
 
@@ -96,36 +96,43 @@ export const deanMember: CoreMember = {
   tenure: "2025 — PRESENT",
 };
 
-// Executive leads below the top three render in the sub-members directory,
-// not in the core grid — names, roles and tenure are unchanged.
-export const executiveSubMembers: SubMember[] = [
+export const advisorMembers: CoreMember[] = [
+  deanMember,
   {
     id: "core-00b",
     name: "Indrajeet Gupta",
     role: "Faculty Mentor",
-    teamSubgroup: "Core",
+    leadRole: "FACULTY MENTOR",
     department: "Core",
     initials: initialsOf("Indrajeet Gupta"),
     order: 91,
+    tenure: "2025 — PRESENT",
   },
   {
     id: "core-00c",
     name: "Priyanka Gupta",
     role: "Faculty Mentor",
-    teamSubgroup: "Core",
+    leadRole: "FACULTY MENTOR",
     department: "Core",
     initials: initialsOf("Priyanka Gupta"),
     order: 92,
+    tenure: "2025 — PRESENT",
   },
   {
     id: "core-00d",
     name: "Shashwat Ranjan",
     role: "Advisor",
-    teamSubgroup: "Core",
+    leadRole: "ADVISOR",
     department: "Core",
     initials: initialsOf("Shashwat Ranjan"),
     order: 93,
+    tenure: "2025 — PRESENT",
   },
+];
+
+// Executive leads below the top three render in the sub-members directory,
+// not in the core grid — names, roles and tenure are unchanged.
+export const executiveSubMembers: SubMember[] = [
   {
     id: "core-04",
     name: "Sanchit Jain",
