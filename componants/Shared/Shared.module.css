@@ -11,7 +11,7 @@
   color: var(--ink);
 }
 .headerLight .headerInner {
-  border-color: rgba(0, 0, 0, 0.18);
+  border-color: transparent;
 }
 .headerLight .headerContext i {
   color: var(--accent-ink);
@@ -30,7 +30,7 @@
   align-items: center;
   gap: clamp(16px, 3vw, 52px);
   padding: 0 var(--page-pad);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 0;
   transition:
     transform 0.35s var(--ease-editorial),
     background 0.3s ease,
@@ -38,7 +38,7 @@
 }
 .headerScrolled .headerInner {
   background: rgba(11, 11, 11, 0.96);
-  border-color: rgba(247, 247, 247, 0.2);
+  border-color: transparent;
 }
 .headerHidden {
   pointer-events: none;
@@ -135,6 +135,7 @@
   min-height: 48px;
   min-width: 78px;
   padding: 0;
+  margin-left: auto;
 }
 .menuGlyph {
   font: 300 30px / 1 var(--font-title);

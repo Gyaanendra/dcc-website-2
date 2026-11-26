@@ -36,8 +36,8 @@
   --paper: #e7e7e7;
   --paper-light: #f7f7f7;
   --muted: #5f5f5f;
-  --line: rgba(11, 11, 11, 0.2);
-  --line-light: rgba(247, 247, 247, 0.3);
+  --line: transparent;
+  --line-light: transparent;
   --accent: #f65b62;
   --accent-ink: #006c76;
   --accent-lime: #d9e66b;
