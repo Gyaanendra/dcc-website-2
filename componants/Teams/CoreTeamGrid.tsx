@@ -47,15 +47,15 @@ export default function CoreTeamGrid({ members, columns }: CoreTeamGridProps) {
         ref={gridRef}
         className={`grid ${
           cols === 4
-            ? "grid-cols-2 gap-2 border-l border-black/10 md:grid-cols-4 md:gap-4 md:border-l-0"
-            : "grid-cols-1 border-l border-black/10 sm:grid-cols-3 md:gap-4 md:border-l-0"
+            ? "grid-cols-2 gap-2 md:grid-cols-4 md:gap-4"
+            : "grid-cols-1 sm:grid-cols-3 md:gap-4"
         }`}
       >
         {members.map((member, index) => (
           <div
             key={member.id}
             data-reveal
-            className="relative border-r border-b border-black/10 hover:z-10 md:border-r-0 md:border-b-0"
+            className="relative hover:z-10"
             style={{ "--stagger-index": index } as CSSProperties}
           >
             <CoreMemberCard member={member} />

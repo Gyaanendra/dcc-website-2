@@ -5,7 +5,7 @@
   overflow: hidden;
   background: var(--ink);
   color: var(--paper-light);
-  padding: 42px var(--page-pad) 34px;
+  padding: clamp(50px, 6vw, 80px) var(--page-pad) 34px;
 }
 .topline,
 .bottomline {
@@ -102,8 +102,7 @@
   display: grid;
   grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
   gap: clamp(50px, 12vw, 190px);
-  border-top: 1px solid rgba(247, 247, 247, 0.4);
-  padding: clamp(45px, 6vw, 90px) 0 clamp(85px, 12vw, 160px);
+  padding: 0 0 clamp(60px, 8vw, 110px);
 }
 .identity {
   display: flex;

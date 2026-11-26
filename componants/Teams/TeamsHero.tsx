@@ -16,7 +16,7 @@ const SUBHEAD =
  */
 export default function TeamsHero() {
   return (
-    <section className="border-b border-black/10 px-6 pt-28 pb-24 sm:px-8">
+    <section className="px-6 pt-28 pb-24 sm:px-8">
       <p className="inline-block border border-black/25 px-3.5 py-2 font-mono text-xs tracking-[0.22em] uppercase text-[#555555]">
         [ TEAM <span className="text-[var(--accent-ink)]">{"//"}</span>{" "}
         2026&mdash;2027 ]
@@ -29,7 +29,7 @@ export default function TeamsHero() {
       <p className="mt-9 max-w-[560px] font-serif text-xl leading-relaxed text-[#555555] italic sm:text-2xl">
         {SUBHEAD}
       </p>
-      <ul className="mt-16 flex flex-wrap items-center gap-y-2 border-t border-black/10 pt-4">
+      <ul className="mt-16 flex flex-wrap items-center gap-y-2 pt-4">
         {MANTRAS.map((mantra, index) => (
           <li
             key={mantra}

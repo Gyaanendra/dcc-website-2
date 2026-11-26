@@ -155,22 +155,6 @@ export function Header() {
         <span className={styles.headerContext}>
           <Affiliation institution={site.institution} school={site.school} />
         </span>
-        <nav
-          className={`${styles.desktopNav} ${open ? styles.desktopNavHidden : ""}`}
-          aria-label="Primary navigation"
-          aria-hidden={open}
-        >
-          {navigation.slice(1).map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              aria-current={pathname === item.href ? "page" : undefined}
-              tabIndex={open ? -1 : undefined}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
         <button
           ref={triggerRef}
           className={styles.menuTrigger}
