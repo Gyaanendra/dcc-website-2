@@ -207,7 +207,7 @@
   letter-spacing: -0.08em;
 }
 .empty h2 em {
-  color: var(--accent);
+  color: var(--accent-ink);
   font-style: normal;
 }
 .empty p {
@@ -230,7 +230,7 @@
   margin: 65px 0 95px;
 }
 .photoHeading h2 em {
-  color: var(--accent);
+  color: var(--accent-ink);
   font-style: normal;
 }
 .photoSection figure {

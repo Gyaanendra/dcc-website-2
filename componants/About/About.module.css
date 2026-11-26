@@ -2,17 +2,26 @@
   min-height: max(760px, 100svh);
   position: relative;
   overflow: hidden;
-  background: var(--ink);
+  background-color: var(--ink);
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(8, 8, 8, 0.86) 0%,
+      rgba(8, 8, 8, 0.67) 48%,
+      rgba(8, 8, 8, 0.43) 100%
+    ),
+    linear-gradient(0deg, rgba(8, 8, 8, 0.52), transparent 36%),
+    url("/images/about/dcc-group.png");
+  background-size: cover;
+  background-position:
+    center,
+    center,
+    55% center;
   color: var(--paper-light);
   padding: 140px var(--page-pad) 35px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-.hero > :first-child {
-  opacity: 0.35;
-  right: -10%;
-  top: 10%;
 }
 .heroIndex,
 .heroBottom,
@@ -61,7 +70,7 @@
 }
 .mission h2 em {
   font-style: normal;
-  color: var(--accent);
+  color: var(--accent-ink);
 }
 .mission p {
   margin: 65px 0 0 auto;
@@ -139,7 +148,7 @@
 }
 .verticalSection h2 em {
   font-style: normal;
-  color: var(--accent);
+  color: var(--accent-lime);
 }
 .verticalList > div {
   border-top: 1px solid var(--line-light);
@@ -188,7 +197,7 @@
 }
 .endSection h2 em {
   font-style: normal;
-  color: var(--accent);
+  color: var(--accent-ink);
 }
 .endSection a {
   display: flex;
@@ -201,6 +210,49 @@
 }
 .endSection a span {
   font: 25px var(--font-title);
+}
+/* Keep the checker on the About page's plain surfaces. */
+.mission,
+.routeSection,
+.verticalSection,
+.endSection {
+  --dither-base: var(--paper);
+  --dither-mark: rgba(11, 11, 11, 0.16);
+  --dither-origin: 87% 18%;
+  background-color: var(--dither-base);
+  background-image:
+    radial-gradient(
+      ellipse 70% 78% at var(--dither-origin),
+      transparent 20%,
+      var(--dither-base) 100%
+    ),
+    conic-gradient(
+      from 90deg,
+      var(--dither-mark) 25%,
+      transparent 0 50%,
+      var(--dither-mark) 0 75%,
+      transparent 0
+    );
+  background-size:
+    100% 100%,
+    8px 8px;
+  background-repeat: no-repeat, repeat;
+}
+.mission {
+  --dither-origin: 12% 35%;
+}
+.routeSection {
+  --dither-base: var(--paper-light);
+  --dither-origin: 12% 83%;
+}
+.verticalSection {
+  --dither-base: var(--ink);
+  --dither-mark: rgba(247, 247, 247, 0.17);
+  --dither-origin: 90% 12%;
+}
+.endSection {
+  --dither-base: #d8d8d8;
+  --dither-origin: 15% 80%;
 }
 @media (max-width: 800px) {
   .mission {

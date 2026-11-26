@@ -25,7 +25,7 @@
   font-family: var(--font-serif);
   font-weight: 400;
   letter-spacing: -0.045em;
-  color: var(--accent);
+  color: var(--accent-ink);
 }
 .previewBottom {
   display: grid;
@@ -181,7 +181,7 @@
   letter-spacing: -0.095em;
 }
 .hero h1 em {
-  color: var(--accent);
+  color: var(--accent-lime);
   font-family: var(--font-serif);
   font-weight: 400;
   letter-spacing: -0.06em;
@@ -229,7 +229,7 @@
 .archiveIntro p {
   max-width: 345px;
   margin: 0 0 6px;
-  border-left: 2px solid var(--accent);
+  border-left: 2px solid var(--accent-ink);
   padding-left: 18px;
   color: var(--accent-ink);
   font: 500 12px / 1.6 var(--font-data);
@@ -336,6 +336,34 @@
   font: 500 9px / 1.4 var(--font-data);
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+.preview,
+.archive {
+  --dither-base: #d4d4d4;
+  --dither-mark: rgba(11, 11, 11, 0.16);
+  --dither-origin: 90% 16%;
+  background-color: var(--dither-base);
+  background-image:
+    radial-gradient(
+      ellipse 70% 78% at var(--dither-origin),
+      transparent 20%,
+      var(--dither-base) 100%
+    ),
+    conic-gradient(
+      from 90deg,
+      var(--dither-mark) 25%,
+      transparent 0 50%,
+      var(--dither-mark) 0 75%,
+      transparent 0
+    );
+  background-size:
+    100% 100%,
+    8px 8px;
+  background-repeat: no-repeat, repeat;
+}
+.archive {
+  --dither-base: var(--paper-light);
+  --dither-origin: 8% 15%;
 }
 @media (max-width: 900px) {
   .previewBottom,
