@@ -25,21 +25,23 @@
     background-color: transparent;
     font: inherit;
   }
-  img,
-  video {
+  img {
     filter: grayscale(1);
   }
 }
 
 :root {
   --ink: #0b0b0b;
-  --ink-soft: #242424;
+  --ink-soft: #333333;
   --paper: #e7e7e7;
   --paper-light: #f7f7f7;
   --muted: #5f5f5f;
   --line: rgba(11, 11, 11, 0.2);
   --line-light: rgba(247, 247, 247, 0.3);
-  --accent: #515151;
+  --accent: #f65b62;
+  --accent-ink: #006c76;
+  --accent-lime: #d9e66b;
+  --focus-ring: var(--accent-ink);
   --page-pad: clamp(20px, 4vw, 72px);
   --font-body: var(--font-geist-sans), Arial, sans-serif;
   --font-title: var(--font-display), Arial, sans-serif;
@@ -59,6 +61,22 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
+}
+.teams-page > main > section:first-child {
+  background-color: #f4f4f4;
+  background-image:
+    radial-gradient(ellipse 70% 78% at 90% 18%, transparent 20%, #f4f4f4 100%),
+    conic-gradient(
+      from 90deg,
+      rgba(11, 11, 11, 0.16) 25%,
+      transparent 0 50%,
+      rgba(11, 11, 11, 0.16) 0 75%,
+      transparent 0
+    );
+  background-size:
+    100% 100%,
+    8px 8px;
+  background-repeat: no-repeat, repeat;
 }
 body:has([data-hero-intro="pending"]) > header {
   opacity: 0;
@@ -82,10 +100,10 @@ img {
 }
 ::selection {
   background: var(--accent);
-  color: white;
+  color: var(--ink);
 }
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--focus-ring);
   outline-offset: 5px;
 }
 .skip-link {

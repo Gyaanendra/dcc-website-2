@@ -1,24 +1,20 @@
 .header {
-  position: absolute;
+  --focus-ring: var(--accent);
+  position: fixed;
   inset: 0 0 auto;
   z-index: 50;
   color: var(--paper-light);
   transition: opacity 0.7s ease;
 }
-@media (prefers-reduced-motion: reduce) {
-  .header,
-  .desktopNav {
-    transition: none;
-  }
-}
 .headerLight {
+  --focus-ring: var(--accent-ink);
   color: var(--ink);
 }
 .headerLight .headerInner {
   border-color: rgba(0, 0, 0, 0.18);
 }
 .headerLight .headerContext i {
-  color: var(--ink);
+  color: var(--accent-ink);
 }
 .headerLight .menuTrigger {
   color: var(--paper-light);
@@ -35,6 +31,20 @@
   gap: clamp(16px, 3vw, 52px);
   padding: 0 var(--page-pad);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition:
+    transform 0.35s var(--ease-editorial),
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+.headerScrolled .headerInner {
+  background: rgba(11, 11, 11, 0.96);
+  border-color: rgba(247, 247, 247, 0.2);
+}
+.headerHidden {
+  pointer-events: none;
+}
+.headerHidden .headerInner {
+  transform: translateY(calc(-100% - 1px));
 }
 .brand {
   display: flex;
@@ -98,6 +108,12 @@
 .desktopNav a[aria-current="page"]::after {
   right: 0;
 }
+.desktopNav a[aria-current="page"] {
+  color: var(--accent);
+}
+.headerLight .desktopNav a[aria-current="page"] {
+  color: var(--accent-ink);
+}
 .headerOpen .desktopNav,
 .desktopNavHidden {
   opacity: 0;
@@ -124,7 +140,6 @@
   font: 300 30px / 1 var(--font-title);
 }
 .menuOverlay {
-  --accent: #d0d0d0;
   position: fixed;
   inset: 0;
   z-index: 40;
@@ -133,6 +148,8 @@
   padding: 130px var(--page-pad) var(--page-pad);
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   animation: menuIn 0.35s ease-out;
 }
 .menuTopline,
@@ -146,16 +163,16 @@
   color: #bdbdbd;
 }
 .menuNav {
-  margin: auto 0;
+  margin: clamp(24px, 5vh, 55px) 0 auto;
 }
 .menuNav a {
   display: grid;
   grid-template-columns: 80px 1fr 50px;
   align-items: baseline;
   border-top: 1px solid var(--line-light);
-  font: 500 clamp(48px, 8vw, 118px) / 1.04 var(--font-title);
+  font: 500 clamp(36px, 6.3vh, 84px) / 1.04 var(--font-title);
   letter-spacing: -0.07em;
-  padding: 10px 0 15px;
+  padding: clamp(7px, 1vh, 12px) 0;
   transition:
     color 0.25s,
     padding-left 0.25s;
@@ -181,6 +198,7 @@
 .menuBottom {
   gap: 14px;
   justify-content: flex-start;
+  padding-top: 20px;
 }
 .menuBottom span {
   color: var(--accent);
@@ -189,7 +207,7 @@
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: var(--accent);
+  background: var(--ink);
   color: var(--paper-light);
   display: flex;
   flex-direction: column;
@@ -215,7 +233,7 @@
   transform: translateX(-0.08em);
 }
 .loaderCenter span {
-  color: var(--ink);
+  color: var(--accent);
 }
 @keyframes menuIn {
   from {
@@ -233,6 +251,9 @@
   }
   .brand {
     margin-right: auto;
+  }
+  .desktopNav {
+    display: none;
   }
 }
 @media (max-width: 680px) {
@@ -256,12 +277,22 @@
   }
   .menuNav a {
     grid-template-columns: 44px 1fr 30px;
-    font-size: clamp(48px, 16vw, 88px);
+    font-size: clamp(38px, 11vw, 56px);
   }
   .menuArrow {
     font-size: 25px;
   }
   .loaderCenter {
     font-size: 37vw;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .headerInner,
+  .desktopNav {
+    transition: none;
+  }
+  .menuOverlay {
+    animation: none;
   }
 }

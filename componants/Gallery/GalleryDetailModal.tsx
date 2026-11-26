@@ -128,8 +128,8 @@ export function GalleryDetailModal({
         style={
           originPoint
             ? ({
-                "--from-x": `${originPoint.x}px`,
-                "--from-y": `${originPoint.y}px`,
+                "--from-x": `calc(${originPoint.x}px - 50vw)`,
+                "--from-y": `calc(${originPoint.y}px - 50vh)`,
               } as React.CSSProperties)
             : undefined
         }

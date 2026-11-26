@@ -14,14 +14,7 @@ export function AlumniPreview() {
       </div>
       <div className={styles.previewBody}>
         <div className={styles.previewStatement}>
-          <span className={styles.previewAsterisk} aria-hidden="true">
-            ✳
-          </span>
-          <h2 id="alumni-preview-title">
-            WHERE
-            <br />
-            NEXT<span>?</span>
-          </h2>
+          <h2 id="alumni-preview-title">ALUMNI</h2>
         </div>
         <div className={styles.previewSide}>
           <p>

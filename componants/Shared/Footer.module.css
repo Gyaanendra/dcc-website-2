@@ -1,5 +1,5 @@
 .footer {
-  --accent: #d0d0d0;
+  --focus-ring: var(--accent);
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -87,8 +87,8 @@
 }
 .action:hover,
 .action:focus-visible {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--accent-lime);
+  border-color: var(--accent-lime);
   color: var(--ink);
   transform: rotate(-8deg);
 }

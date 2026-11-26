@@ -108,16 +108,18 @@ export function GalleryPage() {
         />
       </div>
 
-      <GalleryDetailModal
-        image={selectedImage}
-        originPoint={selectedPointRef.current}
-        getTriggerElement={getTriggerElement}
-        onClose={() => setSelectedImage(null)}
-        onNext={handleNext}
-        onPrev={handlePrev}
-        currentIndex={selectedIndex}
-        totalCount={galleryImages.length}
-      />
+      {selectedImage && (
+        <GalleryDetailModal
+          image={selectedImage}
+          originPoint={selectedPointRef.current}
+          getTriggerElement={getTriggerElement}
+          onClose={() => setSelectedImage(null)}
+          onNext={handleNext}
+          onPrev={handlePrev}
+          currentIndex={selectedIndex}
+          totalCount={galleryImages.length}
+        />
+      )}
     </main>
   );
 }

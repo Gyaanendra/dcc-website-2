@@ -25,7 +25,7 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  filter: grayscale(1) contrast(0.85) brightness(1.28);
+  filter: contrast(0.85) brightness(1.28);
   opacity: 0.65;
 }
 .videoBackdrop::after {
@@ -168,16 +168,18 @@
   height: 48px;
   display: grid;
   place-items: center;
-  border: 1px solid var(--ink);
+  border: 1px solid var(--accent-ink);
   border-radius: 0;
+  color: var(--accent-ink);
   font: 32px / 1 var(--font-body);
   transition:
     background 0.3s var(--ease-editorial),
     color 0.3s var(--ease-editorial);
 }
 .bottom a:hover {
-  background: var(--ink);
-  color: white;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ink);
 }
 @media (max-width: 1199px) {
   .hero {

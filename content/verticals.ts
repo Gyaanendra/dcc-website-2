@@ -59,18 +59,18 @@ export const verticals: Vertical[] = [
     focus: ["SIGNALS", "INSIGHT", "DIRECTION"],
   },
   {
+    id: "pr-outreach",
+    title: "PR & Outreach",
+    shortTitle: "PR",
+    description: "Public relations, outreach, and external communications.",
+    focus: ["COMMUNICATE", "CONNECT", "OUTREACH"],
+  },
+  {
     id: "tech-department",
     title: "Tech Department",
     shortTitle: "Tech",
     description:
       "Technology, tools, and systems that support the DCC experience.",
     focus: ["SYSTEMS", "TOOLS", "SUPPORT"],
-  },
-  {
-    id: "pr-outreach",
-    title: "PR & Outreach",
-    shortTitle: "PR",
-    description: "Public relations, outreach, and external communications.",
-    focus: ["COMMUNICATE", "CONNECT", "OUTREACH"],
   },
 ];
