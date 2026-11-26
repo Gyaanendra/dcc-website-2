@@ -19,7 +19,6 @@ function LazyGrid({
   const [shown, setShown] = useState(BATCH_SIZE);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: reset pagination when filter/total changes
   useEffect(() => {
     const el = sentinelRef.current;
     if (!el) return;
