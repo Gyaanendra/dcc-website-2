@@ -62,6 +62,10 @@ body {
   color: var(--ink);
   font-family: var(--font-body);
 }
+body:has([data-not-found-page]) > header,
+body:has([data-not-found-page]) > footer {
+  display: none;
+}
 .teams-page > main > section:first-child {
   background-color: #f4f4f4;
   background-image:
