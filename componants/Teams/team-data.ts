@@ -25,6 +25,7 @@ export const DEPARTMENT_CODES: Record<Department, string> = {
 
 export const DEPARTMENT_FILTERS: Department[] = [
   "Core",
+  "Technical",
   "Corporate & Alumni Relations",
   "Design Team",
   "Media Team",
@@ -33,7 +34,6 @@ export const DEPARTMENT_FILTERS: Department[] = [
   "PR & Outreach",
   "Research & Higher Studies",
   "Strategic Intelligence",
-  "Technical",
   "Training & Preparation",
 ];
 
