@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import styles from "@/componants/About/About.module.css";
-import { RouteVisual } from "@/componants/Home/RouteVisual";
 import { SectionLabel, Tag } from "@/componants/Shared/Separators";
 import { verticals } from "@/content/verticals";
 import { metadataFor } from "@/lib/seo";
@@ -12,7 +11,6 @@ export default function AboutPage() {
   return (
     <main id="main">
       <section className={styles.hero}>
-        <RouteVisual />
         <div className={styles.heroIndex}>
           <Tag category="DCC" label="ABOUT" />
           {"\u2003"}
