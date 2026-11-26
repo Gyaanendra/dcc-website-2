@@ -72,7 +72,7 @@ export default function SubMembersDirectory({
                   onClick={() => setActiveDepartment(department)}
                   className={`flex-none border px-3.5 py-2 font-mono text-[10.5px] tracking-[0.16em] uppercase transition-colors duration-300 ${
                     isActive
-                      ? "border-[var(--accent)] bg-[var(--accent)] text-[#111111]"
+                      ? "border-[var(--accent-ink)] bg-[var(--accent-ink)] text-white"
                       : "border-black/20 text-[#666666] hover:border-[#111111] hover:bg-black/[0.03] hover:text-[#111111]"
                   }`}
                 >

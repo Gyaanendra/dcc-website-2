@@ -49,7 +49,7 @@
   margin: 0;
   font: 500 clamp(82px, 11.3vw, 184px) / 0.82 var(--font-title);
   letter-spacing: -0.105em;
-  color: var(--accent);
+  color: var(--accent-lime);
 }
 .previewSide {
   padding-bottom: 7px;
@@ -218,7 +218,7 @@
 .closing h2 em {
   font: italic 400 1em / 0.85 var(--font-serif);
   letter-spacing: -0.06em;
-  color: var(--accent);
+  color: var(--accent-ink);
 }
 .directoryHeader p {
   max-width: 260px;
@@ -346,6 +346,43 @@
 .closingLink {
   max-width: none;
   border-top: 1px solid #333;
+}
+.preview,
+.directory,
+.closing {
+  --dither-base: #eeece8;
+  --dither-mark: rgba(11, 11, 11, 0.16);
+  --dither-origin: 89% 18%;
+  background-color: var(--dither-base);
+  background-image:
+    radial-gradient(
+      ellipse 70% 78% at var(--dither-origin),
+      transparent 20%,
+      var(--dither-base) 100%
+    ),
+    conic-gradient(
+      from 90deg,
+      var(--dither-mark) 25%,
+      transparent 0 50%,
+      var(--dither-mark) 0 75%,
+      transparent 0
+    );
+  background-size:
+    100% 100%,
+    8px 8px;
+  background-repeat: no-repeat, repeat;
+}
+.preview {
+  --dither-base: #171717;
+  --dither-mark: rgba(247, 247, 247, 0.17);
+  --dither-origin: 82% 22%;
+}
+.directory {
+  --dither-origin: 11% 14%;
+}
+.closing {
+  --dither-base: #d5d3cf;
+  --dither-origin: 90% 78%;
 }
 @keyframes underlineIn {
   from {
