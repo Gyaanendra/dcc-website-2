@@ -160,15 +160,17 @@ Site copy and record entries are separated from view components for straightforw
 
 ## Pre-Publication Checklist
 
+The presentation uses black, white, and neutral grays with `#FF6D1F` as its highlight color. Small accent text on light surfaces uses a darker companion token for legibility. Existing photos and the hero video are displayed in grayscale. The former “04 / Life in Motion” homepage section has been removed; the separate Gallery route remains available from navigation.
+
+The Past Events route and homepage preview currently use four expressly labeled demonstration entries in `content/records.ts`. Their titles, dates, and descriptions are fictional layout samples, not an account of DCC events. The homepage's four-card preview uses one decorative still from the DCC video as a shared background; it does not depict the sample events. Replace or remove every sample entry before publication. The shared footer contains only live internal routes while contact links remain unverified.
+
 Before deploying the website to production:
 
 1. **Verify Records**: Replace demo records in `content/records.ts` (events, team rosters, and alumni data) with verified entries.
 2. **Impact Metrics**: Review the illustrative numbers on the homepage and update with verified club statistics and data sources.
-3. **Photography**: Place approved portraits in `public/team/` and update references in `content/records.ts`.
+3. **Photography**: Verify the portraits in `public/images/team/` and their attribution before publication.
 4. **Social & Contact**: Add active LinkedIn, Instagram, and email addresses in `content/site.ts`.
-5. **SEO & Indexing**:
-   - Update canonical URLs and metadata in `app/layout.tsx`.
-   - Remove `robots: { index: false, follow: false }` from `app/layout.tsx` to enable search engine indexing.
+5. **SEO & Indexing**: Configure the production domain, then approve routes individually in `content/seo.ts` and verify canonical tags and the sitemap.
 6. **Favicon**: Replace temporary favicon assets in `app/icon.png` with final high-resolution brand assets if required.
 
 ---

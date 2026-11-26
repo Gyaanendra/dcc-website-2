@@ -25,7 +25,7 @@ function SectionHeader({
   return (
     <div className="flex items-end justify-between gap-4 border-b border-black/10 px-6 py-7 sm:px-8">
       <div>
-        <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#555555]">
+        <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-[var(--accent-ink)]">
           [ {index} ]
         </p>
         <RevealOnView>

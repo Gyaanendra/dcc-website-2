@@ -57,6 +57,8 @@ export function LandingHero() {
     if (reducedMotion) {
       videoLayer.style.opacity = "1";
       section.dataset.heroIntro = "complete";
+      section.dataset.letterIntro = "complete";
+      window.dispatchEvent(new Event("dcc:letters-complete"));
       gsap.set(supportingCopy, { autoAlpha: 1 });
       const onScrollReduced = () => {
         const pastHero = window.scrollY > section.offsetHeight - 100;
@@ -292,6 +294,14 @@ export function LandingHero() {
         },
         meetingTime - reboundDuration,
       )
+      .call(
+        () => {
+          section.dataset.letterIntro = "complete";
+          window.dispatchEvent(new Event("dcc:letters-complete"));
+        },
+        undefined,
+        meetingTime,
+      )
       .to(
         videoLayer,
         {
@@ -334,6 +344,7 @@ export function LandingHero() {
       scrollMotion?.kill();
       copyScroll?.scrollTrigger?.kill();
       copyScroll?.kill();
+      delete section.dataset.letterIntro;
       gsap.set([...characters, wordmark, videoLayer, ...supportingCopy], {
         clearProps: "all",
       });

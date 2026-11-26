@@ -53,6 +53,9 @@ export type PastEvent = {
   category: string;
   date: string;
   description: string;
+  image: string;
+  imageAlt: string;
+  imagePosition?: string;
   isSample: true;
 };
 export type AlumniProfile = {
