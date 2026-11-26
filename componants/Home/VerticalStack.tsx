@@ -36,21 +36,7 @@ export function VerticalStack() {
               },
             },
           );
-          if (index === cards.length - 1) {
-            gsap.to(card, {
-              y: -14,
-              scale: 0.965,
-              ease: "none",
-              scrollTrigger: {
-                trigger: root.current,
-                start: "bottom bottom+=150",
-                end: "bottom bottom",
-                scrub: 1.1,
-                invalidateOnRefresh: true,
-              },
-            });
-            return;
-          }
+          if (index === cards.length - 1) return;
           gsap.to(card, {
             y: -14,
             scale: 0.965,
@@ -90,6 +76,9 @@ export function VerticalStack() {
             data-vertical-card
             className={styles.verticalCard}
             key={item.id}
+            style={
+              { "--card-top": `${100 + index * 8}px` } as React.CSSProperties
+            }
           >
             <div className={styles.cardIndex}>
               <Tag category="DCC" label={String(index + 1).padStart(2, "0")} />{" "}

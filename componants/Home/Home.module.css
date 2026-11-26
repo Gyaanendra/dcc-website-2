@@ -317,8 +317,14 @@
 .verticalCards {
   padding-top: 56px;
 }
+.verticalCards::after {
+  content: "";
+  display: block;
+  height: 220px;
+}
 .verticalCard {
   position: sticky;
+  top: var(--card-top);
   height: clamp(380px, 45vw, 540px);
   margin-bottom: 48px;
   padding: clamp(28px, 4vw, 65px);
@@ -337,30 +343,6 @@
 }
 .verticalCard:last-child {
   margin-bottom: 0;
-}
-.verticalCard:nth-child(1) {
-  top: 100px;
-}
-.verticalCard:nth-child(2) {
-  top: 112px;
-}
-.verticalCard:nth-child(3) {
-  top: 124px;
-}
-.verticalCard:nth-child(4) {
-  top: 136px;
-}
-.verticalCard:nth-child(5) {
-  top: 148px;
-}
-.verticalCard:nth-child(6) {
-  top: 160px;
-}
-.verticalCard:nth-child(7) {
-  top: 172px;
-}
-.verticalCard:nth-child(8) {
-  top: 184px;
 }
 .verticalCard:nth-child(3n + 2) {
   background: #c8c8c8;
@@ -616,6 +598,9 @@
 @media (max-width: 800px) {
   .verticalSection {
     padding-bottom: 100px;
+  }
+  .verticalCards::after {
+    display: none;
   }
   .verticalCard:nth-child(n) {
     position: relative;
