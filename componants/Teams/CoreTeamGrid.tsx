@@ -4,13 +4,19 @@ import { type CSSProperties, useEffect, useRef } from "react";
 import CoreMemberCard from "./CoreMemberCard";
 import type { CoreMember } from "./types";
 
+interface CoreTeamGridProps {
+  members: CoreMember[];
+  columns?: 3 | 4;
+}
+
 /**
- * 3-card editorial row for the core leads: a hairline matrix on small
- * screens, separated cards with a small gap from md up. Panels reveal with
- * a staggered fade-up (animation type 5) driven by IntersectionObserver.
+ * Editorial matrix for leadership cards: framed by hairlines on small screens,
+ * separated cards with gap on larger screens. Panels reveal with a
+ * staggered fade-up (animation type 5) driven by IntersectionObserver.
  */
-export default function CoreTeamGrid({ members }: { members: CoreMember[] }) {
+export default function CoreTeamGrid({ members, columns }: CoreTeamGridProps) {
   const gridRef = useRef<HTMLDivElement>(null);
+  const cols = columns ?? (members.length === 4 ? 4 : 3);
 
   useEffect(() => {
     const gridElement = gridRef.current;
@@ -36,10 +42,14 @@ export default function CoreTeamGrid({ members }: { members: CoreMember[] }) {
   }, []);
 
   return (
-    <div className="mx-auto">
+    <div className={`mx-auto ${cols === 3 ? "max-w-[880px]" : "max-w-6xl"}`}>
       <div
         ref={gridRef}
-        className="grid grid-cols-2 gap-2 border-l border-black/10 md:grid-cols-4 md:gap-4 md:border-l-0"
+        className={`grid ${
+          cols === 4
+            ? "grid-cols-2 gap-2 border-l border-black/10 md:grid-cols-4 md:gap-4 md:border-l-0"
+            : "grid-cols-1 border-l border-black/10 sm:grid-cols-3 md:gap-4 md:border-l-0"
+        }`}
       >
         {members.map((member, index) => (
           <div
