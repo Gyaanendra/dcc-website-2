@@ -1,11 +1,6 @@
 "use client";
 
-import React, {
-  type ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { type ReactNode, useEffect, useRef, useState } from "react";
 import SubMemberItem from "./SubMemberItem";
 import { DEPARTMENT_FILTERS, FILTER_LABELS } from "./team-data";
 import type { Department, SubMember } from "./types";
@@ -25,10 +20,6 @@ function LazyGrid({
   const sentinelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setShown(BATCH_SIZE);
-  }, [total]);
-
-  useEffect(() => {
     const el = sentinelRef.current;
     if (!el) return;
     const io = new IntersectionObserver(
@@ -41,17 +32,13 @@ function LazyGrid({
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [total, shown]);
+  }, [total]);
 
   return (
     <div className={className}>
       {childArray.slice(0, shown)}
       {shown < total && (
-        <div
-          ref={sentinelRef}
-          aria-hidden
-          className="col-span-full h-px"
-        />
+        <div ref={sentinelRef} aria-hidden className="col-span-full h-px" />
       )}
     </div>
   );
@@ -85,7 +72,7 @@ export default function SubMembersDirectory({
                   onClick={() => setActiveDepartment(department)}
                   className={`flex-none border px-3.5 py-2 font-mono text-[10.5px] tracking-[0.16em] uppercase transition-colors duration-300 ${
                     isActive
-                      ? "border-[#111111] bg-[#111111] text-[#f4f4f4]"
+                      ? "border-[var(--accent)] bg-[var(--accent)] text-[#111111]"
                       : "border-black/20 text-[#666666] hover:border-[#111111] hover:bg-black/[0.03] hover:text-[#111111]"
                   }`}
                 >
@@ -104,10 +91,7 @@ export default function SubMembersDirectory({
         className="grid grid-cols-2 border-l border-black/10 md:grid-cols-2 lg:grid-cols-3"
       >
         {filteredMembers.map((member) => (
-          <div
-            key={member.id}
-            className="border-r border-b border-black/10"
-          >
+          <div key={member.id} className="border-r border-b border-black/10">
             <SubMemberItem member={member} />
           </div>
         ))}

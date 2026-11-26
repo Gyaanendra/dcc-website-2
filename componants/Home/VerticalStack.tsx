@@ -76,6 +76,9 @@ export function VerticalStack() {
             data-vertical-card
             className={styles.verticalCard}
             key={item.id}
+            style={
+              { "--card-top": `${100 + index * 8}px` } as React.CSSProperties
+            }
           >
             <div className={styles.cardIndex}>
               <Tag category="DCC" label={String(index + 1).padStart(2, "0")} />{" "}
