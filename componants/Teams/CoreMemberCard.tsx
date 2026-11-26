@@ -31,10 +31,6 @@ export default function CoreMemberCard({ member }: { member: CoreMember }) {
         <p className="mt-0.5 font-serif text-xs text-[#666666] italic transition-colors duration-300 group-hover:text-[#555555] md:text-sm">
           {member.role}
         </p>
-        <div className="mt-auto flex items-center justify-between border-t border-black/10 pt-2 font-mono text-[7.5px] tracking-[0.12em] uppercase text-[#666666] md:pt-3 md:text-[9.5px] md:tracking-[0.14em]">
-          <span>{member.leadRole}</span>
-          <span className="hidden md:inline">{refCode(member.order)}</span>
-        </div>
       </div>
     </article>
   );
