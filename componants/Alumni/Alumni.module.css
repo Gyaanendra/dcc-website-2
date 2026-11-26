@@ -31,7 +31,7 @@
 }
 .previewMeta {
   padding-bottom: 16px;
-  border-bottom: 1px solid #656565;
+  border-bottom: none;
 }
 .previewBody {
   display: grid;
@@ -84,8 +84,8 @@
 .previewTicker {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid #656565;
-  border-bottom: 1px solid #656565;
+  border-top: none;
+  border-bottom: none;
 }
 .previewTicker > div {
   min-height: 92px;
@@ -229,8 +229,8 @@
 .directoryGrid {
   display: grid;
   grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.7fr);
-  border-top: 1px solid #1b1b1b;
-  border-bottom: 1px solid #1b1b1b;
+  border-top: none;
+  border-bottom: none;
 }
 .names {
   min-width: 0;

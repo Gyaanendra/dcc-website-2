@@ -59,7 +59,7 @@ export default function SubMembersDirectory({
 
   return (
     <div>
-      <div className="border-b border-black/10 px-6 py-5 sm:px-8">
+      <div className="px-6 py-5 sm:px-8">
         <div className="flex items-center gap-3">
           <div className="scrollbar-none flex min-w-0 flex-1 gap-2 overflow-x-auto md:flex-wrap md:overflow-visible">
             {DEPARTMENT_FILTERS.map((department) => {
@@ -81,17 +81,14 @@ export default function SubMembersDirectory({
               );
             })}
           </div>
-          <p className="flex-none font-mono text-[10.5px] tracking-[0.16em] uppercase text-[#666666]">
-            COUNT: {String(filteredMembers.length).padStart(2, "0")}
-          </p>
         </div>
       </div>
       <LazyGrid
         key={activeDepartment}
-        className="grid grid-cols-2 border-l border-black/10 md:grid-cols-2 lg:grid-cols-3"
+        className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3"
       >
         {filteredMembers.map((member) => (
-          <div key={member.id} className="border-r border-b border-black/10">
+          <div key={member.id}>
             <SubMemberItem member={member} />
           </div>
         ))}
