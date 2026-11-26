@@ -30,7 +30,7 @@ export function GalleryCard({
     <button
       type="button"
       className={styles.card}
-      style={{ aspectRatio: image.aspectRatio }}
+      style={{ aspectRatio: image.aspectRatio.replace(":", " / ") }}
       onClick={(event) => onClick(event.currentTarget.getBoundingClientRect())}
       aria-label={`${image.title} — ${image.category} (${formattedIndex} of ${formattedTotal})`}
       data-gallery-card
