@@ -1,5 +1,5 @@
 .footer {
-  --accent: #d0d0d0;
+  --focus-ring: var(--accent);
   position: relative;
   isolation: isolate;
   overflow: hidden;

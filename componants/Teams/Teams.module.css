@@ -1,5 +1,4 @@
 .hero {
-  --accent: #d0d0d0;
   min-height: max(760px, 100svh);
   position: relative;
   overflow: hidden;
@@ -93,7 +92,7 @@
   color: var(--paper-light);
 }
 .filters span {
-  color: var(--accent);
+  color: var(--accent-ink);
   margin-left: 8px;
 }
 .rosterLayout {
@@ -124,11 +123,11 @@
 }
 .memberButton:hover .memberName,
 .memberButton:focus-visible .memberName {
-  color: var(--accent);
+  color: var(--accent-ink);
   padding-left: 8px;
 }
 .memberIndex {
-  color: var(--accent);
+  color: var(--accent-ink);
   font: 11px var(--font-data);
 }
 .memberName {

@@ -35,7 +35,9 @@
   --muted: #5f5f5f;
   --line: rgba(11, 11, 11, 0.2);
   --line-light: rgba(247, 247, 247, 0.3);
-  --accent: #515151;
+  --accent: #ff6d1f;
+  --accent-ink: #9b3900;
+  --focus-ring: var(--accent-ink);
   --page-pad: clamp(20px, 4vw, 72px);
   --font-body: var(--font-geist-sans), Arial, sans-serif;
   --font-title: var(--font-display), Arial, sans-serif;
@@ -82,10 +84,10 @@ video {
 }
 ::selection {
   background: var(--accent);
-  color: white;
+  color: var(--ink);
 }
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--focus-ring);
   outline-offset: 5px;
 }
 .skip-link {

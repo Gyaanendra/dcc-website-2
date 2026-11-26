@@ -35,7 +35,21 @@ export function VerticalStack() {
               },
             },
           );
-          if (index === cards.length - 1) return;
+          if (index === cards.length - 1) {
+            gsap.to(card, {
+              y: -14,
+              scale: 0.965,
+              ease: "none",
+              scrollTrigger: {
+                trigger: root.current,
+                start: "bottom bottom+=150",
+                end: "bottom bottom",
+                scrub: 1.1,
+                invalidateOnRefresh: true,
+              },
+            });
+            return;
+          }
           gsap.to(card, {
             y: -14,
             scale: 0.965,

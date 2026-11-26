@@ -1,5 +1,4 @@
 .hero {
-  --accent: #d0d0d0;
   min-height: max(760px, 100svh);
   position: relative;
   overflow: hidden;
@@ -109,7 +108,7 @@
   border: 0;
 }
 .routeSteps span {
-  color: var(--accent);
+  color: var(--accent-ink);
   font: 11px var(--font-data);
 }
 .routeSteps h3 {
@@ -126,10 +125,9 @@
   right: 20px;
   top: 15px;
   font: 30px var(--font-title);
-  color: var(--accent);
+  color: var(--accent-ink);
 }
 .verticalSection {
-  --accent: #d0d0d0;
   background: var(--ink);
   color: var(--paper-light);
   padding: clamp(100px, 11vw, 170px) var(--page-pad);
@@ -190,7 +188,7 @@
 }
 .endSection h2 em {
   font-style: normal;
-  color: #646464;
+  color: var(--accent);
 }
 .endSection a {
   display: flex;
