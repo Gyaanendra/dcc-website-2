@@ -1,5 +1,6 @@
 "use client";
 
+import { Counter } from "@/componants/Shared/Separators";
 import styles from "./Gallery.module.css";
 
 interface GalleryControlsProps {
@@ -17,11 +18,11 @@ export function GalleryControls({
   return (
     <nav className={styles.controlsBar} aria-label="Gallery controls">
       <span className={styles.hintText} aria-hidden="true">
-        {"CLICK A CARD TO INSPECT // DRAG SIDEWAYS TO SCRUB ↔"}
+        {"CLICK A CARD TO INSPECT — DRAG SIDEWAYS TO SCRUB ↔"}
       </span>
 
       <span className={styles.counter}>
-        {currentFormatted} <i>/</i> {totalFormatted}
+        <Counter current={currentFormatted} total={totalFormatted} />
       </span>
     </nav>
   );
