@@ -1,0 +1,36 @@
+# Dean Career Cloud (DCC) — Bennett University (SCSET)
+
+> Dean Career Cloud (DCC) is the student-led career preparation, industry exposure, and placement readiness collective at the School of Computer Science Engineering & Technology (SCSET), Bennett University.
+
+## Site Overview
+- **Home** (`/`): Overview of DCC's mission, impact, and 10 operational verticals.
+- **About** (`/about`): Mission, vision, and how DCC connects students with career direction.
+- **Teams** (`/teams`): Full directory of DCC's 101+ student members across Core Leadership and 10 specialized teams.
+- **Alumni** (`/alumni`): Alumni network and career trajectories.
+- **Past Events** (`/past-events`): Archive of workshops, speaker sessions, and placement drives.
+- **Gallery** (`/gallery`): Visual highlights from DCC events and community moments.
+
+## Core Leadership (2025–Present)
+- **Saurabh Singh** — President
+- **Sneh Gupta** — Vice President
+- **Akshat Rastogi** — General Secretary
+
+## Technical Team
+- **Gyanendra Prakash** — Tech Head
+- **Sajal Yadav** — Tech Sub Head
+- **Shivam Rai** — Senior Executive
+- **Shrish Raghuwanshi** — Associate Lead
+- **Satveek Gupta** — Senior Executive
+- **Shubham Kulshreshtha** — Junior Executive
+- **Aditya Agrawal** — Junior Executive
+
+## Other Teams & Verticals
+- **Placement Turnaround**: Drives placement readiness, company coordination, and student shortlisting support.
+- **Corporate & Alumni Relations**: Builds and maintains industry partnerships, recruiter outreach, and alumni engagement.
+- **Training & Preparation**: Organizes mock interviews, aptitude sessions, coding bootcamps, and technical prep.
+- **Operations**: Manages event logistics, scheduling, and cross-team execution.
+- **Media Team**: Captures photography, videography, and event coverage.
+- **Design Team**: Crafts visual identity, branding, posters, and digital assets.
+- **Research & Higher Studies**: Guides students on research publications, GRE/GATE/CAT prep, and higher education pathways.
+- **Strategic Intelligence**: Analyzes placement trends, hiring data, and student feedback to guide initiatives.
+- **PR & Outreach**: Handles public relations, social media presence, and campus-wide communication.

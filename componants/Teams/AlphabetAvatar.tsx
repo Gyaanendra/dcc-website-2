@@ -47,9 +47,10 @@ export default function AlphabetAvatar({
             src={resolvedSrc}
             alt={name}
             fill
-            sizes="(min-resolution: 2dppx) 160px, 80px"
-            quality={90}
-            className="object-cover grayscale transition-[filter] duration-500 group-hover:grayscale-0"
+            sizes="160px"
+            quality={100}
+            unoptimized
+            className="object-cover grayscale-0"
             onError={() => setImageFailed(true)}
           />
         </div>
@@ -77,9 +78,10 @@ export default function AlphabetAvatar({
           src={resolvedSrc}
           alt={name}
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          quality={90}
-          className="object-cover grayscale contrast-125 transition-[filter] duration-500 group-hover:grayscale-0 group-hover:contrast-100"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          quality={100}
+          unoptimized
+          className="object-cover grayscale-0"
           onError={() => setImageFailed(true)}
         />
       ) : (
