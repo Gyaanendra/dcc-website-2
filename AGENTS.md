@@ -16,4 +16,3 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Sub-member photos sit grayscale and gain full colour on hover (`AlphabetAvatar.tsx`, `transition-[filter] … group-hover:grayscale-0`); core portraits do the same. The core card uses a thin `border-black/15` rule between portrait and metadata.
 - The sub-members directory grid is 3 columns on `lg` (`SubMembersDirectory.tsx`).
 - Team photos live in `public/images/team/` and are referenced from `team-data.ts` by path.
-- `dcc-website-2/` is a mirror of this site; any change under `componants/Teams/` must be copied there too.

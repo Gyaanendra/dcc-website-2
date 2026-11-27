@@ -12,8 +12,7 @@
       "!node_modules",
       "!.next",
       "!dist",
-      "!build",
-      "!dcc-website-2"
+      "!build"
     ]
   },
   "formatter": {
