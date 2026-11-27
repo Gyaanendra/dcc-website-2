@@ -1,5 +1,5 @@
 .page {
-  min-height: 100svh;
+  min-height: 82svh;
   background: #fff;
   color: #0b0b0b;
   padding: clamp(28px, 3vw, 60px) clamp(24px, 3vw, 76px) 0;

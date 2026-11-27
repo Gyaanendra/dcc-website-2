@@ -62,8 +62,7 @@ body {
   color: var(--ink);
   font-family: var(--font-body);
 }
-body:has([data-not-found-page]) > header,
-body:has([data-not-found-page]) > footer {
+body:has([data-not-found-page]) > header {
   display: none;
 }
 .teams-page > main > section:first-child {

@@ -11,10 +11,17 @@ export default function NotFound() {
           href="/"
           aria-label="Dean Career Cloud home"
         >
-          <span className={styles.brandMark} aria-hidden="true">
-            <span />
-          </span>
-          <span>Dean Career Cloud</span>
+          <Image
+            src="/media/dcc-black.png"
+            alt="DCC Logo"
+            width={220}
+            height={84}
+            style={{
+              height: "clamp(54px, 5vw, 84px)",
+              width: "auto",
+              objectFit: "contain",
+            }}
+          />
         </Link>
         <div className={styles.status}>
           <span className={styles.statusDot} aria-hidden="true" />
